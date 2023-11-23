@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,15 +48,64 @@ public class AuthController {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), "pilpose authentication", null,
 					RsMethodEnum.POST.getValue(), "/auth/v0", null));
 		}
-
 		var response = useService.checkUserInfo(user);
 		System.out.println(response);
-		if (response != null && response.getIdUser() !=null) {
+		if (response != null && response.getIdUser() != null) {
+			return new PilposeResponse(response, HttpStatus.OK);
+		}
+		else {
+			return new PilposeResponse("user not found", HttpStatus.NOT_FOUND);
+
+		}
+
+	}
+
+	/**
+	 * pilpose update Password
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/v0/updatePassword", headers = Constants.HEADERS)
+	public PilposeResponse updatePassword(@RequestBody UserDto user) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), "pilpose update password controller",
+					null, RsMethodEnum.POST.getValue(), "/auth/v0/updatePassword", null));
+		}
+		var response = useService.updateUserPassword(user);
+		System.out.println(response);
+		if (response != null && response.getIdUser() != null) {
+			return new PilposeResponse(response, HttpStatus.OK);
+		}
+		else {
+			return new PilposeResponse("Probleme lors la modification", HttpStatus.FORBIDDEN);
+
+		}
+
+	}
+
+	/**
+	 * pilpose get user by ID
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws Exception
+	 */
+	@GetMapping(value = "/v0/getUserById/{idUser}", headers = Constants.HEADERS)
+	public PilposeResponse getUserById(@PathVariable Long idUser) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), "pilpose get user by id controller",
+					null, RsMethodEnum.POST.getValue(), "/auth/v0/getUserById", null));
+		}
+		var response = useService.getUserById(idUser);
+		System.out.println(response);
+		if (response != null) {
 			return new PilposeResponse(response, HttpStatus.OK);
 		}
 
 		else {
-			return new PilposeResponse("user not found", HttpStatus.NOT_FOUND);
+			return new PilposeResponse("Utilisateur introuvable", HttpStatus.NOT_FOUND);
 
 		}
 
