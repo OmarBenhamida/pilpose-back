@@ -4,6 +4,8 @@
 package com.benfat.pilpose.controllers;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,103 +23,109 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
-import com.benfat.pilpose.controllers.dto.ChantierDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.response.PilposeResponse;
-import com.benfat.pilpose.service.IChantierService;
+import com.benfat.pilpose.service.ICollaborateurService;
 import com.benfat.pilpose.util.Constants;
 
 @RestController
-@RequestMapping("/chantier")
+@RequestMapping("/collaborateur")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ChantierController {
+public class CollaborateurController {
 
-	private static Logger logger = LoggerFactory.getLogger(ChantierController.class);
+	private static Logger logger = LoggerFactory.getLogger(CollaborateurController.class);
 
 	@Autowired
-	IChantierService chantierService;
+	ICollaborateurService collaborateurService;
 	@Autowired
 	private ServerProperties serverProperties;
 
 	/**
-	 * Get chantier Controller
+	 * Get collaborateur Controller
 	 *
 	 * @return {PilposeResponse}
 	 * @throws ParseException
 	 * @throws Exception
 	 *
 	 */
+	@SuppressWarnings("deprecation")
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse getAllChantier() throws ParseException {
+	public PilposeResponse getAllCollaborateur() throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"get all chantier controller", null, RsMethodEnum.GET.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"get all collaborateur controller", null, RsMethodEnum.GET.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
 		PilposeResponse pilposeResponse = null;
-		List<ChantierDto> chantierDtos = ChantierDto.entitiesToDtos(chantierService.getAllChantier());
-		pilposeResponse = new PilposeResponse(chantierDtos, HttpStatus.OK);
+		List<CollaborateurDto> collaborateurDtos = CollaborateurDto
+				.entitiesToDtos(collaborateurService.getAllCollaborateur());	
+		pilposeResponse = new PilposeResponse(collaborateurDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}
+	
+
 
 	/**
-	 * add chantier
+	 * add collaborateur
 	 * 
-	 * @param ChantierDto
+	 * @param CollaborateurDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PostMapping(value = ConstantsApplication.REST_PATH_V0)
-	public PilposeResponse addChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse addCollaborateur(@RequestBody CollaborateurDto collaborateurDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"add chantier controller", null, RsMethodEnum.POST.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"add collaborateur controller", null, RsMethodEnum.POST.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
+		return new PilposeResponse(
+				CollaborateurDto.entityToDto(collaborateurService.addOrUpdateCollaborateur(collaborateurDto)),
 				HttpStatus.OK);
 	}
 
 	/**
-	 * update chantier
+	 * update collaborateur
 	 * 
-	 * @param ChantierDto
+	 * @param CollaborateurDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PutMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse updateChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse updateCollaborateur(@RequestBody CollaborateurDto collaborateurDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"update chantier controller", null, RsMethodEnum.PUT.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"update collaborateur controller", null, RsMethodEnum.PUT.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
+		return new PilposeResponse(
+				CollaborateurDto.entityToDto(collaborateurService.addOrUpdateCollaborateur(collaborateurDto)),
 				HttpStatus.OK);
 	}
 
 	/**
-	 * delete chantier
+	 * delete collaborateur
 	 * 
-	 * @param chantierDto
+	 * @param collaborateurDto
 	 * @return
 	 * @throws ParseException
 	 */
-	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idChantier}", headers = Constants.HEADERS)
-	public PilposeResponse deleteChantier(@PathVariable Long idChantier) throws ParseException {
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idCollaborateur}", headers = Constants.HEADERS)
+	public PilposeResponse deleteCollaborateur(@PathVariable Long idCollaborateur) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"delete chantier controller", null, RsMethodEnum.DELETE.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"delete collaborateur controller", null, RsMethodEnum.DELETE.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		/** delete chantier */
-		boolean retour = chantierService.deleteChantier(idChantier);
+		/** delete collaborateur */
+		boolean retour = collaborateurService.deleteCollaborateur(idCollaborateur);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}

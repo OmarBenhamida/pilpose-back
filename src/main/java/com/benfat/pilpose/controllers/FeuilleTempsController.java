@@ -21,28 +21,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
-import com.benfat.pilpose.controllers.dto.ChantierDto;
+import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.response.PilposeResponse;
-import com.benfat.pilpose.service.IChantierService;
+import com.benfat.pilpose.service.IFeuilleTempsService;
 import com.benfat.pilpose.util.Constants;
 
 @RestController
-@RequestMapping("/chantier")
+@RequestMapping("/feuille")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ChantierController {
+public class FeuilleTempsController {
 
-	private static Logger logger = LoggerFactory.getLogger(ChantierController.class);
+	private static Logger logger = LoggerFactory.getLogger(FeuilleTempsController.class);
 
 	@Autowired
-	IChantierService chantierService;
+	IFeuilleTempsService feuilleTempsService;
 	@Autowired
 	private ServerProperties serverProperties;
 
 	/**
-	 * Get chantier Controller
+	 * Get feuilleTemps Controller
 	 *
 	 * @return {PilposeResponse}
 	 * @throws ParseException
@@ -50,74 +50,77 @@ public class ChantierController {
 	 *
 	 */
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse getAllChantier() throws ParseException {
+	public PilposeResponse getAllFeuilleTemps() throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"get all chantier controller", null, RsMethodEnum.GET.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"get all feuilleTemps controller", null, RsMethodEnum.GET.getValue(),
+					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
 		PilposeResponse pilposeResponse = null;
-		List<ChantierDto> chantierDtos = ChantierDto.entitiesToDtos(chantierService.getAllChantier());
-		pilposeResponse = new PilposeResponse(chantierDtos, HttpStatus.OK);
+		List<FeuilleTempsDto> feuilleTempsDtos = FeuilleTempsDto
+				.entitiesToDtos(feuilleTempsService.getAllFeuilleTemps());
+		pilposeResponse = new PilposeResponse(feuilleTempsDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}
 
 	/**
-	 * add chantier
+	 * add feuilleTemps
 	 * 
-	 * @param ChantierDto
+	 * @param FeuilleTempsDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PostMapping(value = ConstantsApplication.REST_PATH_V0)
-	public PilposeResponse addChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse addFeuilleTemps(@RequestBody FeuilleTempsDto feuilleTempsDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"add chantier controller", null, RsMethodEnum.POST.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"add feuilleTemps controller", null, RsMethodEnum.POST.getValue(),
+					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
+		return new PilposeResponse(
+				FeuilleTempsDto.entityToDto(feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto)),
 				HttpStatus.OK);
 	}
 
 	/**
-	 * update chantier
+	 * update feuilleTemps
 	 * 
-	 * @param ChantierDto
+	 * @param FeuilleTempsDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PutMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse updateChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse updateFeuilleTemps(@RequestBody FeuilleTempsDto feuilleTempsDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"update chantier controller", null, RsMethodEnum.PUT.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"update feuilleTemps controller", null, RsMethodEnum.PUT.getValue(),
+					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
+		return new PilposeResponse(
+				FeuilleTempsDto.entityToDto(feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto)),
 				HttpStatus.OK);
 	}
 
 	/**
-	 * delete chantier
+	 * delete feuilleTemps
 	 * 
-	 * @param chantierDto
+	 * @param feuilleTempsDto
 	 * @return
 	 * @throws ParseException
 	 */
-	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idChantier}", headers = Constants.HEADERS)
-	public PilposeResponse deleteChantier(@PathVariable Long idChantier) throws ParseException {
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idFeuilleTemps}", headers = Constants.HEADERS)
+	public PilposeResponse deleteFeuilleTemps(@PathVariable Long idFeuilleTemps) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"delete chantier controller", null, RsMethodEnum.DELETE.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"delete feuilleTemps controller", null, RsMethodEnum.DELETE.getValue(),
+					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		/** delete chantier */
-		boolean retour = chantierService.deleteChantier(idChantier);
+		/** delete feuilleTemps */
+		boolean retour = feuilleTempsService.deleteFeuilleTemps(idFeuilleTemps);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}

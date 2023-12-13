@@ -41,7 +41,7 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "client", nullable = false)
 	private String client;
 
-	@Column(name = "etat", length = 10)
+	@Column(name = "etat", length = 50)
 	private String etat;
 
 	@Column(name = "localisation", length = 100)

@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.validation.constraints.Size;
 
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.entities.UserEntity;
 import com.benfat.pilpose.util.Functions;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -43,7 +44,13 @@ public class UserDto implements Serializable {
 
 	@Size(max = 20)
 	private String password;
-
+	
+	@Size(max = 20)
+	private String nom;
+	
+	@Size(max = 20)
+	private String prenom;
+	
 	@Size(max = 30)
 	private String email;
 	
@@ -120,6 +127,26 @@ public class UserDto implements Serializable {
 			dto.setUsername(entity.getUsername());
 			dto.setPassword(entity.getPassword());
 			dto.setDateCreation(String.valueOf(entity.getDateCreation()));
+		}
+		return dto;
+	}
+	
+	/**
+	 * Convert UserEntity -> UserDto
+	 * 
+	 * @return DeviseDto
+	 * @throws ParseException
+	 */
+	public static UserDto collabEntityToUserDto(CollaborateurEntity entity) throws ParseException {
+		UserDto dto = null;
+		if (entity != null) {
+			dto = new UserDto();
+			dto.setIdUser(entity.getIdCollaborateur());
+			dto.setEmail(entity.getEmail());
+			dto.setUsername(entity.getUsername());
+			dto.setPassword(entity.getPassword());
+			dto.setNom(entity.getNom());
+			dto.setPrenom(entity.getPrenom());
 		}
 		return dto;
 	}

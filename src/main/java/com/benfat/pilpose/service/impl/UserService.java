@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.config.JwtTokenProvider;
 import com.benfat.pilpose.controllers.dto.UserDto;
+import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.IUserRepository;
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.entities.UserEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
@@ -34,6 +36,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	IUserRepository userRepository;
+	
+	@Autowired
+	ICollaborateurRepository collaborateurRepository;
 
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
@@ -42,11 +47,12 @@ public class UserService implements IUserService {
 	public UserDto checkUserInfo(UserDto user) throws ParseException {
 
 		if (!user.getUsername().contains("@")) {
-			UserEntity userEntity = userRepository.getByUsername(user.getUsername());
-			if (userEntity != null) {
+			CollaborateurEntity collaborateurEntity = collaborateurRepository.getUserByUsername(user.getUsername());
+			//UserEntity userEntity = userRepository.getByUsername(user.getUsername());
+			if (collaborateurEntity != null) {
 
-				if (userEntity.getPassword().equals(user.getPassword())) {
-					UserDto userDto = UserDto.entityToDto(userEntity);
+				if (collaborateurEntity.getPassword().equals(user.getPassword())) {
+					UserDto userDto = UserDto.collabEntityToUserDto(collaborateurEntity);
 					userDto.setToken(jwtTokenProvider.generateToken(userDto));
 					return userDto;
 				}
@@ -56,10 +62,11 @@ public class UserService implements IUserService {
 				}
 			}
 		} else {
-			UserEntity userEntity = userRepository.getByEmail(user.getEmail());
-			if (userEntity != null) {
-				if (userEntity.getPassword().equals(user.getPassword())) {
-					return UserDto.entityToDto(userEntity);
+			CollaborateurEntity collaborateurEntity = collaborateurRepository.getUserByEmail(user.getEmail());
+			//UserEntity userEntity = userRepository.getByEmail(user.getEmail());
+			if (collaborateurEntity != null) {
+				if (collaborateurEntity.getPassword().equals(user.getPassword())) {
+					return UserDto.collabEntityToUserDto(collaborateurEntity);
 				} else {
 					return null;
 				}

@@ -7,10 +7,9 @@ import com.benfat.pilpose.dao.common.ICommonRepository;
 import com.benfat.pilpose.entities.ChantierEntity;
 
 /**
- * Repository Interface For Pays
+ * Repository Interface For chantier
  * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
+ * @author : BENHAMIDA OMAR 
  * @creation : 15/05/2022
  * @version : 1.0
  */
