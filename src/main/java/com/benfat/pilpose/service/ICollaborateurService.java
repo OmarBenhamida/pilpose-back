@@ -1,8 +1,12 @@
 package com.benfat.pilpose.service;
 
+import java.text.ParseException;
 import java.util.List;
 
+import org.springframework.util.MultiValueMap;
+
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.controllers.dto.PlanningDto;
 import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.exception.PilposeTechnicalException;
 
@@ -45,6 +49,8 @@ public interface ICollaborateurService {
 	 * @throws Exception
 	 */
 	CollaborateurEntity getCollaborateurByCin(String cin) throws PilposeTechnicalException;
+	
+	CollaborateurEntity getCollaborateurById(Long id) throws PilposeTechnicalException;
 
 	/**
 	 * get refresh chantier
@@ -52,5 +58,9 @@ public interface ICollaborateurService {
 	 * @return
 	 */
 	List<CollaborateurEntity> getRefreshedCollaborateur();
+
+	List<PlanningDto> getPlanningById(Long idC) throws ParseException;
+
+	List<PlanningDto> getPlanningAll() throws ParseException;
 
 }

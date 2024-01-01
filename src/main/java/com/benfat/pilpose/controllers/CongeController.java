@@ -3,6 +3,7 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -18,10 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.CongeDto;
+import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -31,7 +35,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/conge")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
 public class CongeController {
 
 	private static Logger logger = LoggerFactory.getLogger(CongeController.class);
@@ -81,6 +85,33 @@ public class CongeController {
 
 		return new PilposeResponse(CongeDto.entityToDto(congeService.addOrUpdateConge(congeDto)),
 				HttpStatus.OK);
+	}
+	/**
+	 * 
+	 * @param file
+	 * @param idC
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException 
+	 */
+	@PostMapping(value = "/excel/{idC}")
+	public String  addCongeImport(@RequestParam("file") MultipartFile file,@PathVariable Long idC) throws ParseException, IOException {
+	/*
+		 NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
+		try {
+            
+            
+            fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
+
+            noteFraisRepository.save(fileEntity); // Save to the database
+
+            return "File uploaded successfully";
+        } catch (Exception e) {
+            return "Error uploading file";
+        }*/
+		
+		congeService.addOrUpdateCongesExcel(file, idC);
+		return "File uploaded successfully";
 	}
 
 	/**

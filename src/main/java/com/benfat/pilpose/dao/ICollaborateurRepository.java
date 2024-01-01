@@ -24,6 +24,9 @@ public interface ICollaborateurRepository extends ICommonRepository<Collaborateu
 	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.cin = :cin")
 	CollaborateurEntity getUserByCin(String cin);
 	
+	
+	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.idCollaborateur = :id")
+	CollaborateurEntity getUserById(Long id);
 	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.username = :username")
 	CollaborateurEntity getUserByUsername(String username);
 	

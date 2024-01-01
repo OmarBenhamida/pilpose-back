@@ -58,11 +58,12 @@ public class TacheService implements ITacheService {
 	@Override
 	public TacheEntity addOrUpdateTache(TacheDto tache) {
 		Date dateDeb = new Date();
-
+		List<TacheEntity> entities =tacheRepository.findAll();
 		TacheEntity entity = new TacheEntity();
 		try {
-
-			entity = tacheRepository.save(TacheDto.dtoToEntity(tache));
+			entity = TacheDto.dtoToEntity(tache);
+			entity.setReference("ref".concat(entities.size()+1+""));
+			entity = tacheRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("TacheService::addOrUpdateTache on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

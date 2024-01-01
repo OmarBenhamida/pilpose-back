@@ -1,6 +1,10 @@
 package com.benfat.pilpose.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,8 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.controllers.dto.PlanningDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
+import com.benfat.pilpose.dao.IAffectationRepository;
 import com.benfat.pilpose.dao.ICollaborateurRepository;
+import com.benfat.pilpose.dao.ITacheRepository;
+import com.benfat.pilpose.entities.AffectationEntity;
 import com.benfat.pilpose.entities.CollaborateurEntity;
+import com.benfat.pilpose.entities.TacheEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.exception.PilposeTechnicalException;
@@ -36,6 +46,13 @@ public class CollaborateurService implements ICollaborateurService {
 
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
+	
+	@Autowired
+	ITacheRepository tacheRepository;
+	
+	@Autowired
+	IAffectationRepository affectationRepository;
+
 
 	@Override
 	public List<CollaborateurEntity> getAllCollaborateur() {
@@ -60,10 +77,13 @@ public class CollaborateurService implements ICollaborateurService {
 	public CollaborateurEntity addOrUpdateCollaborateur(CollaborateurDto collaborateur) {
 		Date dateDeb = new Date();
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Specify your desired date format
+        String formattedDate = dateFormat.format(dateDeb);
 		CollaborateurEntity entity = new CollaborateurEntity();
 		try {
-
-			entity = collaborateurRepository.save(CollaborateurDto.dtoToEntity(collaborateur));
+			entity = CollaborateurDto.dtoToEntity(collaborateur);
+			entity.setDateEmbauche(formattedDate);
+			entity = collaborateurRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("CollaborateurService::addOrUpdateCollaborateur on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
@@ -114,6 +134,25 @@ public class CollaborateurService implements ICollaborateurService {
 		}
 		return collaborateur;
 	}
+	@Override
+	public CollaborateurEntity getCollaborateurById(Long id) throws PilposeTechnicalException {
+		Date dateDeb = new Date();
+		CollaborateurEntity collaborateur = null;
+
+		try {
+			collaborateur = collaborateurRepository.getUserById(id);
+		} catch (Exception e) {
+			throw new PilposeBusinessException("CollaborateurService::getUserByCin on line "
+					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		}
+
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "get all Collaborateur", dateDeb,
+					new Date(), null));
+		}
+		return collaborateur;
+	}
+
 
 	@Override
 	public List<CollaborateurEntity> getRefreshedCollaborateur() {
@@ -133,5 +172,39 @@ public class CollaborateurService implements ICollaborateurService {
 		}
 		return collaborateur;
 	}
+	
+	@Override
+	public List<PlanningDto> getPlanningById(Long idC) throws ParseException{
+		List<PlanningDto> list = new ArrayList<>();
+		List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollab(idC);
+		for (AffectationEntity num : affectationEntities) {
+			
+			PlanningDto dto = new  PlanningDto();
+			dto.setIdCollaborateur(CollaborateurDto.entityToDto(num.getIdCollaborateur()));
+			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
+			
+			list.add(dto);
+		}
+		
+		return list;
+	}
+	
+	
+	@Override
+	public List<PlanningDto> getPlanningAll() throws ParseException{
+		List<PlanningDto> list = new ArrayList<>();
+		List<AffectationEntity> affectationEntities = affectationRepository.findAll();
+		for (AffectationEntity num : affectationEntities) {
+			
+			PlanningDto dto = new  PlanningDto();
+			dto.setIdCollaborateur(CollaborateurDto.entityToDto(num.getIdCollaborateur()));
+			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
+			
+			list.add(dto);
+		}
+		
+		return list;
+	}
+	
 
 }

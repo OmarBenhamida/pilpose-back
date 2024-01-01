@@ -64,7 +64,7 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setJourSemaine(entity.getJourSemaine());
-			dto.setPanier(entity.getPanier());
+			//dto.setPanier(entity.getPanier());
 			dto.setVehicule(entity.getVehicule());
 			dto.setHeureTravaille(entity.getHeureTravaille());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
@@ -88,7 +88,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeTravaux(dto.getTypeTravaux());
 			entity.setJourSemaine(dto.getJourSemaine());
-			entity.setPanier(dto.getPanier());
+			//entity.setPanier(dto.getPanier());
 			entity.setVehicule(dto.getVehicule());
 			entity.setHeureTravaille(dto.getHeureTravaille());
 			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));

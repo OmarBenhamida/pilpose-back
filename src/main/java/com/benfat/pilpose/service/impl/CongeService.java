@@ -1,5 +1,10 @@
 package com.benfat.pilpose.service.impl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.controllers.dto.CongeDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.dao.ICongeRepository;
 import com.benfat.pilpose.entities.CongeEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
@@ -58,11 +65,17 @@ public class CongeService implements ICongeService {
 	@Override
 	public CongeEntity addOrUpdateConge(CongeDto conge) {
 		Date dateDeb = new Date();
+	
 
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Specify your desired date format
+	        String formattedDate = dateFormat.format(dateDeb);
+		List<CongeEntity> list =congeRepository.findAll();
 		CongeEntity entity = new CongeEntity();
 		try {
-
-			entity = congeRepository.save(CongeDto.dtoToEntity(conge));
+			entity = CongeDto.dtoToEntity(conge);
+			entity.setReference("ref".concat(list.size()+1+""));
+			entity.setDateDepot(formattedDate);
+			entity = congeRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("CongeService::addOrUpdateConge on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
@@ -112,6 +125,17 @@ public class CongeService implements ICongeService {
 					null));
 		}
 		return conge;
+	}
+
+	@Override
+	public String addOrUpdateCongesExcel(MultipartFile file, Long idC) throws IOException {
+		// TODO Auto-generated method stub
+		
+		 byte[] bytes = file.getBytes();
+		 Path path = Paths.get("/pilpose-back/src/main/resources/assets/" + file.getOriginalFilename());
+		 Files.write(path, bytes);
+
+		return null;
 	}
 
 }

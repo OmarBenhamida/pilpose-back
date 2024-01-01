@@ -1,5 +1,6 @@
 package com.benfat.pilpose.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.dao.IFeuilleTempsRepository;
+import com.benfat.pilpose.entities.CongeEntity;
 import com.benfat.pilpose.entities.FeuilleTempsEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
@@ -59,10 +62,14 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 	public FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
 		Date dateDeb = new Date();
 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Specify your desired date format
+		String formattedDate = dateFormat.format(dateDeb);
+		List<FeuilleTempsEntity> list = feuilleTempsRepository.findAll();
 		FeuilleTempsEntity entity = new FeuilleTempsEntity();
 		try {
-
-			entity = feuilleTempsRepository.save(FeuilleTempsDto.dtoToEntity(feuilleTemps));
+			entity = FeuilleTempsDto.dtoToEntity(feuilleTemps);
+			entity.setReference("ref".concat(list.size() + 1 + ""));
+			entity = feuilleTempsRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("FeuilleTempsService::addOrUpdateFeuilleTemps on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

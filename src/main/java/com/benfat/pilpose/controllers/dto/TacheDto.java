@@ -86,7 +86,7 @@ public class TacheDto implements Serializable {
 			entity = new TacheEntity();
 
 			entity.setIdTache(dto.getIdTache());
-			entity.setReference(dto.getReference());
+		//	entity.setReference(dto.getReference());
 			entity.setLibelle(dto.getLibelle());
 			entity.setDateDebut(dto.getDateDebut());
 			entity.setDateFin(dto.getDateFin());

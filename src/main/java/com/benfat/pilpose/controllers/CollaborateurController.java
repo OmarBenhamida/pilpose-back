@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
+import com.benfat.pilpose.exception.PilposeTechnicalException;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.response.PilposeResponse;
 import com.benfat.pilpose.service.ICollaborateurService;
@@ -33,7 +35,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/collaborateur")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
 public class CollaborateurController {
 
 	private static Logger logger = LoggerFactory.getLogger(CollaborateurController.class);
@@ -115,9 +117,10 @@ public class CollaborateurController {
 	 * @param collaborateurDto
 	 * @return
 	 * @throws ParseException
+	 * @throws PilposeTechnicalException 
 	 */
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idCollaborateur}", headers = Constants.HEADERS)
-	public PilposeResponse deleteCollaborateur(@PathVariable Long idCollaborateur) throws ParseException {
+	public PilposeResponse deleteCollaborateur(@PathVariable Long idCollaborateur) throws ParseException, PilposeTechnicalException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"delete collaborateur controller", null, RsMethodEnum.DELETE.getValue(),
@@ -125,7 +128,7 @@ public class CollaborateurController {
 		}
 
 		/** delete collaborateur */
-		boolean retour = collaborateurService.deleteCollaborateur(idCollaborateur);
+		CollaborateurEntity retour = collaborateurService.getCollaborateurById(idCollaborateur);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.NoteFraisDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.dao.INoteFraisRepository;
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
@@ -60,9 +61,11 @@ public class NoteFraisService implements INoteFraisService {
 		Date dateDeb = new Date();
 
 		NoteFraisEntity entity = new NoteFraisEntity();
+		List<NoteFraisEntity> list = noteFraisRepository.findAll();
 		try {
-
-			entity = noteFraisRepository.save(NoteFraisDto.dtoToEntity(noteFrais));
+			entity = NoteFraisDto.dtoToEntity(noteFrais);
+			entity.setReference("ref".concat(list.size()+1+""));
+			entity = noteFraisRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("NoteFraisService::addOrUpdateNoteFrais on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

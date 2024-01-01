@@ -1,9 +1,14 @@
 package com.benfat.pilpose.controllers.dto;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Lob;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.util.Functions;
@@ -37,7 +42,8 @@ public class NoteFraisDto implements Serializable {
 
 	private String dateNote;
 
-	private byte[] recu;
+	
+	/*private MultipartFile recu;*/
 	
 	private CollaborateurDto idCollaborateur;
 
@@ -59,7 +65,7 @@ public class NoteFraisDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeNote(entity.getTypeNote());
 			dto.setDateNote(entity.getDateNote());
-			dto.setRecu(entity.getRecu());
+			//dto.setRecu(entity.getRecu());
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
 
 		}
@@ -70,8 +76,9 @@ public class NoteFraisDto implements Serializable {
 	 * Convert NoteFraisDto -> NoteFraisEntity
 	 * 
 	 * @param NoteFraisDto
+	 * @throws IOException 
 	 */
-	public static NoteFraisEntity dtoToEntity(NoteFraisDto dto) throws ParseException {
+	public static NoteFraisEntity dtoToEntity(NoteFraisDto dto) throws ParseException, IOException {
 		NoteFraisEntity entity = null;
 		if (dto != null) {
 			entity = new NoteFraisEntity();
@@ -80,7 +87,7 @@ public class NoteFraisDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeNote(dto.getTypeNote());
 			entity.setDateNote(dto.getDateNote());
-			entity.setRecu(dto.getRecu());
+			//entity.setRecu(dto.getRecu().getBytes());
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
 		}
 
@@ -92,8 +99,9 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @param List<NoteFraisDto>
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
-	public static List<NoteFraisEntity> dtosToEntities(List<NoteFraisDto> listDto) throws ParseException {
+	public static List<NoteFraisEntity> dtosToEntities(List<NoteFraisDto> listDto) throws ParseException, IOException {
 		List<NoteFraisEntity> list = new ArrayList<>();
 		if (Functions.isNotEmpty(listDto)) {
 			for (NoteFraisDto dto : listDto) {

@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.NoteFraisDto;
+import com.benfat.pilpose.dao.INoteFraisRepository;
+import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -31,7 +35,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/note")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
 public class NoteFraisController {
 
 	private static Logger logger = LoggerFactory.getLogger(NoteFraisController.class);
@@ -40,6 +44,9 @@ public class NoteFraisController {
 	INoteFraisService noteFraisService;
 	@Autowired
 	private ServerProperties serverProperties;
+	
+	@Autowired
+	INoteFraisRepository noteFraisRepository;
 
 	/**
 	 * Get noteFrais Controller
@@ -121,5 +128,23 @@ public class NoteFraisController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
+	
+	@PostMapping(value = "/recu/{idC}")
+	public String  addNoteFrais(@RequestParam("file") MultipartFile file,@PathVariable Long idC) throws ParseException {
+	
+		 NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
+		try {
+            
+            
+            fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
 
+            noteFraisRepository.save(fileEntity); // Save to the database
+
+            return "File uploaded successfully";
+        } catch (Exception e) {
+            return "Error uploading file";
+        }
+	}
+
+	 
 }

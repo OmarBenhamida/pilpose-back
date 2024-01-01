@@ -1,6 +1,9 @@
 package com.benfat.pilpose.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.entities.CongeEntity;
@@ -41,5 +44,15 @@ public interface ICongeService {
 	 * @return
 	 */
 	List<CongeEntity> getRefreshedConge();
+	
+	/**
+	 * 
+	 * @param file
+	 * @param idC
+	 * @return
+	 * @throws IOException 
+	 */
+	
+	String addOrUpdateCongesExcel(MultipartFile file,Long idC) throws IOException;
 
 }

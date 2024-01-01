@@ -92,6 +92,7 @@ public class CollaborateurDto implements Serializable {
 			entity.setIdCollaborateur(dto.getIdCollaborateur());
 			entity.setNom(dto.getNom());
 			entity.setPrenom(dto.getPrenom());
+			if(dto.getDateEmbauche()!= null)
 			entity.setDateEmbauche(dto.getDateEmbauche());
 			entity.setDateNaissance(dto.getDateNaissance());
 			entity.setEmail(dto.getEmail());
@@ -100,6 +101,7 @@ public class CollaborateurDto implements Serializable {
 			entity.setPassword(dto.getPassword());
 			entity.setCin(dto.getCin());
 			entity.setRole(dto.getRole());
+			if(dto.getAdresse()!= null)
 			entity.setAdresse(dto.getAdresse());
 			entity.setTelephone(dto.getTelephone());
 			entity.setNumSecuSocial(dto.getNumSecuSocial());

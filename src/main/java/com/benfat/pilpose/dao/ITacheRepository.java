@@ -1,5 +1,7 @@
 package com.benfat.pilpose.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +20,7 @@ public interface ITacheRepository extends ICommonRepository<TacheEntity, Long> {
 
 	@Query("SELECT dce FROM TacheEntity dce")
 	TacheEntity getAll();
+	
+
 
 }
