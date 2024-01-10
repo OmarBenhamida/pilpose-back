@@ -35,35 +35,29 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_collaborateur", nullable = false)
 	private Long idCollaborateur;
 
-	@Column(name = "nom",nullable = false)
+	@Column(name = "nom", nullable = false)
 	private String nom;
 
 	@Column(name = "prenom", nullable = false)
 	private String prenom;
 
-	@Column(name = "date_embauche", nullable = true)
+	@Column(name = "date_embauche", nullable = false)
 	private String dateEmbauche;
+
+	@Column(name = "date_creation", nullable = true)
+	private String dateCreation;
 
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "fonction", nullable = false)
 	private String fonction;
 
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "cin", nullable = false)
-	private String cin;
-
-	@Column(name = "nationalite", nullable = false)
-	private String nationalite;
-
 	@Column(name = "date_naissance", nullable = false)
 	private String dateNaissance;
-
-	@Column(name = "num_securite_social")
-	private String numSecuSocial;
 
 	@Column(name = "adresse", nullable = true)
 	private String adresse;
@@ -131,36 +125,12 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 		this.password = password;
 	}
 
-	public String getCin() {
-		return cin;
-	}
-
-	public void setCin(String cin) {
-		this.cin = cin;
-	}
-
-	public String getNationalite() {
-		return nationalite;
-	}
-
-	public void setNationalite(String nationalite) {
-		this.nationalite = nationalite;
-	}
-
 	public String getDateNaissance() {
 		return dateNaissance;
 	}
 
 	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
-	}
-
-	public String getNumSecuSocial() {
-		return numSecuSocial;
-	}
-
-	public void setNumSecuSocial(String numSecuSocial) {
-		this.numSecuSocial = numSecuSocial;
 	}
 
 	public String getAdresse() {
@@ -206,9 +176,13 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	public void setFonction(String fonction) {
 		this.fonction = fonction;
 	}
-	
-	
-	
-	
+
+	public String getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
 
 }

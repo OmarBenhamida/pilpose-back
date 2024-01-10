@@ -36,18 +36,21 @@ public class ChantierDto implements Serializable {
 	@Size(max = 20)
 	private String reference;
 
-	@Size(max = 20)
-	private String client;
+	private String nomChantier;
+
+	private String nomCompletClient;
 
 	private String etat;
 
-	private String localisationDto;
+	private String ville;
 
+	private LocalisationDto localisationDto;
+
+	private ClientDto clientDto;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	/**
 	 * Convert ChantierEntity -> ChantierDto
@@ -61,14 +64,20 @@ public class ChantierDto implements Serializable {
 			dto = new ChantierDto();
 			dto.setIdChantier(entity.getIdChantier());
 			dto.setReference(entity.getReference());
-			dto.setClient(entity.getClient());
+			dto.setClientDto(ClientDto.entityToDto(entity.getClient()));
 			dto.setEtat(entity.getEtat());
-			dto.setLocalisationDto(entity.getLocalisation());
-			
+			dto.setLocalisationDto(LocalisationDto.entityToDto(entity.getLocalisation()));
+			if (entity.getLocalisation() != null) {
+				dto.setVille(entity.getLocalisation().getVille() + " - " + entity.getLocalisation().getCodePostale());
+			}
+			if (entity.getClient() != null) {
+				dto.setNomCompletClient(entity.getClient().getNom() + "  " + entity.getClient().getPrenom());
+			}
+			dto.setNomChantier(entity.getNomChantier());
 		}
 		return dto;
 	}
- 
+
 	/**
 	 * Convert ChantierDto -> ChantierEntity
 	 * 
@@ -81,9 +90,10 @@ public class ChantierDto implements Serializable {
 
 			entity.setIdChantier(dto.getIdChantier());
 			entity.setReference(dto.getReference());
-			entity.setClient(dto.getClient());
+			entity.setClient(ClientDto.dtoToEntity(dto.getClientDto()));
 			entity.setEtat(dto.getEtat());
-			entity.setLocalisation(dto.getLocalisationDto());		
+			entity.setNomChantier(dto.getNomChantier());
+			entity.setLocalisation(LocalisationDto.dtoToEntity(dto.getLocalisationDto()));
 		}
 
 		return entity;

@@ -28,6 +28,16 @@ public final class Constants {
 	public static final String MATRICULE = "matricule";
 	public static final String USERNAME = "user_name";
 	public static final String CP = "charge-personnel";
+	
+	public static final String MODEL_CHANTIER_TEMPLATE = "templates/Chantiers.xlsx";
+	public static final String MODEL_TACHE_TEMPLATE = "templates/Taches.xlsx";
+	public static final String MODEL_CONGE_TEMPLATE = "templates/Conges.xlsx";
+	public static final String MODEL_SALARIES_TEMPLATE = "templates/Salaries.xlsx";
+	public static final String MODEL_CLIENTS_TEMPLATE = "templates/Clients.xlsx";
+	public static final String MODEL_NOTE_FRAIS_TEMPLATE = "templates/Notes.xlsx";
+	public static final String MODEL_AFFECTATION_TEMPLATE = "templates/Affectation.xlsx";
+	
+	public static final String CSV_SEPARATOR = ";";
 	/**
 	 * time zone
 	 */

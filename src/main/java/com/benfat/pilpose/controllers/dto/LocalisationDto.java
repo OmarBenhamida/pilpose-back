@@ -33,10 +33,6 @@ public class LocalisationDto implements Serializable {
 
 	private Long idLocalisation;
 
-	@Size(max = 20)
-	private String pays;
-
-	@Size(max = 20)
 	private String ville;
 
 	@Size(max = 10)
@@ -57,7 +53,6 @@ public class LocalisationDto implements Serializable {
 		if (entity != null) {
 			dto = new LocalisationDto();
 			dto.setIdLocalisation(entity.getIdLocalisation());
-			dto.setPays(entity.getPays());
 			dto.setVille(entity.getVille());
 			dto.setCodePostale(entity.getCodePostale());
 
@@ -76,7 +71,6 @@ public class LocalisationDto implements Serializable {
 			entity = new LocalisationEntity();
 
 			entity.setIdLocalisation(dto.getIdLocalisation());
-			entity.setPays(dto.getPays());
 			entity.setVille(dto.getVille());
 			entity.setCodePostale(dto.getCodePostale());
 

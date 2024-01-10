@@ -35,13 +35,10 @@ public class LocalisationEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_localisation", nullable = false)
 	private Long idLocalisation;
 
-	@Column(name = "pays", length = 20, nullable = false)
-	private String pays;
-
 	@Column(name = "ville", nullable = false)
 	private String ville;
 
-	@Column(name = "code_postale", length = 50)
+	@Column(name = "code_postale", length = 10)
 	private String codePostale;
 
 	public Long getIdLocalisation() {
@@ -52,14 +49,6 @@ public class LocalisationEntity extends AbstractCommonEntity<Long> {
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public String getPays() {
-		return pays;
-	}
-
-	public void setPays(String pays) {
-		this.pays = pays;
 	}
 
 	public String getVille() {

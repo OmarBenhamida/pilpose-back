@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.CongeDto;
-import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -35,11 +34,10 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/conge")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class CongeController {
 
 	private static Logger logger = LoggerFactory.getLogger(CongeController.class);
-
 
 	@Autowired
 	ICongeService congeService;
@@ -83,33 +81,33 @@ public class CongeController {
 					"/conge" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(CongeDto.entityToDto(congeService.addOrUpdateConge(congeDto)),
-				HttpStatus.OK);
+		return new PilposeResponse(CongeDto.entityToDto(congeService.addOrUpdateConge(congeDto)), HttpStatus.OK);
 	}
+
 	/**
 	 * 
 	 * @param file
 	 * @param idC
 	 * @return
 	 * @throws ParseException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@PostMapping(value = "/excel/{idC}")
-	public String  addCongeImport(@RequestParam("file") MultipartFile file,@PathVariable Long idC) throws ParseException, IOException {
-	/*
-		 NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
-		try {
-            
-            
-            fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
+	public String addCongeImport(@RequestParam("file") MultipartFile file, @PathVariable Long idC)
+			throws ParseException, IOException {
+		/*
+		 * NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
+		 * try {
+		 * 
+		 * 
+		 * fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
+		 * 
+		 * noteFraisRepository.save(fileEntity); // Save to the database
+		 * 
+		 * return "File uploaded successfully"; } catch (Exception e) { return
+		 * "Error uploading file"; }
+		 */
 
-            noteFraisRepository.save(fileEntity); // Save to the database
-
-            return "File uploaded successfully";
-        } catch (Exception e) {
-            return "Error uploading file";
-        }*/
-		
 		congeService.addOrUpdateCongesExcel(file, idC);
 		return "File uploaded successfully";
 	}
@@ -129,8 +127,7 @@ public class CongeController {
 					"/conge" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(CongeDto.entityToDto(congeService.addOrUpdateConge(congeDto)),
-				HttpStatus.OK);
+		return new PilposeResponse(CongeDto.entityToDto(congeService.addOrUpdateConge(congeDto)), HttpStatus.OK);
 	}
 
 	/**
@@ -152,6 +149,28 @@ public class CongeController {
 		boolean retour = congeService.deleteConge(idConge);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
+	}
+	
+	/**
+	 * Generer loader conge
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
+	public PilposeResponse genererLoaderConge()
+			throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
+					"générer le loader conge", null, RsMethodEnum.POST.getValue(),
+					"/v0/export/", null));
+		}
+
+		
+
+		return new PilposeResponse(congeService.genererLoader(), HttpStatus.OK);
 	}
 
 }

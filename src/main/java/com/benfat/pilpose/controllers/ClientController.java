@@ -22,28 +22,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
-import com.benfat.pilpose.controllers.dto.ChantierDto;
+import com.benfat.pilpose.controllers.dto.ClientDto;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.response.PilposeResponse;
-import com.benfat.pilpose.service.IChantierService;
+import com.benfat.pilpose.service.IClientService;
 import com.benfat.pilpose.util.Constants;
 
 @RestController
-@RequestMapping("/chantier")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
-public class ChantierController {
+@RequestMapping("/client")
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+public class ClientController {
 
-	private static Logger logger = LoggerFactory.getLogger(ChantierController.class);
+	private static Logger logger = LoggerFactory.getLogger(ClientController.class);
 
 	@Autowired
-	IChantierService chantierService;
+	IClientService clientService;
 	@Autowired
 	private ServerProperties serverProperties;
 
 	/**
-	 * Get chantier Controller
+	 * Get client Controller
 	 *
 	 * @return {PilposeResponse}
 	 * @throws ParseException
@@ -51,80 +51,78 @@ public class ChantierController {
 	 *
 	 */
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse getAllChantier() throws ParseException {
+	public PilposeResponse getAllClient() throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"get all chantier controller", null, RsMethodEnum.GET.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"get all client controller", null, RsMethodEnum.GET.getValue(),
+					"/client" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
 		PilposeResponse pilposeResponse = null;
-		List<ChantierDto> chantierDtos = ChantierDto.entitiesToDtos(chantierService.getAllChantier());
-		pilposeResponse = new PilposeResponse(chantierDtos, HttpStatus.OK);
+		List<ClientDto> clientDtos = ClientDto.entitiesToDtos(clientService.getAllClient());
+		pilposeResponse = new PilposeResponse(clientDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}
 
 	/**
-	 * add chantier
+	 * add client
 	 * 
-	 * @param ChantierDto
+	 * @param ClientDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PostMapping(value = ConstantsApplication.REST_PATH_V0)
-	public PilposeResponse addChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse addClient(@RequestBody ClientDto clientDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"add chantier controller", null, RsMethodEnum.POST.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"add client controller", null, RsMethodEnum.POST.getValue(),
+					"/client" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
-				HttpStatus.OK);
+		return new PilposeResponse(ClientDto.entityToDto(clientService.addOrUpdateClient(clientDto)), HttpStatus.OK);
 	}
 
 	/**
-	 * update chantier
+	 * update client
 	 * 
-	 * @param ChantierDto
+	 * @param ClientDto
 	 * @return
 	 * @throws ParseException
 	 */
 	@PutMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse updateChantier(@RequestBody ChantierDto chantierDto) throws ParseException {
+	public PilposeResponse updateClient(@RequestBody ClientDto clientDto) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"update chantier controller", null, RsMethodEnum.PUT.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"update client controller", null, RsMethodEnum.PUT.getValue(),
+					"/client" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(ChantierDto.entityToDto(chantierService.addOrUpdateSite(chantierDto)),
-				HttpStatus.OK);
+		return new PilposeResponse(ClientDto.entityToDto(clientService.addOrUpdateClient(clientDto)), HttpStatus.OK);
 	}
 
 	/**
-	 * delete chantier
+	 * delete client
 	 * 
-	 * @param chantierDto
+	 * @param clientDto
 	 * @return
 	 * @throws ParseException
 	 */
-	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idChantier}", headers = Constants.HEADERS)
-	public PilposeResponse deleteChantier(@PathVariable Long idChantier) throws ParseException {
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idClient}", headers = Constants.HEADERS)
+	public PilposeResponse deleteClient(@PathVariable Long idClient) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"delete chantier controller", null, RsMethodEnum.DELETE.getValue(),
-					"/chantier" + ConstantsApplication.REST_PATH_V0, null));
+					"delete client controller", null, RsMethodEnum.DELETE.getValue(),
+					"/client" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		/** delete chantier */
-		boolean retour = chantierService.deleteChantier(idChantier);
+		/** delete client */
+		boolean retour = clientService.deleteClient(idClient);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
 	
 	/**
-	 * Generer loader chantier
+	 * Generer loader client
 	 * 
 	 * @param file
 	 * @return
@@ -132,17 +130,17 @@ public class ChantierController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderChantier()
+	public PilposeResponse genererLoaderClient()
 			throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader chantier", null, RsMethodEnum.POST.getValue(),
-					"/v0/traitementCTB_NF/", null));
+					"générer le loader client", null, RsMethodEnum.POST.getValue(),
+					"/v0/export/", null));
 		}
 
 		
 
-		return new PilposeResponse(chantierService.genererLoader(), HttpStatus.OK);
+		return new PilposeResponse(clientService.genererLoader(), HttpStatus.OK);
 	}
 
 }

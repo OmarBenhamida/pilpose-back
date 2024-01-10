@@ -6,10 +6,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Lob;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.util.Functions;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,6 +37,8 @@ public class NoteFraisDto implements Serializable {
 	private String typeNote;
 
 	private String dateNote;
+	
+	private String nomCompletEmploye;
 
 	
 	/*private MultipartFile recu;*/
@@ -67,7 +65,10 @@ public class NoteFraisDto implements Serializable {
 			dto.setDateNote(entity.getDateNote());
 			//dto.setRecu(entity.getRecu());
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
-
+			if (entity.getIdCollaborateur() != null) {
+				dto.setNomCompletEmploye(
+						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
+			}
 		}
 		return dto;
 	}

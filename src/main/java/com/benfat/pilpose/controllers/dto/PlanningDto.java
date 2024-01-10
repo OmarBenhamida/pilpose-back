@@ -14,10 +14,10 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlanningDto implements Serializable  {
-	
+public class PlanningDto implements Serializable {
+
 	private CollaborateurDto idCollaborateur;
-	
+
 	private TacheDto idTache;
 
 }

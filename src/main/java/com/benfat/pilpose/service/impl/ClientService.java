@@ -23,14 +23,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.benfat.pilpose.controllers.dto.ClientDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
-import com.benfat.pilpose.controllers.dto.TacheDto;
-import com.benfat.pilpose.dao.ITacheRepository;
-import com.benfat.pilpose.entities.TacheEntity;
+import com.benfat.pilpose.dao.IClientRepository;
+import com.benfat.pilpose.entities.ClientEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
-import com.benfat.pilpose.service.ITacheService;
+import com.benfat.pilpose.service.IClientService;
 import com.benfat.pilpose.util.Constants;
 import com.benfat.pilpose.util.Functions;
 import com.benfat.pilpose.util.PilposeUtils;
@@ -46,46 +46,46 @@ import com.benfat.pilpose.util.PilposeUtils;
  */
 @Service
 @Transactional
-public class TacheService implements ITacheService {
+public class ClientService implements IClientService {
 
-	private static Logger logger = LoggerFactory.getLogger(TacheService.class);
+	private static Logger logger = LoggerFactory.getLogger(ClientService.class);
 
 	@Autowired
-	ITacheRepository tacheRepository;
+	IClientRepository clientRepository;
 
 	@Override
-	public List<TacheEntity> getAllTache() {
+	public List<ClientEntity> getAllClient() {
 		Date dateDeb = new Date();
-		List<TacheEntity> tache = null;
+		List<ClientEntity> client = null;
 
 		try {
-			tache = tacheRepository.findAll();
+			client = clientRepository.findAll();
 		} catch (Exception e) {
-			throw new PilposeBusinessException("TacheService::getAllTache on line "
+			throw new PilposeBusinessException("ClientService::getAllClient on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
 
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "get all Tache", dateDeb, new Date(),
-					null));
+			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "get all Client", dateDeb,
+					new Date(), null));
 		}
-		return tache;
+		return client;
 	}
 
 	@Override
-	public TacheEntity addOrUpdateTache(TacheDto tache) {
+	public ClientEntity addOrUpdateClient(ClientDto client) {
 		Date dateDeb = new Date();
-		TacheEntity entity = new TacheEntity();
+		ClientEntity entity = new ClientEntity();
 		try {
-			entity = TacheDto.dtoToEntity(tache);
-			entity = tacheRepository.save(entity);
+			entity = ClientDto.dtoToEntity(client);
+			entity = clientRepository.save(entity);
 		} catch (Exception e) {
-			throw new PilposeBusinessException("TacheService::addOrUpdateTache on line "
+			throw new PilposeBusinessException("ClientService::addOrUpdateClient on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
 
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "add or update tache", dateDeb,
+			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "add or update client", dateDeb,
 					new Date(), null));
 		}
 
@@ -93,47 +93,47 @@ public class TacheService implements ITacheService {
 	}
 
 	@Override
-	public boolean deleteTache(Long idTache) {
+	public boolean deleteClient(Long idClient) {
 		Date dateDeb = new Date();
 
 		try {
-			tacheRepository.deleteById(idTache);
+			clientRepository.deleteById(idClient);
 
 		} catch (Exception e) {
-			throw new PilposeBusinessException("TacheService::deleteTache on line "
+			throw new PilposeBusinessException("ClientService::deleteClient on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
 
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "delete tache", dateDeb, new Date(),
-					null));
+			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "delete Affectation", dateDeb,
+					new Date(), null));
 		}
 		return true;
 	}
 
 	@Override
-	public List<TacheEntity> getRefreshedTache() {
+	public List<ClientEntity> getRefreshedClient() {
 		Date dateDeb = new Date();
-		List<TacheEntity> tache = null;
+		List<ClientEntity> client = null;
 
 		try {
-			tache = tacheRepository.findAll();
+			client = clientRepository.findAll();
 		} catch (Exception e) {
-			throw new PilposeBusinessException("TacheService::getAllTache on line "
+			throw new PilposeBusinessException("ClientService::getAllClient on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
 
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "get all Tache", dateDeb, new Date(),
-					null));
+			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "get all Client", dateDeb,
+					new Date(), null));
 		}
-		return tache;
+		return client;
 	}
 
 	@Override
 	public PilposeLoaderResponseDto genererLoader() throws ParseException, IOException {
 
-		byte[] excel = genererLoaderTache();
+		byte[] excel = genererLoaderClient();
 		byte[] csv = genererLoaderCsv();
 		PilposeLoaderResponseDto response = new PilposeLoaderResponseDto();
 
@@ -148,10 +148,10 @@ public class TacheService implements ITacheService {
 	}
 
 	@Override
-	public byte[] genererLoaderTache() throws ParseException, IOException {
+	public byte[] genererLoaderClient() throws ParseException, IOException {
 		byte[] bytes = {};
 
-		InputStream TemplateFile = getClass().getClassLoader().getResourceAsStream(Constants.MODEL_TACHE_TEMPLATE);
+		InputStream TemplateFile = getClass().getClassLoader().getResourceAsStream(Constants.MODEL_CLIENTS_TEMPLATE);
 
 		try (XSSFWorkbook workbook = new XSSFWorkbook(TemplateFile)) {
 			XSSFSheet sheet = workbook.getSheetAt(0);
@@ -162,7 +162,7 @@ public class TacheService implements ITacheService {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
 			try (bos) {
-				List<TacheDto> dtos = TacheDto.entitiesToDtos(tacheRepository.findAll());
+				List<ClientDto> dtos = ClientDto.entitiesToDtos(clientRepository.findAll());
 
 				XSSFCellStyle style = workbook.createCellStyle();
 				style.setBorderTop(BorderStyle.MEDIUM);
@@ -172,40 +172,24 @@ public class TacheService implements ITacheService {
 				style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
 				style.setFillPattern(FillPatternType.FINE_DOTS);
 
-				for (TacheDto ca : dtos) {
+				for (ClientDto ca : dtos) {
 					row = PilposeUtils.getXRow(sheet, indexLigne);
 
-					Cell libelleTacheCell = PilposeUtils.getXCell(row, 0);
-					libelleTacheCell.setCellValue(ca.getLibelle());
-					libelleTacheCell.setCellStyle(style);
+					Cell salarieCell = PilposeUtils.getXCell(row, 0);
+					salarieCell.setCellValue(ca.getNom());
+					salarieCell.setCellStyle(style);
 
-					Cell dateDebutCell = PilposeUtils.getXCell(row, 1);
-					dateDebutCell.setCellValue(ca.getDateDebut());
+					Cell referenceCell = PilposeUtils.getXCell(row, 1);
+					referenceCell.setCellValue(ca.getPrenom());
+					referenceCell.setCellStyle(style);
+
+					Cell dateDebutCell = PilposeUtils.getXCell(row, 2);
+					dateDebutCell.setCellValue(ca.getAdresse());
 					dateDebutCell.setCellStyle(style);
 
-					Cell dateFinCell = PilposeUtils.getXCell(row, 2);
-					dateFinCell.setCellValue(ca.getDateFin());
+					Cell dateFinCell = PilposeUtils.getXCell(row, 3);
+					dateFinCell.setCellValue(ca.getTelephone());
 					dateFinCell.setCellStyle(style);
-
-					Cell heureDebutCell = PilposeUtils.getXCell(row, 3);
-					heureDebutCell.setCellValue(ca.getHeureDebut());
-					heureDebutCell.setCellStyle(style);
-
-					Cell heureFinCell = PilposeUtils.getXCell(row, 4);
-					heureFinCell.setCellValue(ca.getHeureFin());
-					heureFinCell.setCellStyle(style);
-
-					Cell chantierCell = PilposeUtils.getXCell(row, 5);
-					chantierCell.setCellValue(ca.getNomCompletChantier());
-					chantierCell.setCellStyle(style);
-
-					Cell responsableCell = PilposeUtils.getXCell(row, 6);
-					responsableCell.setCellValue(ca.getNomCompletResponsable());
-					responsableCell.setCellStyle(style);
-
-					Cell commantaireCell = PilposeUtils.getXCell(row, 7);
-					commantaireCell.setCellValue(ca.getCommantaire());
-					commantaireCell.setCellStyle(style);
 
 					indexLigne++;
 				}
@@ -219,7 +203,7 @@ public class TacheService implements ITacheService {
 
 		}
 		if (logger.isInfoEnabled()) {
-			logger.info("Loader taches généré avec succées");
+			logger.info("Loader client généré avec succées");
 		}
 
 		return bytes;
@@ -227,49 +211,34 @@ public class TacheService implements ITacheService {
 
 	@Override
 	public byte[] genererLoaderCsv() throws ParseException, IOException {
-		List<TacheDto> dtos = TacheDto.entitiesToDtos(tacheRepository.findAll());
+		List<ClientDto> dtos = ClientDto.entitiesToDtos(clientRepository.findAll());
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(baos));
 		StringBuilder headerLine = new StringBuilder();
 
-		headerLine.append("Libelle Tache");
+		headerLine.append("Nom");
 		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Date début");
+		headerLine.append("Prénom");
 		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Date Fin");
+		headerLine.append("Adresse");
 		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Heure début");
-		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Heure Fin");
-		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Chantier");
-		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Responsable");
-		headerLine.append(Constants.CSV_SEPARATOR);
-		headerLine.append("Commantaire");
+		headerLine.append("Téléphone");
 
 		writer.write(headerLine.toString());
 		writer.newLine();
 
-		for (TacheDto l : dtos) {
+		for (ClientDto l : dtos) {
 			StringBuilder oneLine = new StringBuilder();
 
-			oneLine.append(l.getLibelle());
+			oneLine.append(l.getNom());
 			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getDateDebut());
+			oneLine.append(l.getPrenom());
 			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getDateFin());
+			oneLine.append(l.getAdresse());
 			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getHeureDebut());
-			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getHeureFin());
-			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getNomCompletChantier());
-			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getNomCompletResponsable());
-			oneLine.append(Constants.CSV_SEPARATOR);
-			oneLine.append(l.getCommantaire());
+			oneLine.append(l.getTelephone());
+
 			writer.write(oneLine.toString());
 			writer.newLine();
 

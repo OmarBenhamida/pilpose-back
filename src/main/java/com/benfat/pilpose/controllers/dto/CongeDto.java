@@ -41,9 +41,11 @@ public class CongeDto implements Serializable {
 
 	private String dateDepot;
 
-	private int heureDebut;
+	private String nomCompletEmploye;
 
-	private int heureFin;
+	private String heureDebut;
+
+	private String heureFin;
 
 	private String typeConge;
 
@@ -73,6 +75,11 @@ public class CongeDto implements Serializable {
 			dto.setHeureFin(entity.getHeureFin());
 			dto.setTypeConge(entity.getTypeConge());
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
+
+			if (entity.getIdCollaborateur() != null) {
+				dto.setNomCompletEmploye(
+						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
+			}
 
 		}
 		return dto;

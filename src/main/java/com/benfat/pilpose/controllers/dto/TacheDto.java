@@ -3,7 +3,6 @@ package com.benfat.pilpose.controllers.dto;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.benfat.pilpose.entities.TacheEntity;
@@ -32,7 +31,7 @@ public class TacheDto implements Serializable {
 
 	private Long idTache;
 
-	private String reference;
+	
 
 	private String libelle;
 
@@ -40,13 +39,20 @@ public class TacheDto implements Serializable {
 
 	private String dateFin;
 
-	private int heureDebut;
+	private String heureDebut;
 
-	private int heureFin;
+	private String heureFin;
 
 	private String commantaire;
 
 	private ChantierDto idChantier;
+
+	private CollaborateurDto responsable;
+
+	private String nomCompletResponsable;
+	
+	private String nomCompletChantier;
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -62,7 +68,7 @@ public class TacheDto implements Serializable {
 		if (entity != null) {
 			dto = new TacheDto();
 			dto.setIdTache(entity.getIdTache());
-			dto.setReference(entity.getReference());
+		
 			dto.setLibelle(entity.getLibelle());
 			dto.setDateDebut(entity.getDateDebut());
 			dto.setDateFin(entity.getDateFin());
@@ -70,6 +76,16 @@ public class TacheDto implements Serializable {
 			dto.setHeureFin(entity.getHeureFin());
 			dto.setCommantaire(entity.getCommantaire());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
+			dto.setResponsable(CollaborateurDto.entityToDto(entity.getResponsable()));
+			if (entity.getResponsable() != null) {
+				dto.setNomCompletResponsable(
+						entity.getResponsable().getNom() + "  " + entity.getResponsable().getPrenom());
+			}
+			if (entity.getIdChantier() != null) {
+				dto.setNomCompletChantier(
+						entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference()
+						);
+			}
 
 		}
 		return dto;
@@ -86,7 +102,7 @@ public class TacheDto implements Serializable {
 			entity = new TacheEntity();
 
 			entity.setIdTache(dto.getIdTache());
-		//	entity.setReference(dto.getReference());
+	
 			entity.setLibelle(dto.getLibelle());
 			entity.setDateDebut(dto.getDateDebut());
 			entity.setDateFin(dto.getDateFin());
@@ -94,7 +110,7 @@ public class TacheDto implements Serializable {
 			entity.setHeureFin(dto.getHeureFin());
 			entity.setCommantaire(dto.getCommantaire());
 			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));
-
+			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
 		}
 
 		return entity;

@@ -3,6 +3,7 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -144,6 +145,28 @@ public class NoteFraisController {
         } catch (Exception e) {
             return "Error uploading file";
         }
+	}
+	
+	/**
+	 * Generer loader Notes Frais
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
+	public PilposeResponse genererLoaderNoteFrais()
+			throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
+					"générer le loader notes", null, RsMethodEnum.POST.getValue(),
+					"/v0/export/", null));
+		}
+
+		
+
+		return new PilposeResponse(noteFraisService.genererLoader(), HttpStatus.OK);
 	}
 
 	 

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import com.benfat.pilpose.controllers.dto.NoteFraisDto;
+import com.benfat.pilpose.controllers.dto.ClientDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
-import com.benfat.pilpose.entities.NoteFraisEntity;
+import com.benfat.pilpose.entities.ClientEntity;
 
 /**
  * @author : BENHAMIDA OMAR SOFRECOM
@@ -14,40 +14,40 @@ import com.benfat.pilpose.entities.NoteFraisEntity;
  * @creation : 05/04/2022
  * @version : 1.0
  */
-public interface INoteFraisService {
+public interface IClientService {
 
 	/**
-	 * Get all NoteFrais
+	 * Get all Client
 	 * 
-	 * 
-	 * @return List<NoteFraisEntity>
+	 * @return List<ClientEntity>
 	 */
-	List<NoteFraisEntity> getAllNoteFrais();
+	List<ClientEntity> getAllClient();
 
 	/**
-	 * add or update NoteFrais
+	 * add or update Client
 	 * 
-	 * @param NoteFraisEntity
+	 * @param ClientEntity
 	 * @return
 	 */
-	NoteFraisEntity addOrUpdateNoteFrais(NoteFraisDto noteFrais);
+	ClientEntity addOrUpdateClient(ClientDto conge);
 
 	/**
-	 * delete NoteFrais
+	 * delete Client
 	 * 
 	 * @param entity
 	 */
-	boolean deleteNoteFrais(Long idNoteFrais);
+	boolean deleteClient(Long idClient);
 
 	/**
-	 * get refresh NoteFrais
+	 * get refresh Client
 	 * 
 	 * @return
 	 */
-	List<NoteFraisEntity> getRefreshedNoteFrais();
+	List<ClientEntity> getRefreshedClient();
+	
 	
 	/**
-	 * genererLoader NoteFrais
+	 * genererLoader Client
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -56,17 +56,17 @@ public interface INoteFraisService {
 	
 	
 	/**
-	 * Générer fichier excel 
+	 * Générer fichier excel Client
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	byte[] genererLoaderNoteFrais() throws ParseException, IOException;
+	byte[] genererLoaderClient() throws ParseException, IOException;
 	
 	
 	/**
-	 * Générer fichier csv 
+	 * Générer fichier csv Client
 	 * 
 	 * @return
 	 * @throws ParseException

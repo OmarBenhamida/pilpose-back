@@ -37,8 +37,6 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_tache", nullable = false)
 	private Long idTache;
 
-	@Column(name = "reference", nullable = false)
-	private String reference;
 
 	@Column(name = "libelle", nullable = false)
 	private String libelle;
@@ -50,10 +48,10 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	private String dateFin;
 
 	@Column(name = "heure_debut")
-	private int heureDebut;
+	private String heureDebut;
 
 	@Column(name = "heure_fin")
-	private int heureFin;
+	private String heureFin;
 
 	@Column(name = "commantaire")
 	private String commantaire;
@@ -61,6 +59,10 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "id_chantier")
 	private ChantierEntity idChantier;
+
+	@ManyToOne
+	@JoinColumn(name = "id_collaborateur")
+	private CollaborateurEntity responsable;
 
 	@Override
 	public Long getId() {
@@ -72,13 +74,7 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 		return serialVersionUID;
 	}
 
-	public String getReference() {
-		return reference;
-	}
 
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
 
 	public String getLibelle() {
 		return libelle;
@@ -104,21 +100,7 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 		this.dateFin = dateFin;
 	}
 
-	public int getHeureDebut() {
-		return heureDebut;
-	}
 
-	public void setHeureDebut(int heureDebut) {
-		this.heureDebut = heureDebut;
-	}
-
-	public int getHeureFin() {
-		return heureFin;
-	}
-
-	public void setHeureFin(int heureFin) {
-		this.heureFin = heureFin;
-	}
 
 	public String getCommantaire() {
 		return commantaire;
@@ -142,6 +124,30 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 
 	public Long getIdTache() {
 		return idTache;
+	}
+
+	public CollaborateurEntity getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(CollaborateurEntity responsable) {
+		this.responsable = responsable;
+	}
+
+	public String getHeureDebut() {
+		return heureDebut;
+	}
+
+	public void setHeureDebut(String heureDebut) {
+		this.heureDebut = heureDebut;
+	}
+
+	public String getHeureFin() {
+		return heureFin;
+	}
+
+	public void setHeureFin(String heureFin) {
+		this.heureFin = heureFin;
 	}
 
 }

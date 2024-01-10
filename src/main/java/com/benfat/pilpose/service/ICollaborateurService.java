@@ -1,11 +1,11 @@
 package com.benfat.pilpose.service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import org.springframework.util.MultiValueMap;
-
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.PlanningDto;
 import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.exception.PilposeTechnicalException;
@@ -42,15 +42,20 @@ public interface ICollaborateurService {
 	boolean deleteCollaborateur(Long idChantier);
 
 	/**
-	 * get Collaborateur by cin
 	 * 
-	 * @param reference
+	 * @param id
 	 * @return
-	 * @throws Exception
+	 * @throws PilposeTechnicalException
 	 */
-	CollaborateurEntity getCollaborateurByCin(String cin) throws PilposeTechnicalException;
-	
 	CollaborateurEntity getCollaborateurById(Long id) throws PilposeTechnicalException;
+	
+	/**
+	 * 
+	 * @param fonction
+	 * @return
+	 * @throws PilposeTechnicalException
+	 */
+	List<CollaborateurEntity> getCollaborateurByfonction(String fonction) throws PilposeTechnicalException;
 
 	/**
 	 * get refresh chantier
@@ -59,8 +64,50 @@ public interface ICollaborateurService {
 	 */
 	List<CollaborateurEntity> getRefreshedCollaborateur();
 
+	/**
+	 * 
+	 * @param idC
+	 * @return
+	 * @throws ParseException
+	 */
 	List<PlanningDto> getPlanningById(Long idC) throws ParseException;
 
+	/**
+	 * 
+	 * @return
+	 * @throws ParseException
+	 */
 	List<PlanningDto> getPlanningAll() throws ParseException;
+	
+	
+	/**
+	 * genererLoader Salaries
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
+	
+	
+	/**
+	 * Générer fichier excel 
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	byte[] genererLoaderCollaborateur() throws ParseException, IOException;
+	
+	
+	/**
+	 * Générer fichier csv 
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws CsvRequiredFieldEmptyException 
+	 * @throws CsvDataTypeMismatchException 
+	 */
+	byte[] genererLoaderCsv() throws ParseException, IOException;
 
 }

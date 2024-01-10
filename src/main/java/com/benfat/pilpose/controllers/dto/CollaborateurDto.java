@@ -33,11 +33,10 @@ public class CollaborateurDto implements Serializable {
 	private String nom;
 	private String prenom;
 	private String dateEmbauche;
+	private String dateCreation;
 	private String email;
 	private String fonction;
 	private String password;
-	private String cin;
-	private String nationalite;
 	private String dateNaissance;
 	private String numSecuSocial;
 	private String adresse;
@@ -64,16 +63,14 @@ public class CollaborateurDto implements Serializable {
 			dto.setPrenom(entity.getPrenom());
 			dto.setDateEmbauche(entity.getDateEmbauche());
 			dto.setDateNaissance(entity.getDateNaissance());
+			dto.setDateCreation(entity.getDateCreation());
 			dto.setEmail(entity.getEmail());
 			dto.setFonction(entity.getFonction());
 			dto.setUsername(entity.getUsername());
 			dto.setPassword(entity.getPassword());
-			dto.setCin(entity.getCin());
 			dto.setRole(entity.getRole());
 			dto.setAdresse(entity.getAdresse());
 			dto.setTelephone(entity.getTelephone());
-			dto.setNumSecuSocial(entity.getNumSecuSocial());
-			dto.setNationalite(entity.getNationalite());
 
 		}
 		return dto;
@@ -88,24 +85,21 @@ public class CollaborateurDto implements Serializable {
 		CollaborateurEntity entity = null;
 		if (dto != null) {
 			entity = new CollaborateurEntity();
-
 			entity.setIdCollaborateur(dto.getIdCollaborateur());
 			entity.setNom(dto.getNom());
 			entity.setPrenom(dto.getPrenom());
-			if(dto.getDateEmbauche()!= null)
-			entity.setDateEmbauche(dto.getDateEmbauche());
+			if (dto.getDateEmbauche() != null)
+				entity.setDateEmbauche(dto.getDateEmbauche());
 			entity.setDateNaissance(dto.getDateNaissance());
 			entity.setEmail(dto.getEmail());
 			entity.setFonction(dto.getFonction());
 			entity.setUsername(dto.getUsername());
 			entity.setPassword(dto.getPassword());
-			entity.setCin(dto.getCin());
 			entity.setRole(dto.getRole());
-			if(dto.getAdresse()!= null)
-			entity.setAdresse(dto.getAdresse());
+			if (dto.getAdresse() != null)
+				entity.setAdresse(dto.getAdresse());
 			entity.setTelephone(dto.getTelephone());
-			entity.setNumSecuSocial(dto.getNumSecuSocial());
-			entity.setNationalite(dto.getNationalite());
+			entity.setDateCreation(dto.getDateCreation());
 
 		}
 

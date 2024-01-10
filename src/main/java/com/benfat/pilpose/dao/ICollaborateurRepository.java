@@ -21,10 +21,6 @@ public interface ICollaborateurRepository extends ICommonRepository<Collaborateu
 	@Query("SELECT dce FROM CollaborateurEntity dce")
 	List <CollaborateurEntity> getAll();
 
-	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.cin = :cin")
-	CollaborateurEntity getUserByCin(String cin);
-	
-	
 	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.idCollaborateur = :id")
 	CollaborateurEntity getUserById(Long id);
 	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.username = :username")
@@ -32,5 +28,8 @@ public interface ICollaborateurRepository extends ICommonRepository<Collaborateu
 	
 	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.email = :email")
 	CollaborateurEntity getUserByEmail(String email);
+	
+	@Query("SELECT dce FROM CollaborateurEntity dce WHERE dce.fonction = :fonction")
+	List<CollaborateurEntity> getUserByFonction(String fonction);
 
 }

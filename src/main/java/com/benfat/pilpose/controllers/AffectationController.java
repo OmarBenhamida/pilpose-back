@@ -3,6 +3,7 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -123,5 +124,29 @@ public class AffectationController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
+	
+	/**
+	 * Generer loader affectation
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
+	public PilposeResponse genererLoaderAffectation()
+			throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
+					"générer le loader affectation", null, RsMethodEnum.POST.getValue(),
+					"/v0/export/", null));
+		}
+
+		
+
+		return new PilposeResponse(affectationService.genererLoader(), HttpStatus.OK);
+	}
+	
+	
 
 }

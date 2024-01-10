@@ -53,10 +53,10 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 	private String dateDepot;
 	
 	@Column(name = "heure_debut")
-	private int heureDebut;
+	private String heureDebut;
 	
 	@Column(name = "heure_fin")
-	private int heureFin;
+	private String heureFin;
 
 	@Column(name = "type_conge")
 	private String typeConge;
@@ -123,19 +123,19 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 		this.dateDepot = dateDepot;
 	}
 
-	public int getHeureDebut() {
+	public String getHeureDebut() {
 		return heureDebut;
 	}
 
-	public void setHeureDebut(int heureDebut) {
+	public void setHeureDebut(String heureDebut) {
 		this.heureDebut = heureDebut;
 	}
 
-	public int getHeureFin() {
+	public String getHeureFin() {
 		return heureFin;
 	}
 
-	public void setHeureFin(int heureFin) {
+	public void setHeureFin(String heureFin) {
 		this.heureFin = heureFin;
 	}
 

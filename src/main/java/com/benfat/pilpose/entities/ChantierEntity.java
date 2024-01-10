@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.benfat.pilpose.entities.common.AbstractCommonEntity;
@@ -35,17 +37,22 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_chantier", nullable = false)
 	private Long idChantier;
 
-	@Column(name = "reference", length = 20, nullable = false)
+	@Column(name = "reference", length = 20,unique = true, nullable = false)
 	private String reference;
 
-	@Column(name = "client", nullable = false)
-	private String client;
+	@Column(name = "nom_chantier", nullable = false)
+	private String nomChantier;
 
-	@Column(name = "etat", length = 50)
+	@ManyToOne
+	@JoinColumn(name = "client")
+	private ClientEntity client;
+
+	@Column(name = "etat", nullable = false, length = 50)
 	private String etat;
 
-	@Column(name = "localisation", length = 100)
-	private String localisation;
+	@ManyToOne
+	@JoinColumn(name = "localisation")
+	private LocalisationEntity localisation;
 
 	public Long getIdChantier() {
 		return idChantier;
@@ -73,14 +80,6 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 		this.reference = reference;
 	}
 
-	public String getClient() {
-		return client;
-	}
-
-	public void setClient(String client) {
-		this.client = client;
-	}
-
 	public String getEtat() {
 		return etat;
 	}
@@ -89,11 +88,27 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 		this.etat = etat;
 	}
 
-	public String getLocalisation() {
+	public String getNomChantier() {
+		return nomChantier;
+	}
+
+	public void setNomChantier(String nomChantier) {
+		this.nomChantier = nomChantier;
+	}
+
+	public LocalisationEntity getLocalisation() {
 		return localisation;
 	}
 
-	public void setLocalisation(String localisation) {
+	public void setLocalisation(LocalisationEntity localisation) {
 		this.localisation = localisation;
+	}
+
+	public ClientEntity getClient() {
+		return client;
+	}
+
+	public void setClient(ClientEntity client) {
+		this.client = client;
 	}
 }

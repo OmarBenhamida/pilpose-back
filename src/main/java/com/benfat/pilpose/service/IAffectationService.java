@@ -1,8 +1,11 @@
 package com.benfat.pilpose.service;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import com.benfat.pilpose.controllers.dto.AffectationDto;
+import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.AffectationEntity;
 
 /**
@@ -42,5 +45,35 @@ public interface IAffectationService {
 	 * @return
 	 */
 	List<AffectationEntity> getRefreshedAffectation();
+	
+	/**
+	 * genererLoader Affectation
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
+	
+	
+	/**
+	 * Générer fichier excel Affectation
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 */
+	byte[] genererLoaderAffectation() throws ParseException, IOException;
+	
+	
+	/**
+	 * Générer fichier csv Affectation
+	 * 
+	 * @return
+	 * @throws ParseException
+	 * @throws IOException
+	 * @throws CsvRequiredFieldEmptyException 
+	 * @throws CsvDataTypeMismatchException 
+	 */
+	byte[] genererLoaderCsv() throws ParseException, IOException;
 
 }
