@@ -281,4 +281,10 @@ public class TacheService implements ITacheService {
 
 	}
 
+	@Override
+	public TacheDto getTacheByAttribute() throws ParseException {
+		
+		return TacheDto.entityToDto(tacheRepository.getByAttribute());
+	}
+
 }

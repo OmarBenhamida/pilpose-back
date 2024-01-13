@@ -39,6 +39,8 @@ public class NoteFraisDto implements Serializable {
 	private String dateNote;
 	
 	private String nomCompletEmploye;
+	
+	
 
 	
 	/*private MultipartFile recu;*/
@@ -69,6 +71,7 @@ public class NoteFraisDto implements Serializable {
 				dto.setNomCompletEmploye(
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
+		
 		}
 		return dto;
 	}

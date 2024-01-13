@@ -147,7 +147,7 @@ public class CollaborateurController {
 		}
 		/** get collaborateur */
 		List<CollaborateurDto> retour = CollaborateurDto
-				.entitiesToDtos(collaborateurService.getCollaborateurByfonction("Chefs d'equipe"));
+				.entitiesToDtos(collaborateurService.getCollaborateurByfonction("Chef d'equipe"));
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}

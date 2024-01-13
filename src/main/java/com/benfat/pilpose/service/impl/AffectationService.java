@@ -25,8 +25,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.AffectationDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.dao.IAffectationRepository;
 import com.benfat.pilpose.entities.AffectationEntity;
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -198,7 +200,7 @@ public class AffectationService implements IAffectationService {
 					Cell heureDebutCell = PilposeUtils.getXCell(row, 4);
 					heureDebutCell.setCellValue(ca.getIdTache().getHeureDebut());
 					heureDebutCell.setCellStyle(style);
-					
+
 					Cell heureFinCell = PilposeUtils.getXCell(row, 5);
 					heureFinCell.setCellValue(ca.getIdTache().getHeureFin());
 					heureFinCell.setCellStyle(style);
@@ -206,11 +208,11 @@ public class AffectationService implements IAffectationService {
 					Cell chantierCell = PilposeUtils.getXCell(row, 6);
 					chantierCell.setCellValue(ca.getIdTache().getNomCompletChantier());
 					chantierCell.setCellStyle(style);
-					
+
 					Cell responsableCell = PilposeUtils.getXCell(row, 7);
 					responsableCell.setCellValue(ca.getIdTache().getNomCompletResponsable());
 					responsableCell.setCellStyle(style);
-					
+
 					Cell commantaireCell = PilposeUtils.getXCell(row, 8);
 					commantaireCell.setCellValue(ca.getIdTache().getCommantaire());
 					commantaireCell.setCellStyle(style);
@@ -258,7 +260,7 @@ public class AffectationService implements IAffectationService {
 		headerLine.append("Responsable");
 		headerLine.append(Constants.CSV_SEPARATOR);
 		headerLine.append("Commantaire");
-	
+
 		writer.write(headerLine.toString());
 		writer.newLine();
 
@@ -290,6 +292,29 @@ public class AffectationService implements IAffectationService {
 		writer.close();
 
 		return baos.toByteArray();
+
+	}
+
+	@Override
+	public boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab) {
+
+		for (Long id : idCollab) {
+		    try {
+		        AffectationEntity entity = new AffectationEntity();
+		        entity.setIdAffectation(null);
+		        entity.setIdTache(TacheDto.dtoToEntity(tache));
+		        CollaborateurEntity collab = new CollaborateurEntity();
+		        collab.setIdCollaborateur(id);
+		        entity.setIdCollaborateur(collab);
+		        affectationRepository.save(entity);
+		    } catch (Exception e) {
+		        throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+		                + Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		    }
+		}
+
+		
+		return true;
 
 	}
 

@@ -23,22 +23,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.AffectationDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.response.PilposeResponse;
 import com.benfat.pilpose.service.IAffectationService;
+import com.benfat.pilpose.service.ITacheService;
 import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/affectation")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class AffectationController {
 
 	private static Logger logger = LoggerFactory.getLogger(AffectationController.class);
 
 	@Autowired
 	IAffectationService affectationService;
+
+	@Autowired
+	ITacheService tacheService;
+
 	@Autowired
 	private ServerProperties serverProperties;
 
@@ -124,7 +130,7 @@ public class AffectationController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Generer loader affectation
 	 * 
@@ -134,19 +140,34 @@ public class AffectationController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderAffectation()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderAffectation() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader affectation", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader affectation",
+					null, RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(affectationService.genererLoader(), HttpStatus.OK);
 	}
-	
-	
+
+	/**
+	 * 
+	 * @param listId
+	 * @return
+	 * @throws ParseException
+	 */
+
+	@PostMapping(value = ConstantsApplication.REST_PATH_V0 + "/addList")
+	public PilposeResponse addListAffectation(@RequestBody List<Long> listId) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"add liste affectation controller", null, RsMethodEnum.POST.getValue(),
+					"/affectation" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		TacheDto tache = tacheService.getTacheByAttribute();
+		affectationService.addOrUpdateListAffecation(tache, listId);
+
+		return new PilposeResponse(affectationService.addOrUpdateListAffecation(tache, listId), HttpStatus.OK);
+	}
 
 }

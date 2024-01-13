@@ -76,4 +76,11 @@ public interface ITacheService {
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 
+	/**
+	 * 
+	 * @return
+	 * @throws ParseException 
+	 */
+	TacheDto getTacheByAttribute () throws ParseException;
+
 }

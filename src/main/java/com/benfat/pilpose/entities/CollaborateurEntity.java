@@ -47,7 +47,7 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "date_creation", nullable = true)
 	private String dateCreation;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "email",unique = true, nullable = false)
 	private String email;
 
 	@Column(name = "fonction", nullable = false)
@@ -62,7 +62,7 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "adresse", nullable = true)
 	private String adresse;
 
-	@Column(name = "telephone", nullable = true)
+	@Column(name = "telephone",unique = true, nullable = true)
 	private String telephone;
 
 	@Column(name = "username", nullable = false)

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.benfat.pilpose.controllers.dto.AffectationDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
+import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.entities.AffectationEntity;
 
 /**
@@ -75,5 +76,14 @@ public interface IAffectationService {
 	 * @throws CsvDataTypeMismatchException 
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
+	
+	
+	/**
+	 * 
+	 * @param tache
+	 * @param idCollab
+	 * @return
+	 */
+	boolean addOrUpdateListAffecation(TacheDto tache,List<Long> idCollab);
 
 }
