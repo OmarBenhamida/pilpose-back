@@ -32,7 +32,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/tache")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class TacheController {
 
 	private static Logger logger = LoggerFactory.getLogger(TacheController.class);
@@ -120,6 +120,7 @@ public class TacheController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
+
 	/**
 	 * Generer loader tache
 	 * 
@@ -129,15 +130,11 @@ public class TacheController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderTache()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderTache() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader taches", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader taches", null,
+					RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(tacheService.genererLoader(), HttpStatus.OK);
 	}

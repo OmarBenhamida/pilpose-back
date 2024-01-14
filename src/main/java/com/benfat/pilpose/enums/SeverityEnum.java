@@ -1,11 +1,5 @@
 package com.benfat.pilpose.enums;
 
-/**
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public enum SeverityEnum {
 
 	CRITIQUE("CRITIQUE"), MAJEUR("MAJEUR"), MINEUR("MINEUR");

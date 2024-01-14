@@ -1,12 +1,5 @@
 package com.benfat.pilpose.logging;
 
-/**
- * @category : Factory log
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class LogClass {
 	protected String ctx;
 	protected String origine;
@@ -44,8 +37,7 @@ public class LogClass {
 	}
 
 	/**
-	 * @param ctx
-	 *            the ctx to set
+	 * @param ctx the ctx to set
 	 */
 	public void setCtx(String ctx) {
 		this.ctx = ctx;
@@ -59,8 +51,7 @@ public class LogClass {
 	}
 
 	/**
-	 * @param origine
-	 *            the origine to set
+	 * @param origine the origine to set
 	 */
 	public void setOrigine(String origine) {
 		this.origine = origine;
@@ -74,8 +65,7 @@ public class LogClass {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -93,8 +83,7 @@ public class LogClass {
 	}
 
 	/**
-	 * @param params
-	 *            the params to set
+	 * @param params the params to set
 	 */
 	public void setParams(Object params) {
 		this.params = params;

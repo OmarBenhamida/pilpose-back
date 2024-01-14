@@ -1,13 +1,5 @@
 package com.benfat.pilpose.util;
 
-/**
- * nombre magique
- * 
- * @author : EL MOUDEN ABDELJALIL SOFRECOM
- * @see : <abdeljalil.elmouden@sofrecom.com>
- * @creation : 20/11/20
- * @version : 1.0
- */
 public class NombreMagique {
 	public static final int ZERO = 0;
 	public static final int UN = 1;

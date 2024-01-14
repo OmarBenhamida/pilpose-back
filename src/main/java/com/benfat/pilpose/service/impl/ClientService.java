@@ -35,15 +35,6 @@ import com.benfat.pilpose.util.Constants;
 import com.benfat.pilpose.util.Functions;
 import com.benfat.pilpose.util.PilposeUtils;
 
-/**
- * Site service
- * 
- * @inteface ISiteService
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Service
 @Transactional
 public class ClientService implements IClientService {

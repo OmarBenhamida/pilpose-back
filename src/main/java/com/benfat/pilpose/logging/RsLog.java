@@ -1,12 +1,5 @@
 package com.benfat.pilpose.logging;
 
-/**
- * @category : Factory REST log
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class RsLog extends LogClass {
 	private String pathRs;
 	private String cuid;
@@ -32,7 +25,7 @@ public class RsLog extends LogClass {
 		this.cuid = cuid;
 		this.method = method;
 	}
-	
+
 	/**
 	 * Rest log with port
 	 * 

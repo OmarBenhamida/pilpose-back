@@ -14,12 +14,6 @@ import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException.Severity;
 import com.benfat.pilpose.logging.FactoryLog;
 
-/**
- * @author : Essafi Kamal SOFRECOM, Zakarya EL BAZY SOFRECOM
- * @see : <kamal.essafi@sofrecom.com>, <zakarya.elbazy@sofrecom.com>
- * @creation : 25/02/2020
- * @version : 1.0
- */
 public class MessageProperties {
 
 	private static final Logger logger = LoggerFactory.getLogger(MessageProperties.class);
@@ -33,8 +27,8 @@ public class MessageProperties {
 		try {
 			prop.load(input);
 		} catch (IOException e) {
-			logger.error(FactoryLog.getErrorLog(CtxtEnum.SERVICE.toString(), OrigineEnum.PILPOSE_AUTH.getValue(), new Date(), e.getMessage(),
-					Severity.ERROR.toString(), null));
+			logger.error(FactoryLog.getErrorLog(CtxtEnum.SERVICE.toString(), OrigineEnum.PILPOSE_AUTH.getValue(),
+					new Date(), e.getMessage(), Severity.ERROR.toString(), null));
 		}
 	}
 

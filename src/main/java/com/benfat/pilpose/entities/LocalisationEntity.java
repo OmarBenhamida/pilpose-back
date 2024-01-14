@@ -13,14 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "localisation")
 @NoArgsConstructor

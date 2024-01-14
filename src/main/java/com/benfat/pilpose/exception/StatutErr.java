@@ -2,12 +2,6 @@ package com.benfat.pilpose.exception;
 
 import org.springframework.http.HttpStatus;
 
-/**
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class StatutErr {
 	/**
 	 * private constructor

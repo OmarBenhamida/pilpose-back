@@ -5,13 +5,6 @@ import java.util.Date;
 import com.benfat.pilpose.enums.CtxtEnum;
 import com.benfat.pilpose.util.Constants;
 
-/**
- * @category : Factory log parent
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public final class FactoryLog {
 
 	/**
@@ -31,13 +24,14 @@ public final class FactoryLog {
 	 * @param params
 	 * @return
 	 */
-	public static String getRsLog(String origine, String description, String username, String method, String pathRs, Object params) {
+	public static String getRsLog(String origine, String description, String username, String method, String pathRs,
+			Object params) {
 		if (params == null) {
 			params = Constants.NO_PARAM;
 		}
 		return new RsLog(CtxtEnum.REST.toString(), origine, description, username, method, pathRs, params).toString();
 	}
-	
+
 	/**
 	 * Rest logging with port
 	 * 
@@ -48,11 +42,13 @@ public final class FactoryLog {
 	 * @param params
 	 * @return
 	 */
-	public static String getRsLog(String origine, Integer port, String description, String username, String method, String pathRs, Object params) {
+	public static String getRsLog(String origine, Integer port, String description, String username, String method,
+			String pathRs, Object params) {
 		if (params == null) {
 			params = Constants.NO_PARAM;
 		}
-		return new RsLog(CtxtEnum.REST.toString(), origine, port, description, username, method, pathRs, params).toString();
+		return new RsLog(CtxtEnum.REST.toString(), origine, port, description, username, method, pathRs, params)
+				.toString();
 	}
 
 	/**
@@ -99,7 +95,8 @@ public final class FactoryLog {
 	 * @param params
 	 * @return
 	 */
-	public static String getErrorLog(String context, String origine, Date dateErreur, String messageErreur, String severity, Object params) {
+	public static String getErrorLog(String context, String origine, Date dateErreur, String messageErreur,
+			String severity, Object params) {
 		if (params == null) {
 			params = Constants.NULL_OBJECT;
 		}

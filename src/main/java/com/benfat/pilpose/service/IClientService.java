@@ -8,12 +8,6 @@ import com.benfat.pilpose.controllers.dto.ClientDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.ClientEntity;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface IClientService {
 
 	/**
@@ -44,17 +38,16 @@ public interface IClientService {
 	 * @return
 	 */
 	List<ClientEntity> getRefreshedClient();
-	
-	
+
 	/**
 	 * genererLoader Client
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
 	 * Générer fichier excel Client
 	 * 
@@ -63,16 +56,15 @@ public interface IClientService {
 	 * @throws IOException
 	 */
 	byte[] genererLoaderClient() throws ParseException, IOException;
-	
-	
+
 	/**
 	 * Générer fichier csv Client
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 

@@ -4,13 +4,6 @@ import java.util.Date;
 
 import com.benfat.pilpose.util.Functions;
 
-/**
- * @category : Factory SERVICES log
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class ServiceLog extends LogClass {
 
 	/**
@@ -32,9 +25,10 @@ public class ServiceLog extends LogClass {
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
 	}
-	
+
 	/**
 	 * Service Log
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description
@@ -42,7 +36,7 @@ public class ServiceLog extends LogClass {
 	 */
 	public ServiceLog(String ctx, String origine, String description, Object params) {
 		super(ctx, origine, description, params);
-	} 
+	}
 
 	/**
 	 * @return the dateStart

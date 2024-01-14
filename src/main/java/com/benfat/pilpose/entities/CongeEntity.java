@@ -15,14 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 01/12/2023
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "conge")
 @NoArgsConstructor
@@ -42,25 +34,25 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "statut", nullable = false)
 	private String statut;
-	
+
 	@Column(name = "date_debut")
 	private String dateDebut;
-	
+
 	@Column(name = "date_fin")
 	private String dateFin;
-	
+
 	@Column(name = "date_depot")
 	private String dateDepot;
-	
+
 	@Column(name = "heure_debut")
 	private String heureDebut;
-	
+
 	@Column(name = "heure_fin")
 	private String heureFin;
 
 	@Column(name = "type_conge")
 	private String typeConge;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
 	private CollaborateurEntity idCollaborateur;
@@ -154,7 +146,5 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
-	
-	
 
 }

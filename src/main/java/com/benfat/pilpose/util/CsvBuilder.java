@@ -16,16 +16,6 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 
-/**
- * 
- * CsvBuilder
- *
- * @author : EL BAZY Zakarya SOFRECOM
- * @see : <zakarya.elbazy@sofrecom.com>
- * @creation : 20 nov. 2021 21:18:44
- * @param <T>
- * @version : 1.0
- */
 @Component
 public class CsvBuilder<T> {
 
@@ -48,7 +38,8 @@ public class CsvBuilder<T> {
 			HeaderColumnNameTranslateMappingStrategy<T> ms = new HeaderColumnNameTranslateMappingStrategy<>();
 			ms.setType(clazz);
 			ms.setColumnMapping(mapping);
-			CsvToBean<T> cb = new CsvToBeanBuilder<T>(reader).withType(clazz).withSeparator(separator).withMappingStrategy(ms).build();
+			CsvToBean<T> cb = new CsvToBeanBuilder<T>(reader).withType(clazz).withSeparator(separator)
+					.withMappingStrategy(ms).build();
 			beans = cb.parse();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

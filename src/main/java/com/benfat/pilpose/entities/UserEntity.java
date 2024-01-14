@@ -19,14 +19,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -41,7 +33,7 @@ public class UserEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_user", nullable = false)
 	private Long idUser;
 
-	@Column(name = "username", length = 20,nullable = false)
+	@Column(name = "username", length = 20, nullable = false)
 	private String username;
 
 	@Column(name = "password", nullable = false)
@@ -104,7 +96,5 @@ public class UserEntity extends AbstractCommonEntity<Long> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
+
 }

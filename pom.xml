@@ -18,8 +18,8 @@
 		<java.version>17</java.version>
 		<!-- json token security -->
 		<jjwt.version>0.9.1</jjwt.version>
-		
-				<!-- poi -->
+
+		<!-- poi -->
 		<poi.version>4.1.2</poi.version>
 
 		<!-- validation api -->
@@ -60,7 +60,7 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			</dependency>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -77,13 +77,16 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>${poi.version}</version>
 		</dependency>
-		
-			<dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>5.5.2</version>

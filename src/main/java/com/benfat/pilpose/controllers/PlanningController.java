@@ -23,16 +23,16 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/planning")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class PlanningController {
 	@Autowired
 	private ServerProperties serverProperties;
-	
+
 	@Autowired
 	ICollaborateurService collaborateurService;
-	
+
 	private static Logger logger = LoggerFactory.getLogger(AffectationController.class);
-	
+
 	/**
 	 * Get affectation Controller
 	 *
@@ -41,7 +41,7 @@ public class PlanningController {
 	 * @throws Exception
 	 *
 	 */
-	@GetMapping(value = ConstantsApplication.REST_PATH_V0+ "/{idC}", headers = Constants.HEADERS)
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idC}", headers = Constants.HEADERS)
 	public PilposeResponse getPlanningById(@PathVariable Long idC) throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
@@ -50,11 +50,10 @@ public class PlanningController {
 		}
 
 		PilposeResponse pilposeResponse = new PilposeResponse(collaborateurService.getPlanningById(idC), HttpStatus.OK);
-		
+
 		return pilposeResponse;
 	}
-	
-	
+
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
 	public PilposeResponse getPlanningAll() throws ParseException {
 		if (logger.isInfoEnabled()) {
@@ -64,9 +63,8 @@ public class PlanningController {
 		}
 
 		PilposeResponse pilposeResponse = new PilposeResponse(collaborateurService.getPlanningAll(), HttpStatus.OK);
-		
+
 		return pilposeResponse;
 	}
-
 
 }

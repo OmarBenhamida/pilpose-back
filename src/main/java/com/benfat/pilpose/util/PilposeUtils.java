@@ -5,14 +5,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class PilposeUtils {
-	
-	
-	 private PilposeUtils() {
-	        throw new UnsupportedOperationException("C'est une classe Utils ne peut pas etre instancié");
-	    }
-	
 
-	public static XSSFRow getXRow( XSSFSheet sheet, int dataRowIndex) {
+	private PilposeUtils() {
+		throw new UnsupportedOperationException("C'est une classe Utils ne peut pas etre instancié");
+	}
+
+	public static XSSFRow getXRow(XSSFSheet sheet, int dataRowIndex) {
 		XSSFRow row;
 		row = sheet.getRow(dataRowIndex);
 		if (row == null) {

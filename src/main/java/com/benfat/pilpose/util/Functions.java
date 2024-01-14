@@ -49,15 +49,6 @@ import org.slf4j.LoggerFactory;
 
 import com.benfat.pilpose.exception.PilposeBusinessException;
 
-
-
-/**
- * @category : Functions util
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class Functions {
 
 	private static Logger logger = LoggerFactory.getLogger(Functions.class);
@@ -296,8 +287,7 @@ public class Functions {
 	 * <p>
 	 * Null returns true.
 	 * 
-	 * @param coll
-	 *            the collection to check, may be null
+	 * @param coll the collection to check, may be null
 	 * @return true if empty or null
 	 */
 	public static boolean isEmpty(Collection<?> coll) {
@@ -309,8 +299,7 @@ public class Functions {
 	 * <p>
 	 * Null returns false.
 	 * 
-	 * @param coll
-	 *            the collection to check, may be null
+	 * @param coll the collection to check, may be null
 	 * @return true if not empty and null
 	 */
 	public static boolean isNotEmpty(Collection<?> coll) {
@@ -545,18 +534,15 @@ public class Functions {
 	}
 
 	/**
-	 * Formats the given date according to the specified pattern. The pattern
-	 * must conform to that used by the {@link SimpleDateFormat simple date
-	 * format} class.
+	 * Formats the given date according to the specified pattern. The pattern must
+	 * conform to that used by the {@link SimpleDateFormat simple date format}
+	 * class.
 	 *
-	 * @param date
-	 *            The date to format.
-	 * @param pattern
-	 *            The pattern to use for formatting the date.
+	 * @param date    The date to format.
+	 * @param pattern The pattern to use for formatting the date.
 	 * @return A formatted date string.
 	 *
-	 * @throws IllegalArgumentException
-	 *             If the given date pattern is invalid.
+	 * @throws IllegalArgumentException If the given date pattern is invalid.
 	 *
 	 * @see SimpleDateFormat
 	 */
@@ -568,13 +554,12 @@ public class Functions {
 	/**
 	 * creates a {@link SimpleDateFormat} for the requested format string.
 	 *
-	 * @param pattern
-	 *            a non-{@code null} format String according to
-	 *            {@link SimpleDateFormat}. The format is not checked against
-	 *            {@code null} since all paths go through {@link DateUtils}.
-	 * @return the requested format. This simple dateformat should not be used
-	 *         to {@link SimpleDateFormat#applyPattern(String) apply} to a
-	 *         different pattern.
+	 * @param pattern a non-{@code null} format String according to
+	 *                {@link SimpleDateFormat}. The format is not checked against
+	 *                {@code null} since all paths go through {@link DateUtils}.
+	 * @return the requested format. This simple dateformat should not be used to
+	 *         {@link SimpleDateFormat#applyPattern(String) apply} to a different
+	 *         pattern.
 	 */
 	public static SimpleDateFormat formatFor(final String pattern) {
 		final SoftReference<Map<String, SimpleDateFormat>> ref = THREADLOCAL_FORMATS.get();
@@ -596,8 +581,7 @@ public class Functions {
 	}
 
 	/**
-	 * @param Date
-	 *            and number month
+	 * @param Date and number month
 	 * @return method return Month +1
 	 */
 	public static Date addMonth(Date date, int i) {
@@ -635,12 +619,12 @@ public class Functions {
 	}
 
 	/**
-	 * @param int
-	 *            month
+	 * @param int month
 	 * @return name month
 	 */
 	public static String theMonth(int month) {
-		String[] monthNames = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" };
+		String[] monthNames = { "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre",
+				"Octobre", "Novembre", "Décembre" };
 		return monthNames[month];
 	}
 
@@ -655,7 +639,7 @@ public class Functions {
 		cal.setTime(date);
 		return cal.get(Calendar.MONTH);
 	}
-	
+
 	/**
 	 * method return index of month from 0 (January) to 11 (December)
 	 * 
@@ -826,7 +810,8 @@ public class Functions {
 		Date date = new Date();
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
-		return Functions.getDateFromStringFormat(new StringBuilder(dayMonthJourFerie).append("/").append(calendar.get(Calendar.YEAR)).toString(),
+		return Functions.getDateFromStringFormat(
+				new StringBuilder(dayMonthJourFerie).append("/").append(calendar.get(Calendar.YEAR)).toString(),
 				Constants.DATE_FORMAT_DD_MM_YYYY);
 
 	}
@@ -1076,6 +1061,5 @@ public class Functions {
 	public static Long convertStringToLong(String string) {
 		return Long.parseLong(string);
 	}
-
 
 }

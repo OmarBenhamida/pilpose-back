@@ -36,7 +36,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/note")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class NoteFraisController {
 
 	private static Logger logger = LoggerFactory.getLogger(NoteFraisController.class);
@@ -45,7 +45,7 @@ public class NoteFraisController {
 	INoteFraisService noteFraisService;
 	@Autowired
 	private ServerProperties serverProperties;
-	
+
 	@Autowired
 	INoteFraisRepository noteFraisRepository;
 
@@ -129,24 +129,23 @@ public class NoteFraisController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value = "/recu/{idC}")
-	public String  addNoteFrais(@RequestParam("file") MultipartFile file,@PathVariable Long idC) throws ParseException {
-	
-		 NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
+	public String addNoteFrais(@RequestParam("file") MultipartFile file, @PathVariable Long idC) throws ParseException {
+
+		NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
 		try {
-            
-            
-            fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
 
-            noteFraisRepository.save(fileEntity); // Save to the database
+			fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
 
-            return "File uploaded successfully";
-        } catch (Exception e) {
-            return "Error uploading file";
-        }
+			noteFraisRepository.save(fileEntity); // Save to the database
+
+			return "File uploaded successfully";
+		} catch (Exception e) {
+			return "Error uploading file";
+		}
 	}
-	
+
 	/**
 	 * Generer loader Notes Frais
 	 * 
@@ -156,18 +155,13 @@ public class NoteFraisController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderNoteFrais()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderNoteFrais() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader notes", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader notes", null,
+					RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(noteFraisService.genererLoader(), HttpStatus.OK);
 	}
 
-	 
 }

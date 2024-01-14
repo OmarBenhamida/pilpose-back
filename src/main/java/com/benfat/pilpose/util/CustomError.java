@@ -1,12 +1,5 @@
 package com.benfat.pilpose.util;
 
-/**
- * @category : Custom error
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class CustomError {
 
 	private String errorMessage;
@@ -20,8 +13,7 @@ public class CustomError {
 	}
 
 	/**
-	 * @param errorMessage
-	 *            the errorMessage to set
+	 * @param errorMessage the errorMessage to set
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
@@ -39,8 +31,7 @@ public class CustomError {
 	}
 
 	/**
-	 * @param errorCode
-	 *            the errorCode to set
+	 * @param errorCode the errorCode to set
 	 */
 	public void setErrorCode(Integer errorCode) {
 		this.errorCode = errorCode;

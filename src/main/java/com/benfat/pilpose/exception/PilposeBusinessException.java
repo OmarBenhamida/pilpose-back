@@ -2,13 +2,6 @@ package com.benfat.pilpose.exception;
 
 import org.springframework.http.HttpStatus;
 
-/**
- * @category : Sirhus Business exception
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class PilposeBusinessException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
@@ -125,8 +118,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param code
-	 *            the code to set
+	 * @param code the code to set
 	 */
 	public void setCode(String code) {
 		this.code = code;
@@ -140,8 +132,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param libelle
-	 *            the libelle to set
+	 * @param libelle the libelle to set
 	 */
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
@@ -155,8 +146,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param severity
-	 *            the severity to set
+	 * @param severity the severity to set
 	 */
 	public void setSeverity(Severity severity) {
 		this.severity = severity;
@@ -170,8 +160,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param origine
-	 *            the origine to set
+	 * @param origine the origine to set
 	 */
 	public void setOrigine(Class<Object> origine) {
 		Origine = origine;
@@ -185,8 +174,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param httpResponseStatus
-	 *            the httpResponseStatus to set
+	 * @param httpResponseStatus the httpResponseStatus to set
 	 */
 	public void setHttpResponseStatus(HttpStatus httpResponseStatus) {
 		this.httpResponseStatus = httpResponseStatus;
@@ -200,8 +188,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 * @param errorMessage
-	 *            the errorMessage to set
+	 * @param errorMessage the errorMessage to set
 	 */
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;

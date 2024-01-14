@@ -120,7 +120,7 @@ public class ClientController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Generer loader client
 	 * 
@@ -130,15 +130,11 @@ public class ClientController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderClient()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderClient() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader client", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader client", null,
+					RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(clientService.genererLoader(), HttpStatus.OK);
 	}

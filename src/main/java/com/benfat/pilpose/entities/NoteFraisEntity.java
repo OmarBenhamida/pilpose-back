@@ -16,14 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "note_frais")
 @NoArgsConstructor
@@ -50,11 +42,11 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	@Lob
 	@Column(name = "recu", columnDefinition = "MEDIUMBLOB", nullable = true)
 	private byte[] recu;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
 	private CollaborateurEntity idCollaborateur;
-	
+
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
@@ -112,7 +104,5 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
-	
-	
 
 }

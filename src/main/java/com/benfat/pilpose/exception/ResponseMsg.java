@@ -1,11 +1,5 @@
 package com.benfat.pilpose.exception;
 
-/**
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class ResponseMsg {
 	private int code;
 	private String message;
@@ -34,8 +28,7 @@ public class ResponseMsg {
 	}
 
 	/**
-	 * @param code
-	 *            the code to set
+	 * @param code the code to set
 	 */
 	public void setCode(int code) {
 		this.code = code;
@@ -49,8 +42,7 @@ public class ResponseMsg {
 	}
 
 	/**
-	 * @param message
-	 *            the message to set
+	 * @param message the message to set
 	 */
 	public void setMessage(String message) {
 		this.message = message;
@@ -64,8 +56,7 @@ public class ResponseMsg {
 	}
 
 	/**
-	 * @param description
-	 *            the description to set
+	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -79,8 +70,7 @@ public class ResponseMsg {
 	}
 
 	/**
-	 * @param infoURL
-	 *            the infoURL to set
+	 * @param infoURL the infoURL to set
 	 */
 	public void setInfoURL(String infoURL) {
 		this.infoURL = infoURL;

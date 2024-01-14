@@ -1,6 +1,5 @@
 package com.benfat.pilpose.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,15 +18,6 @@ import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.service.IFeuilleTempsService;
 import com.benfat.pilpose.util.Functions;
 
-/**
- * Site service
- * 
- * @inteface ISiteService
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Service
 @Transactional
 public class FeuilleTempsService implements IFeuilleTempsService {
@@ -60,8 +50,6 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 	public FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
 		Date dateDeb = new Date();
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Specify your desired date format
-		String formattedDate = dateFormat.format(dateDeb);
 		List<FeuilleTempsEntity> list = feuilleTempsRepository.findAll();
 		FeuilleTempsEntity entity = new FeuilleTempsEntity();
 		try {

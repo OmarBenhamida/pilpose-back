@@ -37,15 +37,6 @@ import com.benfat.pilpose.util.Constants;
 import com.benfat.pilpose.util.Functions;
 import com.benfat.pilpose.util.PilposeUtils;
 
-/**
- * Site service
- * 
- * @inteface ISiteService
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Service
 @Transactional
 public class AffectationService implements IAffectationService {
@@ -299,21 +290,20 @@ public class AffectationService implements IAffectationService {
 	public boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab) {
 
 		for (Long id : idCollab) {
-		    try {
-		        AffectationEntity entity = new AffectationEntity();
-		        entity.setIdAffectation(null);
-		        entity.setIdTache(TacheDto.dtoToEntity(tache));
-		        CollaborateurEntity collab = new CollaborateurEntity();
-		        collab.setIdCollaborateur(id);
-		        entity.setIdCollaborateur(collab);
-		        affectationRepository.save(entity);
-		    } catch (Exception e) {
-		        throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
-		                + Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
-		    }
+			try {
+				AffectationEntity entity = new AffectationEntity();
+				entity.setIdAffectation(null);
+				entity.setIdTache(TacheDto.dtoToEntity(tache));
+				CollaborateurEntity collab = new CollaborateurEntity();
+				collab.setIdCollaborateur(id);
+				entity.setIdCollaborateur(collab);
+				affectationRepository.save(entity);
+			} catch (Exception e) {
+				throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+						+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+			}
 		}
 
-		
 		return true;
 
 	}

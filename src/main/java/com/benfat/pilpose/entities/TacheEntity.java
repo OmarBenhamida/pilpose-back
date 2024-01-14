@@ -15,14 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 01/12/2023
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "tache")
 @NoArgsConstructor
@@ -36,7 +28,6 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_tache", nullable = false)
 	private Long idTache;
-
 
 	@Column(name = "libelle", nullable = false)
 	private String libelle;
@@ -74,8 +65,6 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 		return serialVersionUID;
 	}
 
-
-
 	public String getLibelle() {
 		return libelle;
 	}
@@ -99,8 +88,6 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	public void setDateFin(String dateFin) {
 		this.dateFin = dateFin;
 	}
-
-
 
 	public String getCommantaire() {
 		return commantaire;

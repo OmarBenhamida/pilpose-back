@@ -17,15 +17,6 @@ import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.service.ILocalisationService;
 import com.benfat.pilpose.util.Functions;
 
-/**
- * Site service
- * 
- * @inteface ISiteService
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Service
 @Transactional
 public class LocalisationService implements ILocalisationService {

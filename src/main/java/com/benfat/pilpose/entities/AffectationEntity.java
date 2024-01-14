@@ -15,14 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 01/12/2023
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "affectation")
 @NoArgsConstructor

@@ -2,13 +2,6 @@ package com.benfat.pilpose.logging;
 
 import java.util.Date;
 
-/**
- * @category : Factory RULES log
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class RuleLog extends LogClass {
 
 	protected Date dateStart;

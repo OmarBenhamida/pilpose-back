@@ -15,14 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "chantier")
 @NoArgsConstructor
@@ -37,7 +29,7 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "id_chantier", nullable = false)
 	private Long idChantier;
 
-	@Column(name = "reference", length = 20,unique = true, nullable = false)
+	@Column(name = "reference", length = 20, unique = true, nullable = false)
 	private String reference;
 
 	@Column(name = "nom_chantier", nullable = false)

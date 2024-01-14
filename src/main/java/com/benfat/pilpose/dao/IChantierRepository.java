@@ -6,13 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.benfat.pilpose.dao.common.ICommonRepository;
 import com.benfat.pilpose.entities.ChantierEntity;
 
-/**
- * Repository Interface For chantier
- * 
- * @author : BENHAMIDA OMAR 
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Repository
 public interface IChantierRepository extends ICommonRepository<ChantierEntity, Long> {
 

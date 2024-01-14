@@ -10,12 +10,6 @@ import com.benfat.pilpose.controllers.dto.PlanningDto;
 import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.exception.PilposeTechnicalException;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface ICollaborateurService {
 
 	/**
@@ -48,7 +42,7 @@ public interface ICollaborateurService {
 	 * @throws PilposeTechnicalException
 	 */
 	CollaborateurEntity getCollaborateurById(Long id) throws PilposeTechnicalException;
-	
+
 	/**
 	 * 
 	 * @param fonction
@@ -78,35 +72,33 @@ public interface ICollaborateurService {
 	 * @throws ParseException
 	 */
 	List<PlanningDto> getPlanningAll() throws ParseException;
-	
-	
+
 	/**
 	 * genererLoader Salaries
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
-	 * Générer fichier excel 
+	 * Générer fichier excel
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
 	byte[] genererLoaderCollaborateur() throws ParseException, IOException;
-	
-	
+
 	/**
-	 * Générer fichier csv 
+	 * Générer fichier csv
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 

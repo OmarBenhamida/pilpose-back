@@ -8,12 +8,6 @@ import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.entities.TacheEntity;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface ITacheService {
 
 	/**
@@ -45,42 +39,41 @@ public interface ITacheService {
 	 * @return
 	 */
 	List<TacheEntity> getRefreshedTache();
-	
+
 	/**
 	 * genererLoader Tache
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
-	 * Générer fichier excel 
+	 * Générer fichier excel
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
 	byte[] genererLoaderTache() throws ParseException, IOException;
-	
-	
+
 	/**
-	 * Générer fichier csv 
+	 * Générer fichier csv
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 
 	/**
 	 * 
 	 * @return
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
-	TacheDto getTacheByAttribute () throws ParseException;
+	TacheDto getTacheByAttribute() throws ParseException;
 
 }

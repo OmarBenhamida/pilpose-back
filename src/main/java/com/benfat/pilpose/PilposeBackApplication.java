@@ -11,12 +11,10 @@ import org.springframework.context.event.ContextClosedEvent;
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.benfat" })
 public class PilposeBackApplication {
-
 	private static Logger logger = LoggerFactory.getLogger(PilposeBackApplication.class);
 
 	public PilposeBackApplication() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public static ConfigurableApplicationContext startMicroservice(String[] args) {
@@ -32,7 +30,5 @@ public class PilposeBackApplication {
 			logger.info("Pilpose started correctly");
 		}
 	}
-
-
 
 }

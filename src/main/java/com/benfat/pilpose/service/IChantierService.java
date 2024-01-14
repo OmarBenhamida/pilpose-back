@@ -9,12 +9,6 @@ import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.ChantierEntity;
 import com.benfat.pilpose.exception.PilposeTechnicalException;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface IChantierService {
 
 	/**
@@ -55,16 +49,16 @@ public interface IChantierService {
 	 * @return
 	 */
 	List<ChantierEntity> getRefreshedChantier();
-	
+
 	/**
 	 * genererLoader chantier
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
 	 * Générer fichier excel Chantier
 	 * 
@@ -73,16 +67,15 @@ public interface IChantierService {
 	 * @throws IOException
 	 */
 	byte[] genererLoaderChantier() throws ParseException, IOException;
-	
-	
+
 	/**
 	 * Générer fichier csv chantier
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 

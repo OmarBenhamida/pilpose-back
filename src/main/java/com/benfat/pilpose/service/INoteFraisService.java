@@ -8,12 +8,6 @@ import com.benfat.pilpose.controllers.dto.NoteFraisDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.NoteFraisEntity;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface INoteFraisService {
 
 	/**
@@ -45,34 +39,33 @@ public interface INoteFraisService {
 	 * @return
 	 */
 	List<NoteFraisEntity> getRefreshedNoteFrais();
-	
+
 	/**
 	 * genererLoader NoteFrais
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
-	 * Générer fichier excel 
+	 * Générer fichier excel
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
 	byte[] genererLoaderNoteFrais() throws ParseException, IOException;
-	
-	
+
 	/**
-	 * Générer fichier csv 
+	 * Générer fichier csv
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 

@@ -16,14 +16,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 01/12/2023
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "feuille_temps")
 @NoArgsConstructor
@@ -60,7 +52,7 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "id_chantier")
 	private ChantierEntity idChantier;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
 	private CollaborateurEntity idCollaborateur;
@@ -146,7 +138,5 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
-	
-	
 
 }

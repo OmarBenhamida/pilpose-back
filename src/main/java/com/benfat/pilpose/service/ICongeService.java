@@ -10,12 +10,6 @@ import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.CongeEntity;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface ICongeService {
 
 	/**
@@ -46,44 +40,43 @@ public interface ICongeService {
 	 * @return
 	 */
 	List<CongeEntity> getRefreshedConge();
-	
+
 	/**
 	 * 
 	 * @param file
 	 * @param idC
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	
-	String addOrUpdateCongesExcel(MultipartFile file,Long idC) throws IOException;
-	
+
+	String addOrUpdateCongesExcel(MultipartFile file, Long idC) throws IOException;
+
 	/**
 	 * genererLoader conges
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
-	 * Générer fichier excel 
+	 * Générer fichier excel
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
 	byte[] genererLoaderConge() throws ParseException, IOException;
-	
-	
+
 	/**
-	 * Générer fichier csv 
+	 * Générer fichier csv
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 

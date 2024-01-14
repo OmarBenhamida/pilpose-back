@@ -27,7 +27,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8100"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class AuthController {
 
 	private static Logger logger = LoggerFactory.getLogger(AuthController.class);
@@ -52,8 +52,7 @@ public class AuthController {
 		System.out.println(response);
 		if (response != null && response.getIdUser() != null) {
 			return new PilposeResponse(response, HttpStatus.OK);
-		}
-		else {
+		} else {
 			return new PilposeResponse("user not found", HttpStatus.NOT_FOUND);
 
 		}
@@ -77,8 +76,7 @@ public class AuthController {
 		System.out.println(response);
 		if (response != null && response.getIdUser() != null) {
 			return new PilposeResponse(response, HttpStatus.OK);
-		}
-		else {
+		} else {
 			return new PilposeResponse("Probleme lors la modification", HttpStatus.FORBIDDEN);
 
 		}

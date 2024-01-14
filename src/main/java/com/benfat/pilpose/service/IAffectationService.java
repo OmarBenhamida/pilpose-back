@@ -9,12 +9,6 @@ import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.entities.AffectationEntity;
 
-/**
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 05/04/2022
- * @version : 1.0
- */
 public interface IAffectationService {
 
 	/**
@@ -46,16 +40,16 @@ public interface IAffectationService {
 	 * @return
 	 */
 	List<AffectationEntity> getRefreshedAffectation();
-	
+
 	/**
 	 * genererLoader Affectation
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	PilposeLoaderResponseDto genererLoader() throws ParseException,IOException;
-	
-	
+	PilposeLoaderResponseDto genererLoader() throws ParseException, IOException;
+
 	/**
 	 * Générer fichier excel Affectation
 	 * 
@@ -64,26 +58,24 @@ public interface IAffectationService {
 	 * @throws IOException
 	 */
 	byte[] genererLoaderAffectation() throws ParseException, IOException;
-	
-	
+
 	/**
 	 * Générer fichier csv Affectation
 	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
-	 * @throws CsvRequiredFieldEmptyException 
-	 * @throws CsvDataTypeMismatchException 
+	 * @throws CsvRequiredFieldEmptyException
+	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
-	
-	
+
 	/**
 	 * 
 	 * @param tache
 	 * @param idCollab
 	 * @return
 	 */
-	boolean addOrUpdateListAffecation(TacheDto tache,List<Long> idCollab);
+	boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab);
 
 }

@@ -150,7 +150,7 @@ public class CongeController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Generer loader conge
 	 * 
@@ -160,15 +160,11 @@ public class CongeController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderConge()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderConge() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader conge", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader conge", null,
+					RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(congeService.genererLoader(), HttpStatus.OK);
 	}

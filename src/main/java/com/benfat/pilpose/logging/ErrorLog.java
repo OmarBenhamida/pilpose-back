@@ -4,13 +4,6 @@ import java.util.Date;
 
 import com.benfat.pilpose.util.Functions;
 
-/**
- * @category : Factory log (Error)
- * @author : HADDAOUI Yassine SOFRECOM
- * @see : <yassine.haddaoui@sofrecom.com>
- * @creation : 04/06/19
- * @version : 1.0
- */
 public class ErrorLog extends LogClass {
 
 	protected Date dateErreur;
@@ -41,8 +34,7 @@ public class ErrorLog extends LogClass {
 	}
 
 	/**
-	 * @param severity
-	 *            the severity to set
+	 * @param severity the severity to set
 	 */
 	public void setSeverity(String severity) {
 		this.severity = severity;

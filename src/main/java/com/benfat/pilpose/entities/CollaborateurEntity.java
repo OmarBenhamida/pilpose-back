@@ -13,14 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * 
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 01/12/2023
- * @version : 1.0
- */
-
 @Entity
 @Table(name = "collaborateur")
 @NoArgsConstructor
@@ -47,7 +39,7 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "date_creation", nullable = true)
 	private String dateCreation;
 
-	@Column(name = "email",unique = true, nullable = false)
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Column(name = "fonction", nullable = false)
@@ -62,7 +54,7 @@ public class CollaborateurEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "adresse", nullable = true)
 	private String adresse;
 
-	@Column(name = "telephone",unique = true, nullable = true)
+	@Column(name = "telephone", unique = true, nullable = true)
 	private String telephone;
 
 	@Column(name = "username", nullable = false)

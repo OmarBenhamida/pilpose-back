@@ -16,6 +16,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PlanningDto implements Serializable {
 
+
+	private static final long serialVersionUID = 1L;
+
 	private CollaborateurDto idCollaborateur;
 
 	private TacheDto idTache;

@@ -138,8 +138,7 @@ public class CollaborateurController {
 	 * @throws PilposeTechnicalException
 	 */
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/cp", headers = Constants.HEADERS)
-	public PilposeResponse getCollaborateurByChefEquipe()
-			throws ParseException, PilposeTechnicalException {
+	public PilposeResponse getCollaborateurByChefEquipe() throws ParseException, PilposeTechnicalException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"get collaborateur by fonction controller", null, RsMethodEnum.GET.getValue(),
@@ -151,7 +150,7 @@ public class CollaborateurController {
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Generer loader collaborateur
 	 * 
@@ -161,15 +160,11 @@ public class CollaborateurController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderCollaborateur()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderCollaborateur() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader slariés", null, RsMethodEnum.POST.getValue(),
-					"/v0/export/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader slariés",
+					null, RsMethodEnum.POST.getValue(), "/v0/export/", null));
 		}
-
-		
 
 		return new PilposeResponse(collaborateurService.genererLoader(), HttpStatus.OK);
 	}

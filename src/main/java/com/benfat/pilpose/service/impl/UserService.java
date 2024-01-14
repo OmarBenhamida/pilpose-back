@@ -19,15 +19,6 @@ import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
 import com.benfat.pilpose.service.IUserService;
 
-/**
- * Site service
- * 
- * @inteface ISiteService
- * @author : BENHAMIDA OMAR SOFRECOM
- * @see : <omar.benhamida@sofrecom.com>
- * @creation : 15/05/2022
- * @version : 1.0
- */
 @Service
 @Transactional
 public class UserService implements IUserService {
@@ -36,7 +27,7 @@ public class UserService implements IUserService {
 
 	@Autowired
 	IUserRepository userRepository;
-	
+
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
 
@@ -48,7 +39,7 @@ public class UserService implements IUserService {
 
 		if (!user.getUsername().contains("@")) {
 			CollaborateurEntity collaborateurEntity = collaborateurRepository.getUserByUsername(user.getUsername());
-			//UserEntity userEntity = userRepository.getByUsername(user.getUsername());
+			// UserEntity userEntity = userRepository.getByUsername(user.getUsername());
 			if (collaborateurEntity != null) {
 
 				if (collaborateurEntity.getPassword().equals(user.getPassword())) {
@@ -63,7 +54,7 @@ public class UserService implements IUserService {
 			}
 		} else {
 			CollaborateurEntity collaborateurEntity = collaborateurRepository.getUserByEmail(user.getEmail());
-			//UserEntity userEntity = userRepository.getByEmail(user.getEmail());
+			// UserEntity userEntity = userRepository.getByEmail(user.getEmail());
 			if (collaborateurEntity != null) {
 				if (collaborateurEntity.getPassword().equals(user.getPassword())) {
 					return UserDto.collabEntityToUserDto(collaborateurEntity);
@@ -97,12 +88,12 @@ public class UserService implements IUserService {
 
 	@Override
 	public UserEntity getUserById(Long idUser) throws ParseException {
-		
+
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), "pilpose get user by id", null,
 					RsMethodEnum.POST.getValue(), "/auth/v0/getUserById", null));
 		}
-		
+
 		UserEntity userEntity = userRepository.getUserById(idUser);
 		if (userEntity != null) {
 			return userEntity;

@@ -6,17 +6,6 @@ import javax.persistence.MappedSuperclass;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * Parent class for all entity objects (beans)
- * 
- * @author : ROUAIZI OTHMANE SOFRECOM
- * @see : <othmane.rouaizi@sofrecom.com>
- * @creation : 09/03/2021
- * @version : 1.0
- * 
- * @param <T>
- *            java type of entity object's id
- */
 @MappedSuperclass
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class AbstractCommonEntity<T extends Serializable> implements Serializable {
