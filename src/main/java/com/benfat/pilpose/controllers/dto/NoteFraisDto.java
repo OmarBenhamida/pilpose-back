@@ -1,11 +1,18 @@
 package com.benfat.pilpose.controllers.dto;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.lang.Nullable;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.util.Functions;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,10 +42,8 @@ public class NoteFraisDto implements Serializable {
 	
 	private String nomCompletEmploye;
 	
-	
-
-	
-	/*private MultipartFile recu;*/
+	@Nullable
+	private MultipartFile recu;
 	
 	private CollaborateurDto idCollaborateur;
 
@@ -51,8 +56,9 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @return NoteFraisEntity
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
-	public static NoteFraisDto entityToDto(NoteFraisEntity entity) throws ParseException {
+	public static NoteFraisDto entityToDto(NoteFraisEntity entity) throws ParseException, IOException {
 		NoteFraisDto dto = null;
 		if (entity != null) {
 			dto = new NoteFraisDto();
@@ -87,6 +93,7 @@ public class NoteFraisDto implements Serializable {
 			entity.setTypeNote(dto.getTypeNote());
 			entity.setDateNote(dto.getDateNote());
 			//entity.setRecu(dto.getRecu().getBytes());
+		
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
 		}
 
@@ -115,8 +122,9 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @param List<NoteFraisEntity>
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
-	public static List<NoteFraisDto> entitiesToDtos(List<NoteFraisEntity> listEntity) throws ParseException {
+	public static List<NoteFraisDto> entitiesToDtos(List<NoteFraisEntity> listEntity) throws ParseException, IOException {
 		List<NoteFraisDto> list = new ArrayList<>();
 		if (Functions.isNotEmpty(listEntity)) {
 			for (NoteFraisEntity entity : listEntity) {

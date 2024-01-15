@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
+import com.benfat.pilpose.dao.IFeuilleTempsRepository;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -38,6 +39,9 @@ public class FeuilleTempsController {
 
 	@Autowired
 	IFeuilleTempsService feuilleTempsService;
+
+	@Autowired
+	IFeuilleTempsRepository feuilleTempsRepository;
 	@Autowired
 	private ServerProperties serverProperties;
 
@@ -123,6 +127,40 @@ public class FeuilleTempsController {
 		boolean retour = feuilleTempsService.deleteFeuilleTemps(idFeuilleTemps);
 
 		return new PilposeResponse(retour, HttpStatus.OK);
+	}
+
+	/**
+	 * Get feuilleTemps Controller
+	 *
+	 * @return {PilposeResponse}
+	 * @throws ParseException
+	 * @throws Exception
+	 *
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/cht", headers = Constants.HEADERS)
+	public PilposeResponse getAllChantierSaisie() throws ParseException {
+
+		PilposeResponse pilposeResponse = null;
+
+		pilposeResponse = new PilposeResponse(feuilleTempsService.getChantierRecaps(), HttpStatus.OK);
+		return pilposeResponse;
+	}
+
+	/**
+	 * Get feuilleTemps Controller
+	 *
+	 * @return {PilposeResponse}
+	 * @throws ParseException
+	 * @throws Exception
+	 *
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/slr", headers = Constants.HEADERS)
+	public PilposeResponse getAllSalarieSaisie() throws ParseException {
+
+		PilposeResponse pilposeResponse = null;
+
+		pilposeResponse = new PilposeResponse(feuilleTempsService.getCollaborateurRecaps(), HttpStatus.OK);
+		return pilposeResponse;
 	}
 
 }

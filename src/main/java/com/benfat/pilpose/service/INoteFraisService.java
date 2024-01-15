@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.benfat.pilpose.controllers.dto.NoteFraisDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.NoteFraisEntity;
@@ -68,5 +70,7 @@ public interface INoteFraisService {
 	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
+
+	NoteFraisEntity addNoteWithRecu(NoteFraisEntity fileEntity,MultipartFile file) throws IOException;
 
 }

@@ -22,7 +22,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
@@ -39,16 +38,20 @@ public class UserDto implements Serializable {
 
 	@Size(max = 20)
 	private String password;
-	
+
+	private String fonction;
+
 	@Size(max = 20)
 	private String nom;
-	
+
 	@Size(max = 20)
 	private String prenom;
-	
+
+	private boolean admin;
+
 	@Size(max = 30)
 	private String email;
-	
+
 	private String token;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -98,13 +101,28 @@ public class UserDto implements Serializable {
 		return serialVersionUID;
 	}
 
-	
 	public String getToken() {
 		return token;
 	}
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getFonction() {
+		return fonction;
+	}
+
+	public void setFonction(String fonction) {
+		this.fonction = fonction;
+	}
+
+	public boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	/**
@@ -125,7 +143,7 @@ public class UserDto implements Serializable {
 		}
 		return dto;
 	}
-	
+
 	/**
 	 * Convert UserEntity -> UserDto
 	 * 
@@ -142,10 +160,17 @@ public class UserDto implements Serializable {
 			dto.setPassword(entity.getPassword());
 			dto.setNom(entity.getNom());
 			dto.setPrenom(entity.getPrenom());
+			dto.setFonction(entity.getFonction());
+			if (entity.getRole().equals("Administrateur")) {
+				dto.setAdmin(true);
+			} else {
+				dto.setAdmin(false);
+			}
+
 		}
 		return dto;
 	}
- 
+
 	/**
 	 * Convert SiteDto -> SiteEntity
 	 * 

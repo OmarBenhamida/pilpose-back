@@ -40,8 +40,8 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	private String dateNote;
 
 	@Lob
-	@Column(name = "recu", columnDefinition = "MEDIUMBLOB", nullable = true)
-	private byte[] recu;
+	@Column(name = "recu", nullable = true)
+	private String pathRecu;
 
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
@@ -89,13 +89,6 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 		this.dateNote = dateNote;
 	}
 
-	public byte[] getRecu() {
-		return recu;
-	}
-
-	public void setRecu(byte[] recu) {
-		this.recu = recu;
-	}
 
 	public CollaborateurEntity getIdCollaborateur() {
 		return idCollaborateur;
@@ -103,6 +96,14 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
+	}
+
+	public String getPathRecu() {
+		return pathRecu;
+	}
+
+	public void setPathRecu(String pathRecu) {
+		this.pathRecu = pathRecu;
 	}
 
 }

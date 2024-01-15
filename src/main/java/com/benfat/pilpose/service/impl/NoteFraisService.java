@@ -2,6 +2,9 @@ package com.benfat.pilpose.service.impl;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -22,7 +25,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.NoteFraisDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.INoteFraisRepository;
@@ -66,12 +71,23 @@ public class NoteFraisService implements INoteFraisService {
 	@Override
 	public NoteFraisEntity addOrUpdateNoteFrais(NoteFraisDto noteFrais) {
 		Date dateDeb = new Date();
-
+		NoteFraisEntity entitySec = new NoteFraisEntity();
 		NoteFraisEntity entity = new NoteFraisEntity();
 		List<NoteFraisEntity> list = noteFraisRepository.findAll();
+		if(noteFrais.getIdNoteFrais()!= null) {
+		 entitySec =noteFraisRepository.findById(noteFrais.getIdNoteFrais()).orElse(null);
+		}
 		try {
+			
 			entity = NoteFraisDto.dtoToEntity(noteFrais);
-			entity.setReference("ref".concat(list.size() + 1 + ""));
+             if(entitySec!= null) {
+            	 entity.setPathRecu(entitySec.getPathRecu());
+			}
+			if(entity.getIdNoteFrais()==null) {
+				entity.setReference("ref".concat(list.size() + 1 + ""));
+			}
+			
+			
 			entity = noteFraisRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("NoteFraisService::addOrUpdateNoteFrais on line "
@@ -242,6 +258,36 @@ public class NoteFraisService implements INoteFraisService {
 
 		return baos.toByteArray();
 
+	}
+	
+	public void addOrRenameFile( String newPath, byte[] data) throws IOException {
+		File oldFile = new File(newPath);
+		writeDataToFile(oldFile,data);
+	}
+	
+	public void writeDataToFile(File  file,byte[] data) throws IOException {
+		writeData(file,data);
+	}
+	
+	public void writeData(File file,byte[] data) throws IOException {
+		try {
+			FileOutputStream  output = new FileOutputStream(file);
+			output.write(data);
+			output.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Override
+	public NoteFraisEntity addNoteWithRecu(NoteFraisEntity fileEntity ,MultipartFile file) throws IOException {
+		String newTemplateFileName = fileEntity.getReference()+"_"+"note.jpeg";
+		addOrRenameFile(ConstantsApplication.ASSETS.concat(newTemplateFileName), file.getBytes());
+		fileEntity.setPathRecu(newTemplateFileName);
+		noteFraisRepository.save(fileEntity);
+		return fileEntity;
 	}
 
 }

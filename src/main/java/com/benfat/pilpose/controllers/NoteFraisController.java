@@ -3,6 +3,9 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -11,7 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,11 +59,12 @@ public class NoteFraisController {
 	 *
 	 * @return {PilposeResponse}
 	 * @throws ParseException
+	 * @throws IOException 
 	 * @throws Exception
 	 *
 	 */
 	@GetMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse getAllNoteFrais() throws ParseException {
+	public PilposeResponse getAllNoteFrais() throws ParseException, IOException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"get all noteFrais controller", null, RsMethodEnum.GET.getValue(),
@@ -77,9 +83,10 @@ public class NoteFraisController {
 	 * @param NoteFraisDto
 	 * @return
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
 	@PostMapping(value = ConstantsApplication.REST_PATH_V0)
-	public PilposeResponse addNoteFrais(@RequestBody NoteFraisDto noteFraisDto) throws ParseException {
+	public PilposeResponse addNoteFrais(@RequestBody NoteFraisDto noteFraisDto) throws ParseException, IOException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"add noteFrais controller", null, RsMethodEnum.POST.getValue(),
@@ -96,9 +103,10 @@ public class NoteFraisController {
 	 * @param NoteFraisDto
 	 * @return
 	 * @throws ParseException
+	 * @throws IOException 
 	 */
 	@PutMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
-	public PilposeResponse updateNoteFrais(@RequestBody NoteFraisDto noteFraisDto) throws ParseException {
+	public PilposeResponse updateNoteFrais(@RequestBody NoteFraisDto noteFraisDto) throws ParseException, IOException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"update noteFrais controller", null, RsMethodEnum.PUT.getValue(),
@@ -135,10 +143,10 @@ public class NoteFraisController {
 
 		NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
 		try {
+			noteFraisService.addNoteWithRecu(fileEntity, file);
+		//	fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
 
-			fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
-
-			noteFraisRepository.save(fileEntity); // Save to the database
+		//	noteFraisRepository.save(fileEntity); // Save to the database
 
 			return "File uploaded successfully";
 		} catch (Exception e) {
@@ -163,5 +171,22 @@ public class NoteFraisController {
 
 		return new PilposeResponse(noteFraisService.genererLoader(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/consult/{idNote}")
+    public ResponseEntity<InputStreamResource> downloadFile(@PathVariable Long idNote) throws IOException {
+	NoteFraisEntity entity=	noteFraisRepository.findById(idNote).orElse(null);
+	
+        // Replace this path with the actual path to your files
+        File file = new File(ConstantsApplication.ASSETS.concat(entity.getPathRecu()));
+
+        InputStream inputStream = new FileInputStream(file);
+
+        return ResponseEntity
+                .ok()
+                .contentLength(file.length())
+                .header("Content-Disposition", "attachment; filename="+ConstantsApplication.ASSETS.concat(entity.getPathRecu()))
+                .body(new InputStreamResource(inputStream));
+    }
+	
 
 }
