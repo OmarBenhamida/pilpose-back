@@ -24,11 +24,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.AffectationDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.dao.IAffectationRepository;
 import com.benfat.pilpose.entities.AffectationEntity;
 import com.benfat.pilpose.entities.CollaborateurEntity;
+import com.benfat.pilpose.entities.TacheEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -306,6 +308,44 @@ public class AffectationService implements IAffectationService {
 
 		return true;
 
+	}
+	
+	@Override
+	public boolean updateListAffecation(TacheDto tache, List<Long> idCollab) {
+		
+		affectationRepository.deleteAffectationByTache(tache.getIdTache());
+
+		for (Long id : idCollab) {
+			try {
+				AffectationEntity entity = new AffectationEntity();
+				entity.setIdAffectation(null);
+				entity.setIdTache(TacheDto.dtoToEntity(tache));
+				CollaborateurEntity collab = new CollaborateurEntity();
+				collab.setIdCollaborateur(id);
+				entity.setIdCollaborateur(collab);
+				affectationRepository.save(entity);
+			} catch (Exception e) {
+				throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+						+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+			}
+		}
+
+		return true;
+
+	}
+
+	@Override
+	public List<CollaborateurDto> getCollabByIdTache(Long idTache) throws ParseException {
+		
+		TacheEntity tache = new TacheEntity();
+		tache.setIdTache(idTache);
+		
+		List<CollaborateurDto> collabs = CollaborateurDto.entitiesToDtos(affectationRepository.getByIdTache(tache));
+		if (logger.isInfoEnabled()) {
+			logger.info("Récuperation des des salariés concérné");
+		}
+
+		return collabs;
 	}
 
 }

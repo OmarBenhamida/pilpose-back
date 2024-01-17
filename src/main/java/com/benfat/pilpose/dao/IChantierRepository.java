@@ -1,6 +1,9 @@
 package com.benfat.pilpose.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.benfat.pilpose.dao.common.ICommonRepository;
@@ -17,5 +20,8 @@ public interface IChantierRepository extends ICommonRepository<ChantierEntity, L
 
 	@Query("SELECT dce FROM ChantierEntity dce WHERE dce.client = :client")
 	ChantierEntity getUserByClient(String client);
+	
+	@Query(value = "select * from chantier WHERE etat = 'En Cours' AND client = :idClient", nativeQuery = true)
+	List<ChantierEntity> verifierClientchantierEnCours(@Param("idClient") Long idClient);
 
 }

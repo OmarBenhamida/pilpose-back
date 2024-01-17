@@ -118,7 +118,12 @@ public class ClientController {
 		/** delete client */
 		boolean retour = clientService.deleteClient(idClient);
 
-		return new PilposeResponse(retour, HttpStatus.OK);
+		if (retour) {
+			return new PilposeResponse(retour, HttpStatus.OK);
+		} else {
+
+			return new PilposeResponse(retour, HttpStatus.CONFLICT);
+		}
 	}
 
 	/**

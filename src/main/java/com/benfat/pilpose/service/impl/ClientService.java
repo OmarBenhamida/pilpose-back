@@ -25,7 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.ClientDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
+import com.benfat.pilpose.dao.IChantierRepository;
 import com.benfat.pilpose.dao.IClientRepository;
+import com.benfat.pilpose.entities.ChantierEntity;
 import com.benfat.pilpose.entities.ClientEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
@@ -43,6 +45,9 @@ public class ClientService implements IClientService {
 
 	@Autowired
 	IClientRepository clientRepository;
+
+	@Autowired
+	IChantierRepository chantierRepository;
 
 	@Override
 	public List<ClientEntity> getAllClient() {
@@ -69,6 +74,15 @@ public class ClientService implements IClientService {
 		ClientEntity entity = new ClientEntity();
 		try {
 			entity = ClientDto.dtoToEntity(client);
+			if (entity.getAdresse().isEmpty() || entity.getAdresse() == "") {
+
+				entity.setAdresse(null);
+			}
+			if (entity.getTelephone().isEmpty() || entity.getTelephone() == "") {
+
+				entity.setTelephone(null);
+			}
+
 			entity = clientRepository.save(entity);
 		} catch (Exception e) {
 			throw new PilposeBusinessException("ClientService::addOrUpdateClient on line "
@@ -85,21 +99,25 @@ public class ClientService implements IClientService {
 
 	@Override
 	public boolean deleteClient(Long idClient) {
-		Date dateDeb = new Date();
 
-		try {
-			clientRepository.deleteById(idClient);
+		List<ChantierEntity> chantiers = chantierRepository.verifierClientchantierEnCours(idClient);
 
-		} catch (Exception e) {
-			throw new PilposeBusinessException("ClientService::deleteClient on line "
-					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		if (chantiers.isEmpty() || chantiers == null) {
+
+			try {
+				clientRepository.deleteById(idClient);
+
+			} catch (Exception e) {
+				throw new PilposeBusinessException("ClientService::deleteClient on line "
+						+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+			}
+
+			return true;
+		} else {
+
+			return false;
+
 		}
-
-		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "delete Affectation", dateDeb,
-					new Date(), null));
-		}
-		return true;
 	}
 
 	@Override

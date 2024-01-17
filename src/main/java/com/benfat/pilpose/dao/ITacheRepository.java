@@ -15,4 +15,7 @@ public interface ITacheRepository extends ICommonRepository<TacheEntity, Long> {
 	@Query(" SELECT dce FROM TacheEntity dce WHERE dce.idTache = (SELECT MAX(dce.idTache) FROM TacheEntity) ")
 	TacheEntity getByAttribute();
 
+	@Query(" SELECT dce FROM TacheEntity dce WHERE dce.idTache =:idTache")
+	TacheEntity getByIdTache(Long idTache);
+
 }

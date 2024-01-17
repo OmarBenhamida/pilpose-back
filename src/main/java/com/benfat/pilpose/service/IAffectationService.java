@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import com.benfat.pilpose.controllers.dto.AffectationDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.entities.AffectationEntity;
@@ -77,5 +78,22 @@ public interface IAffectationService {
 	 * @return
 	 */
 	boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab);
+	
+	
+	/**
+	 * get refresh affectation
+	 * 
+	 * @return
+	 * @throws ParseException 
+	 */
+	List<CollaborateurDto> getCollabByIdTache(Long idTache) throws ParseException;
+
+	/**
+	 * 
+	 * @param tache
+	 * @param idCollab
+	 * @return
+	 */
+	boolean updateListAffecation(TacheDto tache, List<Long> idCollab);
 
 }

@@ -33,7 +33,6 @@ public class CollaborateurDto implements Serializable {
 	private String fonction;
 	private String password;
 	private String dateNaissance;
-	private String numSecuSocial;
 	private String adresse;
 	private String telephone;
 	private String username;

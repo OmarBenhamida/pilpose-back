@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.AffectationDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
+import com.benfat.pilpose.controllers.dto.UpdateAffectationDto;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.enums.RsMethodEnum;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -168,6 +169,45 @@ public class AffectationController {
 		affectationService.addOrUpdateListAffecation(tache, listId);
 
 		return new PilposeResponse(affectationService.addOrUpdateListAffecation(tache, listId), HttpStatus.OK);
+	}
+	
+	/**
+	 * 
+	 * @param listId
+	 * @return
+	 * @throws ParseException
+	 */
+
+	@PostMapping(value = ConstantsApplication.REST_PATH_V0 + "/updateList")
+	public PilposeResponse addListAffectationByidTache(@RequestBody UpdateAffectationDto updateAffectationDto ) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"add liste affectation controller", null, RsMethodEnum.POST.getValue(),
+					"/affectation" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		TacheDto tache = updateAffectationDto.getTache();
+
+
+		return new PilposeResponse(affectationService.updateListAffecation(tache, updateAffectationDto.getListIdsCollab()), HttpStatus.OK);
+	}
+
+	/**
+	 * Get salaries by tache
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/getByIdTache" + "/{idTache}", headers = Constants.HEADERS)
+	public PilposeResponse genererSalarieByTache(@PathVariable Long idTache) throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Get salaries by idTache", null,
+					RsMethodEnum.POST.getValue(), "/v0/getByIdTache/", null));
+		}
+
+		return new PilposeResponse(affectationService.getCollabByIdTache(idTache), HttpStatus.OK);
 	}
 
 }

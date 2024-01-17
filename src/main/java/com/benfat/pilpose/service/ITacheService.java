@@ -75,5 +75,13 @@ public interface ITacheService {
 	 * @throws ParseException
 	 */
 	TacheDto getTacheByAttribute() throws ParseException;
+	
+
+	/**
+	 * 
+	 * @return
+	 * @throws ParseException
+	 */
+	TacheDto getTacheByIdTache(Long idTache) throws ParseException;
 
 }

@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
+import com.benfat.pilpose.dao.IAffectationRepository;
 import com.benfat.pilpose.dao.ITacheRepository;
 import com.benfat.pilpose.entities.TacheEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
@@ -43,6 +44,8 @@ public class TacheService implements ITacheService {
 
 	@Autowired
 	ITacheRepository tacheRepository;
+	@Autowired
+	IAffectationRepository affectationRepository;
 
 	@Override
 	public List<TacheEntity> getAllTache() {
@@ -86,6 +89,8 @@ public class TacheService implements ITacheService {
 	@Override
 	public boolean deleteTache(Long idTache) {
 		Date dateDeb = new Date();
+
+		affectationRepository.deleteAffectationByTache(idTache);
 
 		try {
 			tacheRepository.deleteById(idTache);
@@ -276,6 +281,11 @@ public class TacheService implements ITacheService {
 	public TacheDto getTacheByAttribute() throws ParseException {
 
 		return TacheDto.entityToDto(tacheRepository.getByAttribute());
+	}
+
+	@Override
+	public TacheDto getTacheByIdTache(Long idTache) throws ParseException {
+		return TacheDto.entityToDto(tacheRepository.getByIdTache(idTache));
 	}
 
 }
