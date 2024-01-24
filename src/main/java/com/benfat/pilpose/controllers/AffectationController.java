@@ -166,7 +166,7 @@ public class AffectationController {
 		}
 
 		TacheDto tache = tacheService.getTacheByAttribute();
-		affectationService.addOrUpdateListAffecation(tache, listId);
+	
 
 		return new PilposeResponse(affectationService.addOrUpdateListAffecation(tache, listId), HttpStatus.OK);
 	}

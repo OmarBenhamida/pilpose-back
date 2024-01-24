@@ -19,6 +19,7 @@ import com.benfat.pilpose.controllers.dto.ChantierRecapDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurRecapDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
+import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.IFeuilleTempsRepository;
 import com.benfat.pilpose.entities.ChantierEntity;
 import com.benfat.pilpose.entities.CollaborateurEntity;
@@ -26,6 +27,7 @@ import com.benfat.pilpose.entities.FeuilleTempsEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
+import com.benfat.pilpose.service.EmailService;
 import com.benfat.pilpose.service.IFeuilleTempsService;
 import com.benfat.pilpose.util.Functions;
 
@@ -40,6 +42,13 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	ICollaborateurRepository collaborateurRepository;
+	
 
 	@Override
 	public List<FeuilleTempsEntity> getAllFeuilleTemps() {
@@ -64,12 +73,19 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 	public FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
 		Date dateDeb = new Date();
 
+		CollaborateurEntity demandeur = collaborateurRepository
+				.getUserById(feuilleTemps.getIdCollaborateur().getIdCollaborateur());
 		List<FeuilleTempsEntity> list = feuilleTempsRepository.findAll();
 		FeuilleTempsEntity entity = new FeuilleTempsEntity();
 		try {
 			entity = FeuilleTempsDto.dtoToEntity(feuilleTemps);
+			if(entity.getIdFeuilleTemps()==null) {
+			entity.setStatut("En cours de validation");	
 			entity.setReference("ref".concat(list.size() + 1 + ""));
+			}
 			entity = feuilleTempsRepository.save(entity);
+			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Feuille de temps crée ", "Bonjour /n Votre Feuille de temps est crée");
+
 		} catch (Exception e) {
 			throw new PilposeBusinessException("FeuilleTempsService::addOrUpdateFeuilleTemps on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

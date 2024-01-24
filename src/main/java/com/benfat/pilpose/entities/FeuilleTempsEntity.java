@@ -39,15 +39,21 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "jour_semaine")
 	private String jourSemaine;
 
-	@Lob
-	@Column(name = "panier", columnDefinition = "MEDIUMBLOB", nullable = true)
-	private byte[] panier;
-
 	@Column(name = "heure_travaille")
 	private int heureTravaille;
 
 	@Column(name = "vehicule")
 	private String vehicule;
+	
+	@Column(name = "vehicule_suite")
+	private String vehiculeSuite;
+
+	@Column(name = "km")
+	private int km;
+
+	@Lob
+	@Column(name = "commantaire")
+	private String commantaire;
 
 	@ManyToOne
 	@JoinColumn(name = "id_chantier")
@@ -56,6 +62,13 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
 	private CollaborateurEntity idCollaborateur;
+
+	@ManyToOne
+	@JoinColumn(name = "responsable")
+	private CollaborateurEntity responsable;
+
+	@Column(name = "statut")
+	private String statut;
 
 	@Override
 	public Long getId() {
@@ -99,14 +112,6 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 		this.jourSemaine = jourSemaine;
 	}
 
-	public byte[] getPanier() {
-		return panier;
-	}
-
-	public void setPanier(byte[] panier) {
-		this.panier = panier;
-	}
-
 	public int getHeureTravaille() {
 		return heureTravaille;
 	}
@@ -138,5 +143,47 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
+
+	public int getKm() {
+		return km;
+	}
+
+	public void setKm(int km) {
+		this.km = km;
+	}
+
+	public String getCommantaire() {
+		return commantaire;
+	}
+
+	public void setCommantaire(String commantaire) {
+		this.commantaire = commantaire;
+	}
+
+	public CollaborateurEntity getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(CollaborateurEntity responsable) {
+		this.responsable = responsable;
+	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public String getVehiculeSuite() {
+		return vehiculeSuite;
+	}
+
+	public void setVehiculeSuite(String vehiculeSuite) {
+		this.vehiculeSuite = vehiculeSuite;
+	}
+	
+	
 
 }

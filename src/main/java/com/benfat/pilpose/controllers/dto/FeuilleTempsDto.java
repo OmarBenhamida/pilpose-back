@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
@@ -32,15 +31,33 @@ public class FeuilleTempsDto implements Serializable {
 
 	private String jourSemaine;
 
-	private byte[] panier;
-
 	private int heureTravaille;
 
 	private String vehicule;
+	
+	private String vehiculeSuite;
+
+	private int km;
+
+	private String commantaire;
 
 	private ChantierDto idChantier;
 
 	private CollaborateurDto idCollaborateur;
+
+	private CollaborateurDto responsable;
+
+	private String statut;
+
+	private String nomCompletResponsable;
+
+	private String nomCompletSalarie;
+
+	private String nomCompletChantier;
+
+	private String nomCompletClient;
+
+	private String ville;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -59,12 +76,32 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setJourSemaine(entity.getJourSemaine());
-			//dto.setPanier(entity.getPanier());
+
 			dto.setVehicule(entity.getVehicule());
+			dto.setVehiculeSuite(entity.getVehiculeSuite());
+			dto.setKm(entity.getKm());
+			dto.setCommantaire(entity.getCommantaire());
 			dto.setHeureTravaille(entity.getHeureTravaille());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
-
+			dto.setResponsable(CollaborateurDto.entityToDto(entity.getResponsable()));
+			dto.setStatut(entity.getStatut());
+			if (entity.getResponsable() != null) {
+				dto.setNomCompletResponsable(entity.getResponsable().getNom() + "  " + entity.getResponsable().getPrenom());
+			}
+			if (entity.getIdCollaborateur() != null) {
+				dto.setNomCompletSalarie(entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
+			}
+			if (entity.getIdChantier() != null) {
+				dto.setNomCompletChantier(entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference());
+				}
+			if (entity.getIdChantier().getClient() != null) {
+					dto.setNomCompletClient(entity.getIdChantier().getClient().getPrenom() + "  "+ entity.getIdChantier().getClient().getNom());
+				}
+			if (entity.getIdChantier().getLocalisation() != null) {
+					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"+ entity.getIdChantier().getLocalisation().getCodePostale());
+				}
+				
 		}
 		return dto;
 	}
@@ -83,12 +120,16 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeTravaux(dto.getTypeTravaux());
 			entity.setJourSemaine(dto.getJourSemaine());
-			//entity.setPanier(dto.getPanier());
+
 			entity.setVehicule(dto.getVehicule());
+			entity.setVehiculeSuite(dto.getVehiculeSuite());
+			entity.setKm(dto.getKm());
+			entity.setCommantaire(dto.getCommantaire());
 			entity.setHeureTravaille(dto.getHeureTravaille());
 			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
-
+			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
+			entity.setStatut(dto.getStatut());
 		}
 
 		return entity;

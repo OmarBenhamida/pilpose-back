@@ -1,10 +1,7 @@
 package com.benfat.pilpose.controllers.dto;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +9,6 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.util.Functions;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
@@ -39,12 +34,14 @@ public class NoteFraisDto implements Serializable {
 	private String typeNote;
 
 	private String dateNote;
-	
+
 	private String nomCompletEmploye;
-	
+
+	private String statut;
+
 	@Nullable
 	private MultipartFile recu;
-	
+
 	private CollaborateurDto idCollaborateur;
 
 	public static long getSerialversionuid() {
@@ -56,7 +53,7 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @return NoteFraisEntity
 	 * @throws ParseException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static NoteFraisDto entityToDto(NoteFraisEntity entity) throws ParseException, IOException {
 		NoteFraisDto dto = null;
@@ -66,13 +63,14 @@ public class NoteFraisDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeNote(entity.getTypeNote());
 			dto.setDateNote(entity.getDateNote());
-			//dto.setRecu(entity.getRecu());
+			dto.setStatut(entity.getStatut());
+			// dto.setRecu(entity.getRecu());
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
 			if (entity.getIdCollaborateur() != null) {
 				dto.setNomCompletEmploye(
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
-		
+
 		}
 		return dto;
 	}
@@ -81,7 +79,7 @@ public class NoteFraisDto implements Serializable {
 	 * Convert NoteFraisDto -> NoteFraisEntity
 	 * 
 	 * @param NoteFraisDto
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static NoteFraisEntity dtoToEntity(NoteFraisDto dto) throws ParseException, IOException {
 		NoteFraisEntity entity = null;
@@ -92,8 +90,9 @@ public class NoteFraisDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeNote(dto.getTypeNote());
 			entity.setDateNote(dto.getDateNote());
-			//entity.setRecu(dto.getRecu().getBytes());
-		
+			entity.setStatut(dto.getStatut());
+			// entity.setRecu(dto.getRecu().getBytes());
+
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
 		}
 
@@ -105,7 +104,7 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @param List<NoteFraisDto>
 	 * @throws ParseException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static List<NoteFraisEntity> dtosToEntities(List<NoteFraisDto> listDto) throws ParseException, IOException {
 		List<NoteFraisEntity> list = new ArrayList<>();
@@ -122,9 +121,10 @@ public class NoteFraisDto implements Serializable {
 	 * 
 	 * @param List<NoteFraisEntity>
 	 * @throws ParseException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static List<NoteFraisDto> entitiesToDtos(List<NoteFraisEntity> listEntity) throws ParseException, IOException {
+	public static List<NoteFraisDto> entitiesToDtos(List<NoteFraisEntity> listEntity)
+			throws ParseException, IOException {
 		List<NoteFraisDto> list = new ArrayList<>();
 		if (Functions.isNotEmpty(listEntity)) {
 			for (NoteFraisEntity entity : listEntity) {

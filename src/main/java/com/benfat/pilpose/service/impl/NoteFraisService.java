@@ -30,11 +30,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.NoteFraisDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
+import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.INoteFraisRepository;
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.entities.NoteFraisEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
+import com.benfat.pilpose.service.EmailService;
 import com.benfat.pilpose.service.INoteFraisService;
 import com.benfat.pilpose.util.Constants;
 import com.benfat.pilpose.util.Functions;
@@ -48,6 +51,12 @@ public class NoteFraisService implements INoteFraisService {
 
 	@Autowired
 	INoteFraisRepository noteFraisRepository;
+
+	@Autowired
+	private EmailService emailService;
+
+	@Autowired
+	ICollaborateurRepository collaborateurRepository;
 
 	@Override
 	public List<NoteFraisEntity> getAllNoteFrais() {
@@ -71,24 +80,31 @@ public class NoteFraisService implements INoteFraisService {
 	@Override
 	public NoteFraisEntity addOrUpdateNoteFrais(NoteFraisDto noteFrais) {
 		Date dateDeb = new Date();
+		CollaborateurEntity demandeur = collaborateurRepository
+				.getUserById(noteFrais.getIdCollaborateur().getIdCollaborateur());
 		NoteFraisEntity entitySec = new NoteFraisEntity();
 		NoteFraisEntity entity = new NoteFraisEntity();
 		List<NoteFraisEntity> list = noteFraisRepository.findAll();
-		if(noteFrais.getIdNoteFrais()!= null) {
-		 entitySec =noteFraisRepository.findById(noteFrais.getIdNoteFrais()).orElse(null);
+		if (noteFrais.getIdNoteFrais() != null) {
+			entitySec = noteFraisRepository.findById(noteFrais.getIdNoteFrais()).orElse(null);
 		}
 		try {
-			
+
 			entity = NoteFraisDto.dtoToEntity(noteFrais);
-             if(entitySec!= null) {
-            	 entity.setPathRecu(entitySec.getPathRecu());
+			if (entitySec != null) {
+				entity.setPathRecu(entitySec.getPathRecu());
 			}
-			if(entity.getIdNoteFrais()==null) {
+			if (entity.getIdNoteFrais() == null) {
 				entity.setReference("ref".concat(list.size() + 1 + ""));
+
+				entity.setStatut("En cours de validation");
+
 			}
-			
-			
+
 			entity = noteFraisRepository.save(entity);
+			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Note de service crée ",
+					"Bonjour /n Votre note de service est crée");
+
 		} catch (Exception e) {
 			throw new PilposeBusinessException("NoteFraisService::addOrUpdateNoteFrais on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
@@ -200,6 +216,10 @@ public class NoteFraisService implements INoteFraisService {
 					Cell dateFinCell = PilposeUtils.getXCell(row, 3);
 					dateFinCell.setCellValue(ca.getNomCompletEmploye());
 					dateFinCell.setCellStyle(style);
+					
+					Cell statutCell = PilposeUtils.getXCell(row, 4);
+					statutCell.setCellValue(ca.getStatut());
+					statutCell.setCellStyle(style);
 
 					indexLigne++;
 				}
@@ -234,6 +254,8 @@ public class NoteFraisService implements INoteFraisService {
 		headerLine.append("Date de note");
 		headerLine.append(Constants.CSV_SEPARATOR);
 		headerLine.append("Employé");
+		headerLine.append(Constants.CSV_SEPARATOR);
+		headerLine.append("Staut");
 
 		writer.write(headerLine.toString());
 		writer.newLine();
@@ -248,6 +270,8 @@ public class NoteFraisService implements INoteFraisService {
 			oneLine.append(l.getDateNote());
 			oneLine.append(Constants.CSV_SEPARATOR);
 			oneLine.append(l.getNomCompletEmploye());
+			oneLine.append(Constants.CSV_SEPARATOR);
+			oneLine.append(l.getStatut());
 
 			writer.write(oneLine.toString());
 			writer.newLine();
@@ -259,19 +283,19 @@ public class NoteFraisService implements INoteFraisService {
 		return baos.toByteArray();
 
 	}
-	
-	public void addOrRenameFile( String newPath, byte[] data) throws IOException {
+
+	public void addOrRenameFile(String newPath, byte[] data) throws IOException {
 		File oldFile = new File(newPath);
-		writeDataToFile(oldFile,data);
+		writeDataToFile(oldFile, data);
 	}
-	
-	public void writeDataToFile(File  file,byte[] data) throws IOException {
-		writeData(file,data);
+
+	public void writeDataToFile(File file, byte[] data) throws IOException {
+		writeData(file, data);
 	}
-	
-	public void writeData(File file,byte[] data) throws IOException {
+
+	public void writeData(File file, byte[] data) throws IOException {
 		try {
-			FileOutputStream  output = new FileOutputStream(file);
+			FileOutputStream output = new FileOutputStream(file);
 			output.write(data);
 			output.close();
 		} catch (FileNotFoundException e) {
@@ -279,11 +303,10 @@ public class NoteFraisService implements INoteFraisService {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	@Override
-	public NoteFraisEntity addNoteWithRecu(NoteFraisEntity fileEntity ,MultipartFile file) throws IOException {
-		String newTemplateFileName = fileEntity.getReference()+"_"+"note.jpeg";
+	public NoteFraisEntity addNoteWithRecu(NoteFraisEntity fileEntity, MultipartFile file) throws IOException {
+		String newTemplateFileName = fileEntity.getReference() + "_" + "note.jpeg";
 		addOrRenameFile(ConstantsApplication.ASSETS.concat(newTemplateFileName), file.getBytes());
 		fileEntity.setPathRecu(newTemplateFileName);
 		noteFraisRepository.save(fileEntity);

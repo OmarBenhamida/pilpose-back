@@ -37,6 +37,7 @@ import com.benfat.pilpose.entities.CongeEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
+import com.benfat.pilpose.service.EmailService;
 import com.benfat.pilpose.service.ICongeService;
 import com.benfat.pilpose.util.Constants;
 import com.benfat.pilpose.util.Functions;
@@ -53,6 +54,9 @@ public class CongeService implements ICongeService {
 
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public List<CongeEntity> getAllConge() {
@@ -89,6 +93,10 @@ public class CongeService implements ICongeService {
 			entity.setReference(entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername());
 			entity.setDateDepot(formattedDate);
 			entity = congeRepository.save(entity);
+			
+			
+			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé crée ", "Bonjour /n Votre demande de congé est crée");
+			
 		} catch (Exception e) {
 			throw new PilposeBusinessException("CongeService::addOrUpdateConge on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

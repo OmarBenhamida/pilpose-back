@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
@@ -25,8 +24,6 @@ public class TacheDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long idTache;
-
-	
 
 	private String libelle;
 
@@ -45,9 +42,12 @@ public class TacheDto implements Serializable {
 	private CollaborateurDto responsable;
 
 	private String nomCompletResponsable;
-	
+
 	private String nomCompletChantier;
-	
+
+	private String nomCompletClient;
+
+	private String ville;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -63,7 +63,7 @@ public class TacheDto implements Serializable {
 		if (entity != null) {
 			dto = new TacheDto();
 			dto.setIdTache(entity.getIdTache());
-		
+
 			dto.setLibelle(entity.getLibelle());
 			dto.setDateDebut(entity.getDateDebut());
 			dto.setDateFin(entity.getDateFin());
@@ -78,8 +78,16 @@ public class TacheDto implements Serializable {
 			}
 			if (entity.getIdChantier() != null) {
 				dto.setNomCompletChantier(
-						entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference()
-						);
+						entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference());
+				if (entity.getIdChantier().getClient() != null) {
+					dto.setNomCompletClient(entity.getIdChantier().getClient().getPrenom() + "  "
+							+ entity.getIdChantier().getClient().getNom());
+				}
+				if (entity.getIdChantier().getLocalisation() != null) {
+
+					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"
+							+ entity.getIdChantier().getLocalisation().getCodePostale());
+				}
 			}
 
 		}
@@ -97,7 +105,7 @@ public class TacheDto implements Serializable {
 			entity = new TacheEntity();
 
 			entity.setIdTache(dto.getIdTache());
-	
+
 			entity.setLibelle(dto.getLibelle());
 			entity.setDateDebut(dto.getDateDebut());
 			entity.setDateFin(dto.getDateFin());

@@ -290,25 +290,24 @@ public class AffectationService implements IAffectationService {
 
 	@Override
 	public boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab) {
+	    try {
+	        for (Long id : idCollab) {
+	            AffectationEntity entity = new AffectationEntity();
+	            entity.setIdAffectation(null);
+	            entity.setIdTache(TacheDto.dtoToEntity(tache));
+	            CollaborateurEntity collab = new CollaborateurEntity();
+	            collab.setIdCollaborateur(id);
+	            entity.setIdCollaborateur(collab);
+	            affectationRepository.save(entity);
+	        }
 
-		for (Long id : idCollab) {
-			try {
-				AffectationEntity entity = new AffectationEntity();
-				entity.setIdAffectation(null);
-				entity.setIdTache(TacheDto.dtoToEntity(tache));
-				CollaborateurEntity collab = new CollaborateurEntity();
-				collab.setIdCollaborateur(id);
-				entity.setIdCollaborateur(collab);
-				affectationRepository.save(entity);
-			} catch (Exception e) {
-				throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
-						+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
-			}
-		}
-
-		return true;
-
+	        return true;
+	    } catch (Exception e) {
+	        throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+	                + Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+	    }
 	}
+
 	
 	@Override
 	public boolean updateListAffecation(TacheDto tache, List<Long> idCollab) {

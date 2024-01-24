@@ -62,8 +62,7 @@ public class FeuilleTempsController {
 		}
 
 		PilposeResponse pilposeResponse = null;
-		List<FeuilleTempsDto> feuilleTempsDtos = FeuilleTempsDto
-				.entitiesToDtos(feuilleTempsService.getAllFeuilleTemps());
+		List<FeuilleTempsDto> feuilleTempsDtos = FeuilleTempsDto.entitiesToDtos(feuilleTempsService.getAllFeuilleTemps());
 		pilposeResponse = new PilposeResponse(feuilleTempsDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}

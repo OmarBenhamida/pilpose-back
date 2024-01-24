@@ -42,6 +42,9 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	@Lob
 	@Column(name = "recu", nullable = true)
 	private String pathRecu;
+	
+	@Column(name = "statut")
+	private String statut;
 
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
@@ -105,5 +108,14 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	public void setPathRecu(String pathRecu) {
 		this.pathRecu = pathRecu;
 	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+	
 
 }
