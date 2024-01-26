@@ -166,11 +166,17 @@ public class AffectationController {
 		}
 
 		TacheDto tache = tacheService.getTacheByAttribute();
-	
 
-		return new PilposeResponse(affectationService.addOrUpdateListAffecation(tache, listId), HttpStatus.OK);
+		boolean res = affectationService.addOrUpdateListAffecation(tache, listId);
+
+		if (res == false) {
+			return new PilposeResponse(res, HttpStatus.CONFLICT);
+
+		} else {
+			return new PilposeResponse(res, HttpStatus.OK);
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param listId
@@ -179,7 +185,8 @@ public class AffectationController {
 	 */
 
 	@PostMapping(value = ConstantsApplication.REST_PATH_V0 + "/updateList")
-	public PilposeResponse addListAffectationByidTache(@RequestBody UpdateAffectationDto updateAffectationDto ) throws ParseException {
+	public PilposeResponse addListAffectationByidTache(@RequestBody UpdateAffectationDto updateAffectationDto)
+			throws ParseException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
 					"add liste affectation controller", null, RsMethodEnum.POST.getValue(),
@@ -188,8 +195,15 @@ public class AffectationController {
 
 		TacheDto tache = updateAffectationDto.getTache();
 
+		boolean res = affectationService.updateListAffecation(tache, updateAffectationDto.getListIdsCollab());
 
-		return new PilposeResponse(affectationService.updateListAffecation(tache, updateAffectationDto.getListIdsCollab()), HttpStatus.OK);
+		if (res == false) {
+			return new PilposeResponse(res, HttpStatus.CONFLICT);
+
+		} else {
+			return new PilposeResponse(res, HttpStatus.OK);
+		}
+
 	}
 
 	/**

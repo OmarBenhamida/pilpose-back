@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.text.ParseException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -290,55 +292,138 @@ public class AffectationService implements IAffectationService {
 
 	@Override
 	public boolean addOrUpdateListAffecation(TacheDto tache, List<Long> idCollab) {
-	    try {
-	        for (Long id : idCollab) {
-	            AffectationEntity entity = new AffectationEntity();
-	            entity.setIdAffectation(null);
-	            entity.setIdTache(TacheDto.dtoToEntity(tache));
-	            CollaborateurEntity collab = new CollaborateurEntity();
-	            collab.setIdCollaborateur(id);
-	            entity.setIdCollaborateur(collab);
-	            affectationRepository.save(entity);
-	        }
+		boolean retour = true;
+		try {
+			for (Long id : idCollab) {
 
-	        return true;
-	    } catch (Exception e) {
-	        throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
-	                + Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
-	    }
+				List<AffectationEntity> collabAffectation = affectationRepository.getByIdCollab(id);
+
+				AffectationEntity resultatFiltre = collabAffectation.stream()
+						.filter(affectation -> affectation.getIdTache().getDateDebut().equals(tache.getDateDebut()))
+						.filter(affectation -> affectation.getIdTache().getDateFin().equals(tache.getDateFin()))
+						// .filter(affectation ->
+						// affectation.getIdTache().getHeureDebut().equals(tache.getHeureDebut()))
+						// .filter(affectation ->
+						// affectation.getIdTache().getHeureFin().equals(tache.getHeureFin()))
+						.findAny().orElse(null);
+
+				if (resultatFiltre != null) {
+
+					boolean estEntre = estEntreHeures(tache.getHeureDebut(),
+							resultatFiltre.getIdTache().getHeureDebut(), resultatFiltre.getIdTache().getHeureFin());
+
+					if (estEntre) {
+
+						retour = false;
+
+					} else {
+
+						AffectationEntity entity = new AffectationEntity();
+						entity.setIdAffectation(null);
+						entity.setIdTache(TacheDto.dtoToEntity(tache));
+						CollaborateurEntity collab = new CollaborateurEntity();
+						collab.setIdCollaborateur(id);
+						entity.setIdCollaborateur(collab);
+						affectationRepository.save(entity);
+					}
+
+				} else {
+
+					AffectationEntity entity = new AffectationEntity();
+					entity.setIdAffectation(null);
+					entity.setIdTache(TacheDto.dtoToEntity(tache));
+					CollaborateurEntity collab = new CollaborateurEntity();
+					collab.setIdCollaborateur(id);
+					entity.setIdCollaborateur(collab);
+					affectationRepository.save(entity);
+				}
+
+			}
+
+			return retour;
+		} catch (Exception e) {
+			throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		}
 	}
 
-	
 	@Override
 	public boolean updateListAffecation(TacheDto tache, List<Long> idCollab) {
-		
+
 		affectationRepository.deleteAffectationByTache(tache.getIdTache());
 
-		for (Long id : idCollab) {
-			try {
-				AffectationEntity entity = new AffectationEntity();
-				entity.setIdAffectation(null);
-				entity.setIdTache(TacheDto.dtoToEntity(tache));
-				CollaborateurEntity collab = new CollaborateurEntity();
-				collab.setIdCollaborateur(id);
-				entity.setIdCollaborateur(collab);
-				affectationRepository.save(entity);
-			} catch (Exception e) {
-				throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
-						+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		boolean retour = true;
+		try {
+			for (Long id : idCollab) {
+
+				List<AffectationEntity> collabAffectation = affectationRepository.getByIdCollab(id);
+
+				AffectationEntity resultatFiltre = collabAffectation.stream()
+						.filter(affectation -> affectation.getIdTache().getDateDebut().equals(tache.getDateDebut()))
+						.filter(affectation -> affectation.getIdTache().getDateFin().equals(tache.getDateFin()))
+						// .filter(affectation ->
+						// affectation.getIdTache().getHeureDebut().equals(tache.getHeureDebut()))
+						// .filter(affectation ->
+						// affectation.getIdTache().getHeureFin().equals(tache.getHeureFin()))
+						.findAny().orElse(null);
+
+				if (resultatFiltre != null) {
+
+					boolean estEntre = estEntreHeures(tache.getHeureDebut(),
+							resultatFiltre.getIdTache().getHeureDebut(), resultatFiltre.getIdTache().getHeureFin());
+
+					if (estEntre) {
+
+						retour = false;
+
+					} else {
+
+						AffectationEntity entity = new AffectationEntity();
+						entity.setIdAffectation(null);
+						entity.setIdTache(TacheDto.dtoToEntity(tache));
+						CollaborateurEntity collab = new CollaborateurEntity();
+						collab.setIdCollaborateur(id);
+						entity.setIdCollaborateur(collab);
+						affectationRepository.save(entity);
+					}
+
+				} else {
+
+					AffectationEntity entity = new AffectationEntity();
+					entity.setIdAffectation(null);
+					entity.setIdTache(TacheDto.dtoToEntity(tache));
+					CollaborateurEntity collab = new CollaborateurEntity();
+					collab.setIdCollaborateur(id);
+					entity.setIdCollaborateur(collab);
+					affectationRepository.save(entity);
+				}
+
 			}
+
+			return retour;
+		} catch (Exception e) {
+			throw new PilposeBusinessException("AffectationService::addOrUpdateAffecationList on line "
+					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
 
-		return true;
+	}
 
+	private static boolean estEntreHeures(String heureAComparer, String heureDebut, String heureFin) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+		LocalTime timeAComparer = LocalTime.parse(heureAComparer, formatter);
+		LocalTime timeDebut = LocalTime.parse(heureDebut, formatter);
+		LocalTime timeFin = LocalTime.parse(heureFin, formatter);
+
+		/** Vérifier si l'heure à comparer est entre les heures de début et de fin */
+		return !timeAComparer.isBefore(timeDebut) && !timeAComparer.isAfter(timeFin);
 	}
 
 	@Override
 	public List<CollaborateurDto> getCollabByIdTache(Long idTache) throws ParseException {
-		
+
 		TacheEntity tache = new TacheEntity();
 		tache.setIdTache(idTache);
-		
+
 		List<CollaborateurDto> collabs = CollaborateurDto.entitiesToDtos(affectationRepository.getByIdTache(tache));
 		if (logger.isInfoEnabled()) {
 			logger.info("Récuperation des des salariés concérné");
