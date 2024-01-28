@@ -56,7 +56,7 @@ public class AffectationService implements IAffectationService {
 		List<AffectationEntity> affectation = null;
 
 		try {
-			affectation = affectationRepository.findAll();
+			affectation = affectationRepository.getAllTache();
 		} catch (Exception e) {
 			throw new PilposeBusinessException("AffectationService::getAllAffectation on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

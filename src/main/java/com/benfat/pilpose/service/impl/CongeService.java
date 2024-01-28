@@ -30,10 +30,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
+import com.benfat.pilpose.dao.IAffectationRepository;
 import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.ICongeRepository;
+import com.benfat.pilpose.dao.ITacheRepository;
+import com.benfat.pilpose.entities.AffectationEntity;
 import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.entities.CongeEntity;
+import com.benfat.pilpose.entities.TacheEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
 import com.benfat.pilpose.logging.FactoryLog;
@@ -54,7 +58,12 @@ public class CongeService implements ICongeService {
 
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
-	
+
+	@Autowired
+	ITacheRepository tacheRepository;
+	@Autowired
+	IAffectationRepository affectationRepository;
+
 	@Autowired
 	private EmailService emailService;
 
@@ -88,15 +97,40 @@ public class CongeService implements ICongeService {
 
 		CollaborateurEntity demandeur = collaborateurRepository
 				.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
+
+		if (conge.getIdConge() != null && conge.getStatut().equals("Validé")) {
+
+			TacheEntity tache = new TacheEntity();
+			tache.setDateDebut(conge.getDateDebut());
+			tache.setDateFin(conge.getDateFin());
+			tache.setHeureDebut(conge.getHeureDebut());
+			tache.setHeureFin(conge.getHeureFin());
+			tache.setLibelle(conge.getTypeConge());
+			tache.setTypeTache("conge");
+
+			tacheRepository.save(tache);
+
+			List<TacheEntity> lastTache = tacheRepository.getLastLineInserted();
+
+			TacheEntity tacheInsere = lastTache.get(0);
+			AffectationEntity affectationCongePlannig = new AffectationEntity();
+
+			affectationCongePlannig.setIdTache(tacheInsere);
+			affectationCongePlannig.setIdCollaborateur(demandeur);
+
+			affectationRepository.save(affectationCongePlannig);
+
+		}
+
 		try {
 			entity = CongeDto.dtoToEntity(conge);
 			entity.setReference(entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername());
 			entity.setDateDepot(formattedDate);
 			entity = congeRepository.save(entity);
-			
-			
-			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé crée ", "Bonjour /n Votre demande de congé est crée");
-			
+
+			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé crée ",
+					"Bonjour /n Votre demande de congé est crée");
+
 		} catch (Exception e) {
 			throw new PilposeBusinessException("CongeService::addOrUpdateConge on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

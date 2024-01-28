@@ -36,6 +36,8 @@ public class TacheDto implements Serializable {
 	private String heureFin;
 
 	private String commantaire;
+	
+	private String typeTache;
 
 	private ChantierDto idChantier;
 
@@ -70,6 +72,7 @@ public class TacheDto implements Serializable {
 			dto.setHeureDebut(entity.getHeureDebut());
 			dto.setHeureFin(entity.getHeureFin());
 			dto.setCommantaire(entity.getCommantaire());
+			dto.setTypeTache(entity.getTypeTache());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
 			dto.setResponsable(CollaborateurDto.entityToDto(entity.getResponsable()));
 			if (entity.getResponsable() != null) {
@@ -112,6 +115,7 @@ public class TacheDto implements Serializable {
 			entity.setHeureDebut(dto.getHeureDebut());
 			entity.setHeureFin(dto.getHeureFin());
 			entity.setCommantaire(dto.getCommantaire());
+			entity.setTypeTache(dto.getTypeTache());
 			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));
 			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
 		}

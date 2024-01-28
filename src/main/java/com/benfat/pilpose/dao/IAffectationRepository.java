@@ -16,6 +16,9 @@ public interface IAffectationRepository extends ICommonRepository<AffectationEnt
 
 	@Query("SELECT dce FROM AffectationEntity dce")
 	AffectationEntity getAll();
+	
+	@Query("SELECT dce FROM AffectationEntity dce WHERE dce.idTache.typeTache ='tache'")
+	List<AffectationEntity> getAllTache();
 
 	@Query("SELECT dce FROM AffectationEntity dce WHERE dce.idCollaborateur.idCollaborateur = :idc")
 	List<AffectationEntity> getByIdCollab(Long idc);

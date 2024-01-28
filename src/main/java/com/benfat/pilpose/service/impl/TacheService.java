@@ -53,7 +53,7 @@ public class TacheService implements ITacheService {
 		List<TacheEntity> tache = null;
 
 		try {
-			tache = tacheRepository.findAll();
+			tache = tacheRepository.getAll();
 		} catch (Exception e) {
 			throw new PilposeBusinessException("TacheService::getAllTache on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());

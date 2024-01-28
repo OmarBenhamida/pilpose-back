@@ -44,6 +44,9 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "heure_fin")
 	private String heureFin;
+	
+	@Column(name = "type_tache")
+	private String typeTache;
 
 	@Lob
 	@Column(name = "commantaire")
@@ -91,9 +94,11 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 		this.dateFin = dateFin;
 	}
 
-	public String getCommantaire() {
+	public String TypeTache() {
 		return commantaire;
 	}
+	
+	
 
 	public void setCommantaire(String commantaire) {
 		this.commantaire = commantaire;
@@ -138,5 +143,19 @@ public class TacheEntity extends AbstractCommonEntity<Long> {
 	public void setHeureFin(String heureFin) {
 		this.heureFin = heureFin;
 	}
+
+	public String getTypeTache() {
+		return typeTache;
+	}
+
+	public void setTypeTache(String typeTache) {
+		this.typeTache = typeTache;
+	}
+
+	public String getCommantaire() {
+		return commantaire;
+	}
+	
+	
 
 }
