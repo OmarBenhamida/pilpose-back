@@ -1,19 +1,25 @@
-# pilpose-back
+# pilpose-back:
 
-- Pull du projet backend
-- Si votre Lambok fonctionne pas alors : 
-	- Dans les fichiers DTO il faut ajouter les Getter et les Setter
-- il faut Updater le projet
-	- Clique droit sur le projet -> Maven -> Update Project + selectionner l'option force update of snapshots/releases
-- Lancer un Maven Clean  : 
-	- Clique droit sur le projet -> Run as -> Maven Clean
-		
-- Il faut s'assurer que le port est bon et que c'est le meme dans le projet front fichier (environment.ts)
+- Pull du projet backend : Mettre à jour le code source du projet depuis le référentiel distant.
 
-- Dans le cas où les changement touchait aussi la structure de la BDD il est préférable de supprimer les tables concerner (ils seront recrées au lancement du projet)
+- Vérifier Lambok : S'assurer que Lombok fonctionne correctement. Si ce n'est pas le cas, ajouter les getters et setters dans les fichiers DTO.
 
-- Dans le Dashboard Clique droit sur le projet et choisir Open Config s'assurer que dans le profil c'est dev
+- Mettre à jour le projet : Faire un "Update Project" avec Maven et forcer la mise à jour des snapshots/releases.
 
-- Lancer le projet 
-	
-	
+- Maven Clean : Nettoyer le projet avec Maven pour supprimer les fichiers temporaires.
+
+- Vérifier le port : Assurez-vous que le port utilisé est correct et correspond à celui spécifié dans le fichier environment.ts du projet front-end.
+
+- Modifier la structure de la base de données : Si des changements affectent la structure de la base de données, il est recommandé de supprimer les tables concernées avant de lancer le projet.
+
+- Configurer le Dashboard : S'assurer que le profil est correctement configuré sur "dev".
+
+- Lancer le projet : Démarrer le projet backend.
+
+# Configuration spécifique:
+
+- Chemin des assets : Modifier le chemin dans la classe ConstantsApplication.java pour spécifier le nouvel emplacement des assets.
+
+- Configuration SMTP : Mettre à jour les variables spring.mail.username et spring.mail.password dans le fichier application.properties avec les informations de configuration de votre boîte mail. Assurez-vous de désactiver les couches de sécurité pour permettre l'envoi distant des e-mails.
+
+- Ces instructions fournissent un guide pour configurer, mettre à jour et exécuter le projet backend "pilpose-back". Assurez-vous de suivre ces étapes avec précision pour garantir le bon fonctionnement du projet.
