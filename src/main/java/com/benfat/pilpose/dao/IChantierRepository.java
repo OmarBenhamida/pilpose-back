@@ -23,5 +23,10 @@ public interface IChantierRepository extends ICommonRepository<ChantierEntity, L
 	
 	@Query(value = "select * from chantier WHERE etat = 'En Cours' AND client = :idClient", nativeQuery = true)
 	List<ChantierEntity> verifierClientchantierEnCours(@Param("idClient") Long idClient);
+	
+	@Query(value = "select * from chantier WHERE etat = 'En Cours' AND localisation = :idLocalisation", nativeQuery = true)
+	List<ChantierEntity> verifierCommunechantierEnCours(@Param("idLocalisation") Long idLocalisation);
+	
+	
 
 }

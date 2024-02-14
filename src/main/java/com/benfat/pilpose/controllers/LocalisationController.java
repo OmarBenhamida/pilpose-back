@@ -3,6 +3,7 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -13,6 +14,10 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,6 +63,90 @@ public class LocalisationController {
 				.entitiesToDtos(localisationService.getAllLocalisation());
 		pilposeResponse = new PilposeResponse(localisationsDtos, HttpStatus.OK);
 		return pilposeResponse;
+	}
+
+	/**
+	 * add commune
+	 * 
+	 * @param ClientDto
+	 * @return
+	 * @throws ParseException
+	 */
+	@PostMapping(value = ConstantsApplication.REST_PATH_V0)
+	public PilposeResponse addClient(@RequestBody LocalisationDto localisationDto) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"add commune controller", null, RsMethodEnum.POST.getValue(),
+					"/localisation" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		return new PilposeResponse(
+				LocalisationDto.entityToDto(localisationService.addOrUpdateLocalisation(localisationDto)),
+				HttpStatus.OK);
+	}
+
+	/**
+	 * update commune
+	 * 
+	 * @param LocalisationDto
+	 * @return
+	 * @throws ParseException
+	 */
+	@PutMapping(value = ConstantsApplication.REST_PATH_V0, headers = Constants.HEADERS)
+	public PilposeResponse updateClient(@RequestBody LocalisationDto localisationDto) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"update commune controller", null, RsMethodEnum.PUT.getValue(),
+					"/localisation" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		return new PilposeResponse(
+				LocalisationDto.entityToDto(localisationService.addOrUpdateLocalisation(localisationDto)),
+				HttpStatus.OK);
+	}
+
+	/**
+	 * delete client
+	 * 
+	 * @param clientDto
+	 * @return
+	 * @throws ParseException
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/{idLocalisation}", headers = Constants.HEADERS)
+	public PilposeResponse deleteClient(@PathVariable Long idLocalisation) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"delete commune controller", null, RsMethodEnum.DELETE.getValue(),
+					"/localisation" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		/** delete commune */
+		boolean retour = localisationService.deleteLocalisation(idLocalisation);
+
+		if (retour) {
+			return new PilposeResponse(retour, HttpStatus.OK);
+		} else {
+
+			return new PilposeResponse(retour, HttpStatus.CONFLICT);
+		}
+	}
+
+	/**
+	 * Generer loader commune
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
+	public PilposeResponse genererLoaderCommune() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader commune",
+					null, RsMethodEnum.POST.getValue(), "/v0/export/", null));
+		}
+
+		return new PilposeResponse(localisationService.genererLoader(), HttpStatus.OK);
 	}
 
 }

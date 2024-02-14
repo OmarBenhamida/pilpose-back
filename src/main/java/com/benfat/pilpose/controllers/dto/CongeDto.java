@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
@@ -44,6 +43,16 @@ public class CongeDto implements Serializable {
 
 	private String typeConge;
 
+	private String commantaire;
+
+	private boolean validationChefEquipe;
+
+	private boolean validationResponsableTravaux;
+
+	private boolean validationGerant;
+
+	private boolean validationResponsableAdministratif;
+
 	private CollaborateurDto idCollaborateur;
 
 	public static long getSerialversionuid() {
@@ -69,12 +78,19 @@ public class CongeDto implements Serializable {
 			dto.setHeureDebut(entity.getHeureDebut());
 			dto.setHeureFin(entity.getHeureFin());
 			dto.setTypeConge(entity.getTypeConge());
+			dto.setCommantaire(entity.getCommantaire());
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
 
 			if (entity.getIdCollaborateur() != null) {
 				dto.setNomCompletEmploye(
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
+			
+			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
+			dto.setValidationGerant(entity.isValidationGerant());
+			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
+			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
+			
 
 		}
 		return dto;
@@ -99,7 +115,12 @@ public class CongeDto implements Serializable {
 			entity.setHeureDebut(dto.getHeureDebut());
 			entity.setHeureFin(dto.getHeureFin());
 			entity.setTypeConge(dto.getTypeConge());
+			entity.setCommantaire(dto.getCommantaire());
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
+			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
+			entity.setValidationGerant(dto.isValidationGerant());
+			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
+			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
 		}
 
 		return entity;

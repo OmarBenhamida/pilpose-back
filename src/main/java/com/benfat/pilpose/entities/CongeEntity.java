@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -43,6 +44,10 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "date_depot")
 	private String dateDepot;
+	
+	@Lob
+	@Column(name = "commantaire")
+	private String commantaire;
 
 	@Column(name = "heure_debut")
 	private String heureDebut;
@@ -50,6 +55,18 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "heure_fin")
 	private String heureFin;
 
+	@Column(name = "validation_chef_equipe")
+	private boolean validationChefEquipe;
+	
+	@Column(name = "validation_resp_travaux")
+	private boolean validationResponsableTravaux;
+	
+	@Column(name = "validation_gerant")
+	private boolean validationGerant;
+	
+	@Column(name = "validation_resp_administratif")
+	private boolean validationResponsableAdministratif;
+	
 	@Column(name = "type_conge")
 	private String typeConge;
 
@@ -146,5 +163,46 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 	public void setIdCollaborateur(CollaborateurEntity idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
+
+	public String getCommantaire() {
+		return commantaire;
+	}
+
+	public void setCommantaire(String commantaire) {
+		this.commantaire = commantaire;
+	}
+
+	public boolean isValidationChefEquipe() {
+		return validationChefEquipe;
+	}
+
+	public void setValidationChefEquipe(boolean validationChefEquipe) {
+		this.validationChefEquipe = validationChefEquipe;
+	}
+
+	public boolean isValidationResponsableTravaux() {
+		return validationResponsableTravaux;
+	}
+
+	public void setValidationResponsableTravaux(boolean validationResponsableTravaux) {
+		this.validationResponsableTravaux = validationResponsableTravaux;
+	}
+
+	public boolean isValidationGerant() {
+		return validationGerant;
+	}
+
+	public void setValidationGerant(boolean validationGerant) {
+		this.validationGerant = validationGerant;
+	}
+
+	public boolean isValidationResponsableAdministratif() {
+		return validationResponsableAdministratif;
+	}
+
+	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
+		this.validationResponsableAdministratif = validationResponsableAdministratif;
+	}
+	
 
 }

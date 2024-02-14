@@ -27,6 +27,7 @@ public final class Constants {
 	public static final String MODEL_CONGE_TEMPLATE = "templates/Conges.xlsx";
 	public static final String MODEL_SALARIES_TEMPLATE = "templates/Salaries.xlsx";
 	public static final String MODEL_CLIENTS_TEMPLATE = "templates/Clients.xlsx";
+	public static final String MODEL_COMMUNES_TEMPLATE = "templates/Communes.xlsx";
 	public static final String MODEL_NOTE_FRAIS_TEMPLATE = "templates/Notes.xlsx";
 	public static final String MODEL_AFFECTATION_TEMPLATE = "templates/Affectation.xlsx";
 

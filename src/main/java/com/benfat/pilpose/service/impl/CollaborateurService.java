@@ -161,8 +161,8 @@ public class CollaborateurService implements ICollaborateurService {
 	@Override
 	public List<PlanningDto> getPlanningById(Long idC) throws ParseException {
 		List<PlanningDto> list = new ArrayList<>();
-		List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollab(idC);
-		//List<AffectationEntity> affectationEntities = affectationRepository.findAll();
+		//List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollab(idC);
+		List<AffectationEntity> affectationEntities = affectationRepository.findAll();
 		for (AffectationEntity num : affectationEntities) {
 
 			PlanningDto dto = new PlanningDto();

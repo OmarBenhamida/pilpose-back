@@ -95,19 +95,6 @@ public class CongeController {
 	@PostMapping(value = "/excel/{idC}")
 	public String addCongeImport(@RequestParam("file") MultipartFile file, @PathVariable Long idC)
 			throws ParseException, IOException {
-		/*
-		 * NoteFraisEntity fileEntity = noteFraisRepository.findById(idC).orElse(null);
-		 * try {
-		 * 
-		 * 
-		 * fileEntity.setRecu(file.getBytes()); // Convert MultipartFile to byte array
-		 * 
-		 * noteFraisRepository.save(fileEntity); // Save to the database
-		 * 
-		 * return "File uploaded successfully"; } catch (Exception e) { return
-		 * "Error uploading file"; }
-		 */
-
 		congeService.addOrUpdateCongesExcel(file, idC);
 		return "File uploaded successfully";
 	}

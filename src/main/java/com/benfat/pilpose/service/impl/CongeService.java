@@ -98,34 +98,27 @@ public class CongeService implements ICongeService {
 		CollaborateurEntity demandeur = collaborateurRepository
 				.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
 
-		if (conge.getIdConge() != null && conge.getStatut().equals("Validé")) {
+		if (conge.getIdConge() != null) {
 
-			TacheEntity tache = new TacheEntity();
-			tache.setDateDebut(conge.getDateDebut());
-			tache.setDateFin(conge.getDateFin());
-			tache.setHeureDebut(conge.getHeureDebut());
-			tache.setHeureFin(conge.getHeureFin());
-			tache.setLibelle(conge.getTypeConge());
-			tache.setTypeTache("conge");
-
-			tacheRepository.save(tache);
-
-			List<TacheEntity> lastTache = tacheRepository.getLastLineInserted();
-
-			TacheEntity tacheInsere = lastTache.get(0);
-			AffectationEntity affectationCongePlannig = new AffectationEntity();
-
-			affectationCongePlannig.setIdTache(tacheInsere);
-			affectationCongePlannig.setIdCollaborateur(demandeur);
-
-			affectationRepository.save(affectationCongePlannig);
+			if (conge.isValidationChefEquipe() && conge.isValidationResponsableAdministratif()
+					&& conge.isValidationGerant() && conge.isValidationResponsableTravaux())
+			{
+				conge.setStatut("Validé");
+				emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé validée ",
+						"Bonjour /n Votre demande de congé est validée");
+				affectationPlanning(conge, demandeur);
+			}
+			
 
 		}
 
 		try {
 			entity = CongeDto.dtoToEntity(conge);
+			if (conge.getIdConge() == null) {
 			entity.setReference(entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername());
 			entity.setDateDepot(formattedDate);
+			
+			}
 			entity = congeRepository.save(entity);
 
 			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé crée ",
@@ -142,6 +135,29 @@ public class CongeService implements ICongeService {
 		}
 
 		return entity;
+	}
+
+	void affectationPlanning(CongeDto conge, CollaborateurEntity demandeur) {
+
+		TacheEntity tache = new TacheEntity();
+		tache.setDateDebut(conge.getDateDebut());
+		tache.setDateFin(conge.getDateFin());
+		tache.setHeureDebut(conge.getHeureDebut());
+		tache.setHeureFin(conge.getHeureFin());
+		tache.setLibelle(conge.getTypeConge());
+		tache.setTypeTache("conge");
+
+		tacheRepository.save(tache);
+
+		List<TacheEntity> lastTache = tacheRepository.getLastLineInserted();
+
+		TacheEntity tacheInsere = lastTache.get(0);
+		AffectationEntity affectationCongePlannig = new AffectationEntity();
+
+		affectationCongePlannig.setIdTache(tacheInsere);
+		affectationCongePlannig.setIdCollaborateur(demandeur);
+
+		affectationRepository.save(affectationCongePlannig);
 	}
 
 	@Override
