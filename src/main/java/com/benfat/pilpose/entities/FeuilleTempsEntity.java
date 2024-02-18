@@ -69,6 +69,14 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "statut")
 	private String statut;
+	
+	@Column(name = "metier")
+	private String metier;
+	
+	@Column(name = "indemnite")
+	private String indemnite;
+	
+	
 
 	@Override
 	public Long getId() {
@@ -183,6 +191,23 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	public void setVehiculeSuite(String vehiculeSuite) {
 		this.vehiculeSuite = vehiculeSuite;
 	}
+
+	public String getMetier() {
+		return metier;
+	}
+
+	public void setMetier(String metier) {
+		this.metier = metier;
+	}
+
+	public String getIndemnite() {
+		return indemnite;
+	}
+
+	public void setIndemnite(String indemnite) {
+		this.indemnite = indemnite;
+	}
+	
 	
 	
 

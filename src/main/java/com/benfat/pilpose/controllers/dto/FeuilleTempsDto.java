@@ -58,6 +58,10 @@ public class FeuilleTempsDto implements Serializable {
 	private String nomCompletClient;
 
 	private String ville;
+	
+	private String metier;
+	
+	private String indemnite;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -76,10 +80,11 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setJourSemaine(entity.getJourSemaine());
-
+            dto.setMetier(entity.getMetier());
 			dto.setVehicule(entity.getVehicule());
 			dto.setVehiculeSuite(entity.getVehiculeSuite());
 			dto.setKm(entity.getKm());
+			dto.setIndemnite(entity.getIndemnite());
 			dto.setCommantaire(entity.getCommantaire());
 			dto.setHeureTravaille(entity.getHeureTravaille());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
@@ -120,7 +125,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeTravaux(dto.getTypeTravaux());
 			entity.setJourSemaine(dto.getJourSemaine());
-
+            entity.setMetier(dto.getMetier());
 			entity.setVehicule(dto.getVehicule());
 			entity.setVehiculeSuite(dto.getVehiculeSuite());
 			entity.setKm(dto.getKm());
@@ -130,6 +135,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
 			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
 			entity.setStatut(dto.getStatut());
+			entity.setIndemnite(dto.getIndemnite());
 		}
 
 		return entity;
