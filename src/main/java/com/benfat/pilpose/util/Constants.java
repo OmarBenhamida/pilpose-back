@@ -23,6 +23,7 @@ public final class Constants {
 	public static final String CP = "charge-personnel";
 
 	public static final String MODEL_CHANTIER_TEMPLATE = "templates/Chantiers.xlsx";
+	public static final String MODEL_FEUILLE_TEMPLATE = "templates/Feuille.xlsx";
 	public static final String MODEL_TACHE_TEMPLATE = "templates/Taches.xlsx";
 	public static final String MODEL_CONGE_TEMPLATE = "templates/Conges.xlsx";
 	public static final String MODEL_SALARIES_TEMPLATE = "templates/Salaries.xlsx";

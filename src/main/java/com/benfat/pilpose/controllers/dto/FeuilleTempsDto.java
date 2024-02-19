@@ -61,7 +61,18 @@ public class FeuilleTempsDto implements Serializable {
 	
 	private String metier;
 	
-	private String indemnite;
+	private boolean indemnite;
+	
+	
+	private boolean validationChefEquipe;
+
+	private boolean validationResponsableTravaux;
+
+	private boolean validationGerant;
+
+	private boolean validationResponsableAdministratif;
+	
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -84,7 +95,7 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setVehicule(entity.getVehicule());
 			dto.setVehiculeSuite(entity.getVehiculeSuite());
 			dto.setKm(entity.getKm());
-			dto.setIndemnite(entity.getIndemnite());
+			dto.setIndemnite(entity.isIndemnite());
 			dto.setCommantaire(entity.getCommantaire());
 			dto.setHeureTravaille(entity.getHeureTravaille());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
@@ -106,6 +117,11 @@ public class FeuilleTempsDto implements Serializable {
 			if (entity.getIdChantier().getLocalisation() != null) {
 					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"+ entity.getIdChantier().getLocalisation().getCodePostale());
 				}
+			
+			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
+			dto.setValidationGerant(entity.isValidationGerant());
+			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
+			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
 				
 		}
 		return dto;
@@ -135,7 +151,11 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
 			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
 			entity.setStatut(dto.getStatut());
-			entity.setIndemnite(dto.getIndemnite());
+			entity.setIndemnite(dto.isIndemnite());
+			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
+			entity.setValidationGerant(dto.isValidationGerant());
+			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
+			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
 		}
 
 		return entity;

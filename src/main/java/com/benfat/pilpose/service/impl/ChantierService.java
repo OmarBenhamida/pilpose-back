@@ -24,14 +24,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.ChantierDto;
-import com.benfat.pilpose.controllers.dto.ClientDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.LocalisationDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.IChantierRepository;
 import com.benfat.pilpose.dao.IClientRepository;
+import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.ILocalisationRepository;
 import com.benfat.pilpose.entities.ChantierEntity;
-import com.benfat.pilpose.entities.ClientEntity;
+import com.benfat.pilpose.entities.CollaborateurEntity;
 import com.benfat.pilpose.entities.LocalisationEntity;
 import com.benfat.pilpose.enums.OrigineEnum;
 import com.benfat.pilpose.exception.PilposeBusinessException;
@@ -51,6 +52,9 @@ public class ChantierService implements IChantierService {
 
 	@Autowired
 	IChantierRepository chantierRepository;
+	
+	@Autowired
+	ICollaborateurRepository collaborateurRepository;
 
 	@Autowired
 	ILocalisationRepository localisationRepository;
@@ -93,9 +97,9 @@ public class ChantierService implements IChantierService {
 
 		chantier.setLocalisationDto(LocalisationDto.entityToDto(ville));
 
-		ClientEntity client = clientRepository.getByIdClient(chantier.getClientDto().getIdClient());
+		CollaborateurEntity client = collaborateurRepository.getUserById(chantier.getClientDto().getIdCollaborateur());
 
-		chantier.setClientDto(ClientDto.entityToDto(client));
+		chantier.setClientDto(CollaborateurDto.entityToDto(client));
 		ChantierEntity entity = new ChantierEntity();
 		try {
 

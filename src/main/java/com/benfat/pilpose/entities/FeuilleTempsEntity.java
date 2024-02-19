@@ -74,7 +74,19 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	private String metier;
 	
 	@Column(name = "indemnite")
-	private String indemnite;
+	private boolean indemnite;
+	
+	@Column(name = "validation_chef_equipe")
+	private boolean validationChefEquipe;
+	
+	@Column(name = "validation_resp_travaux")
+	private boolean validationResponsableTravaux;
+	
+	@Column(name = "validation_gerant")
+	private boolean validationGerant;
+	
+	@Column(name = "validation_resp_administratif")
+	private boolean validationResponsableAdministratif;
 	
 	
 
@@ -200,11 +212,45 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 		this.metier = metier;
 	}
 
-	public String getIndemnite() {
+	
+
+	public boolean isValidationChefEquipe() {
+		return validationChefEquipe;
+	}
+
+	public void setValidationChefEquipe(boolean validationChefEquipe) {
+		this.validationChefEquipe = validationChefEquipe;
+	}
+
+	public boolean isValidationResponsableTravaux() {
+		return validationResponsableTravaux;
+	}
+
+	public void setValidationResponsableTravaux(boolean validationResponsableTravaux) {
+		this.validationResponsableTravaux = validationResponsableTravaux;
+	}
+
+	public boolean isValidationGerant() {
+		return validationGerant;
+	}
+
+	public void setValidationGerant(boolean validationGerant) {
+		this.validationGerant = validationGerant;
+	}
+
+	public boolean isValidationResponsableAdministratif() {
+		return validationResponsableAdministratif;
+	}
+
+	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
+		this.validationResponsableAdministratif = validationResponsableAdministratif;
+	}
+
+	public boolean isIndemnite() {
 		return indemnite;
 	}
 
-	public void setIndemnite(String indemnite) {
+	public void setIndemnite(boolean indemnite) {
 		this.indemnite = indemnite;
 	}
 	

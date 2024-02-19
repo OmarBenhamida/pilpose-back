@@ -37,7 +37,7 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "client")
-	private ClientEntity client;
+	private CollaborateurEntity client;
 
 	@Column(name = "etat", nullable = false, length = 50)
 	private String etat;
@@ -96,11 +96,11 @@ public class ChantierEntity extends AbstractCommonEntity<Long> {
 		this.localisation = localisation;
 	}
 
-	public ClientEntity getClient() {
+	public CollaborateurEntity getClient() {
 		return client;
 	}
 
-	public void setClient(ClientEntity client) {
+	public void setClient(CollaborateurEntity client) {
 		this.client = client;
 	}
 }

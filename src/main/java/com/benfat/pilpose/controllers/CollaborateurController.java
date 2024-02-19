@@ -130,7 +130,7 @@ public class CollaborateurController {
 	}
 
 	/**
-	 * get collaborateur by fonction
+	 * get collaborateur by fonction Chef equipe
 	 * 
 	 * @param collaborateurDto
 	 * @return
@@ -141,12 +141,34 @@ public class CollaborateurController {
 	public PilposeResponse getCollaborateurByChefEquipe() throws ParseException, PilposeTechnicalException {
 		if (logger.isInfoEnabled()) {
 			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
-					"get collaborateur by fonction controller", null, RsMethodEnum.GET.getValue(),
+					"get collaborateur by fonction  chef equipe controller", null, RsMethodEnum.GET.getValue(),
 					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
 		}
 		/** get collaborateur */
 		List<CollaborateurDto> retour = CollaborateurDto
 				.entitiesToDtos(collaborateurService.getCollaborateurByfonction("Chef d'equipe"));
+
+		return new PilposeResponse(retour, HttpStatus.OK);
+	}
+
+	/**
+	 * get collaborateur by fonction responsable de travaux
+	 * 
+	 * @param collaborateurDto
+	 * @return
+	 * @throws ParseException
+	 * @throws PilposeTechnicalException
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/rt", headers = Constants.HEADERS)
+	public PilposeResponse getCollaborateurByResponsableTravaux() throws ParseException, PilposeTechnicalException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"get collaborateur by fonction Responsable travaux controller", null, RsMethodEnum.GET.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
+		}
+		/** get collaborateur */
+		List<CollaborateurDto> retour = CollaborateurDto
+				.entitiesToDtos(collaborateurService.getCollaborateurByfonction("Responsable de travaux"));
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}

@@ -3,6 +3,7 @@
  */
 package com.benfat.pilpose.controllers;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -160,6 +161,28 @@ public class FeuilleTempsController {
 
 		pilposeResponse = new PilposeResponse(feuilleTempsService.getCollaborateurRecaps(), HttpStatus.OK);
 		return pilposeResponse;
+	}
+	
+	/**
+	 * Generer loader chantier
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
+	public PilposeResponse genererLoaderChantier()
+			throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
+					"générer le loader feuille", null, RsMethodEnum.POST.getValue(),
+					"/v0/feuille/", null));
+		}
+
+		
+
+		return new PilposeResponse(feuilleTempsService.genererLoader(), HttpStatus.OK);
 	}
 
 }
