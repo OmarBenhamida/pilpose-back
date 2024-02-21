@@ -26,6 +26,8 @@ public class TacheDto implements Serializable {
 	private Long idTache;
 
 	private String libelle;
+	
+	private String typeTravaux;
 
 	private String dateDebut;
 
@@ -65,7 +67,7 @@ public class TacheDto implements Serializable {
 		if (entity != null) {
 			dto = new TacheDto();
 			dto.setIdTache(entity.getIdTache());
-
+			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setLibelle(entity.getLibelle());
 			dto.setDateDebut(entity.getDateDebut());
 			dto.setDateFin(entity.getDateFin());
@@ -108,7 +110,7 @@ public class TacheDto implements Serializable {
 			entity = new TacheEntity();
 
 			entity.setIdTache(dto.getIdTache());
-
+			entity.setTypeTravaux(dto.getTypeTravaux());
 			entity.setLibelle(dto.getLibelle());
 			entity.setDateDebut(dto.getDateDebut());
 			entity.setDateFin(dto.getDateFin());

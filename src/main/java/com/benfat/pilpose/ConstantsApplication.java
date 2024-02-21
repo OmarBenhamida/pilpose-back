@@ -14,6 +14,7 @@ public class ConstantsApplication {
 	public static final String REST_PATH_V1 = "/v1";
 	public static final String REST_PATH_V2 = "/v2";
 	public static final String REST_PATH_V3 = "/v3";
+	 public static final String VALIDE = "Validé";
 	
 	public static final String DEFAULT_PASSWORD= "password";
 	public static final String ASSETS= "D:/Worspace/assets/";

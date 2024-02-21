@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.IAffectationRepository;
@@ -88,53 +89,55 @@ public class CongeService implements ICongeService {
 
 	@Override
 	public CongeEntity addOrUpdateConge(CongeDto conge) {
-		Date dateDeb = new Date();
+		try {
+			Date dateDeb = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			String formattedDate = dateFormat.format(dateDeb);
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		String formattedDate = dateFormat.format(dateDeb);
+			CollaborateurEntity demandeur = collaborateurRepository
+					.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
 
-		CongeEntity entity = new CongeEntity();
-
-		CollaborateurEntity demandeur = collaborateurRepository
-				.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
-
-		if (conge.getIdConge() != null) {
-
-			if (conge.isValidationChefEquipe() && conge.isValidationResponsableAdministratif()
-					&& conge.isValidationGerant() && conge.isValidationResponsableTravaux())
-			{
-				conge.setStatut("Validé");
-				emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé validée ",
-						"Bonjour /n Votre demande de congé est validée");
+			if (conge.getIdConge() != null && validateConge(conge)) {
+				conge.setStatut(ConstantsApplication.VALIDE);
+				sendValidationEmail(demandeur.getEmail());
 				affectationPlanning(conge, demandeur);
 			}
-			
 
-		}
+			CongeEntity entity = CongeDto.dtoToEntity(conge);
 
-		try {
-			entity = CongeDto.dtoToEntity(conge);
 			if (conge.getIdConge() == null) {
-			entity.setReference(entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername());
-			entity.setDateDepot(formattedDate);
-			
+				entity.setReference(createReference(entity, demandeur));
+				entity.setDateDepot(formattedDate);
+				sendCreationEmail(demandeur.getEmail());
 			}
+
 			entity = congeRepository.save(entity);
 
-			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Demande de congé crée ",
-					"Bonjour /n Votre demande de congé est crée");
+			return entity;
 
 		} catch (Exception e) {
 			throw new PilposeBusinessException("CongeService::addOrUpdateConge on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
 		}
+	}
 
-		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "add or update conge", dateDeb,
-					new Date(), null));
-		}
+	private boolean validateConge(CongeDto conge) {
+		return conge.isValidationChefEquipe() && conge.isValidationResponsableAdministratif()
+				&& conge.isValidationGerant() && conge.isValidationResponsableTravaux();
+	}
 
-		return entity;
+	private String createReference(CongeEntity entity, CollaborateurEntity demandeur) {
+		return entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername();
+	}
+
+	private void sendValidationEmail(String email) {
+		emailService.sendEmail(email, "Pilpose - Demande de congé validée ",
+				"Bonjour,\nVotre demande de congé est validée");
+	}
+
+	private void sendCreationEmail(String email) {
+		emailService.sendEmail(email, "Pilpose - Demande de congé créée ",
+				"Bonjour, \nVotre demande de congé est créée avec succès");
 	}
 
 	void affectationPlanning(CongeDto conge, CollaborateurEntity demandeur) {
