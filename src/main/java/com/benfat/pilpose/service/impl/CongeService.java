@@ -148,7 +148,9 @@ public class CongeService implements ICongeService {
 		tache.setHeureDebut(conge.getHeureDebut());
 		tache.setHeureFin(conge.getHeureFin());
 		tache.setLibelle(conge.getTypeConge());
+		tache.setResponsable(demandeur);
 		tache.setTypeTache("conge");
+		tache.setTypeTravaux("");
 
 		tacheRepository.save(tache);
 
