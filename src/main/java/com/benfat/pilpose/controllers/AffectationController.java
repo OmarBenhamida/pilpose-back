@@ -223,5 +223,8 @@ public class AffectationController {
 
 		return new PilposeResponse(affectationService.getCollabByIdTache(idTache), HttpStatus.OK);
 	}
+	
+	
+
 
 }
