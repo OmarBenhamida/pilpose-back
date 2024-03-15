@@ -32,6 +32,7 @@ import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.CongeDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.IAffectationRepository;
+import com.benfat.pilpose.dao.IChantierRepository;
 import com.benfat.pilpose.dao.ICollaborateurRepository;
 import com.benfat.pilpose.dao.ICongeRepository;
 import com.benfat.pilpose.dao.ITacheRepository;
@@ -56,6 +57,8 @@ public class CongeService implements ICongeService {
 
 	@Autowired
 	ICongeRepository congeRepository;
+	@Autowired
+	IChantierRepository chantierRepository;
 
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
@@ -94,10 +97,13 @@ public class CongeService implements ICongeService {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			String formattedDate = dateFormat.format(dateDeb);
 
-			CollaborateurEntity demandeur = collaborateurRepository
-					.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
+			
+			/**Récuperation du demandeur*/
+			CollaborateurEntity demandeur = collaborateurRepository.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
 
+			/**modification d'un congé*/
 			if (conge.getIdConge() != null && validateConge(conge)) {
+				conge.setValidationResponsableTravaux(true);
 				conge.setStatut(ConstantsApplication.VALIDE);
 				sendValidationEmail(demandeur.getEmail());
 				affectationPlanning(conge, demandeur);
@@ -105,6 +111,7 @@ public class CongeService implements ICongeService {
 
 			CongeEntity entity = CongeDto.dtoToEntity(conge);
 
+			/**creation d'un nouveau conge*/
 			if (conge.getIdConge() == null) {
 				entity.setReference(createReference(entity, demandeur));
 				entity.setDateDepot(formattedDate);
@@ -122,8 +129,7 @@ public class CongeService implements ICongeService {
 	}
 
 	private boolean validateConge(CongeDto conge) {
-		return conge.isValidationChefEquipe() && conge.isValidationResponsableAdministratif()
-				&& conge.isValidationGerant() && conge.isValidationResponsableTravaux();
+		return conge.isValidationGerant();
 	}
 
 	private String createReference(CongeEntity entity, CollaborateurEntity demandeur) {
@@ -141,6 +147,8 @@ public class CongeService implements ICongeService {
 	}
 
 	void affectationPlanning(CongeDto conge, CollaborateurEntity demandeur) {
+		
+	
 
 		TacheEntity tache = new TacheEntity();
 		tache.setDateDebut(conge.getDateDebut());
@@ -150,6 +158,7 @@ public class CongeService implements ICongeService {
 		tache.setLibelle(conge.getTypeConge());
 		tache.setResponsable(demandeur);
 		tache.setTypeTache("conge");
+		tache.setIdChantier(chantierRepository.getByCode("XXXXXX"));
 		tache.setTypeTravaux("");
 
 		tacheRepository.save(tache);

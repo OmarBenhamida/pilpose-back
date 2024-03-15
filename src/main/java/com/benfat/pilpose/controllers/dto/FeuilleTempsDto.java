@@ -70,7 +70,7 @@ public class FeuilleTempsDto implements Serializable {
 
 	private boolean validationGerant;
 
-	private boolean validationResponsableAdministratif;
+
 	
 	
 
@@ -121,7 +121,7 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
 			dto.setValidationGerant(entity.isValidationGerant());
 			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
-			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
+			
 				
 		}
 		return dto;
@@ -155,7 +155,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
 			entity.setValidationGerant(dto.isValidationGerant());
 			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
-			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
+	
 		}
 
 		return entity;

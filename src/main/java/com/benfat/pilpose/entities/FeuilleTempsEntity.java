@@ -85,8 +85,7 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "validation_gerant")
 	private boolean validationGerant;
 	
-	@Column(name = "validation_resp_administratif")
-	private boolean validationResponsableAdministratif;
+
 	
 	
 
@@ -238,13 +237,9 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 		this.validationGerant = validationGerant;
 	}
 
-	public boolean isValidationResponsableAdministratif() {
-		return validationResponsableAdministratif;
-	}
 
-	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
-		this.validationResponsableAdministratif = validationResponsableAdministratif;
-	}
+
+
 
 	public boolean isIndemnite() {
 		return indemnite;

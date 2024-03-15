@@ -45,13 +45,13 @@ public class CongeDto implements Serializable {
 
 	private String commantaire;
 
-	private boolean validationChefEquipe;
+	
 
 	private boolean validationResponsableTravaux;
 
 	private boolean validationGerant;
 
-	private boolean validationResponsableAdministratif;
+	
 
 	private CollaborateurDto idCollaborateur;
 
@@ -86,10 +86,10 @@ public class CongeDto implements Serializable {
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
 			
-			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
+		
 			dto.setValidationGerant(entity.isValidationGerant());
 			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
-			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
+			
 			
 
 		}
@@ -117,10 +117,10 @@ public class CongeDto implements Serializable {
 			entity.setTypeConge(dto.getTypeConge());
 			entity.setCommantaire(dto.getCommantaire());
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
-			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
+		
 			entity.setValidationGerant(dto.isValidationGerant());
 			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
-			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
+			
 		}
 
 		return entity;

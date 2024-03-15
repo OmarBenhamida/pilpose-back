@@ -55,17 +55,11 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 	@Column(name = "heure_fin")
 	private String heureFin;
 
-	@Column(name = "validation_chef_equipe")
-	private boolean validationChefEquipe;
-	
 	@Column(name = "validation_resp_travaux")
 	private boolean validationResponsableTravaux;
 	
 	@Column(name = "validation_gerant")
 	private boolean validationGerant;
-	
-	@Column(name = "validation_resp_administratif")
-	private boolean validationResponsableAdministratif;
 	
 	@Column(name = "type_conge")
 	private String typeConge;
@@ -172,13 +166,7 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 		this.commantaire = commantaire;
 	}
 
-	public boolean isValidationChefEquipe() {
-		return validationChefEquipe;
-	}
 
-	public void setValidationChefEquipe(boolean validationChefEquipe) {
-		this.validationChefEquipe = validationChefEquipe;
-	}
 
 	public boolean isValidationResponsableTravaux() {
 		return validationResponsableTravaux;
@@ -196,13 +184,9 @@ public class CongeEntity extends AbstractCommonEntity<Long> {
 		this.validationGerant = validationGerant;
 	}
 
-	public boolean isValidationResponsableAdministratif() {
-		return validationResponsableAdministratif;
-	}
 
-	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
-		this.validationResponsableAdministratif = validationResponsableAdministratif;
-	}
+
+
 	
 
 }

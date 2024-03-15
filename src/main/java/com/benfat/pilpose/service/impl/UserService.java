@@ -39,6 +39,11 @@ public class UserService implements IUserService {
 
 		if (!user.getUsername().contains("@")) {
 			CollaborateurEntity collaborateurEntity = collaborateurRepository.getUserByUsername(user.getUsername());
+			System.out.println(collaborateurEntity);
+			System.out.println("##############################");
+			System.out.println(user.getUsername());
+			System.out.println("##############################");
+			System.out.println(user.getPassword());
 			// UserEntity userEntity = userRepository.getByUsername(user.getUsername());
 			if (collaborateurEntity != null) {
 
