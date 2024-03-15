@@ -26,7 +26,7 @@ public class CollaborateurRecapDto implements Serializable {
 	}
 
 
-
+	
 	public CollaborateurDto getIdCollaborateur() {
 		return idCollaborateur;
 	}
@@ -34,7 +34,7 @@ public class CollaborateurRecapDto implements Serializable {
 	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
 		this.idCollaborateur = idCollaborateur;
 	}
-
+	   
 	public int getTotalHeuresTravaille() {
 		return totalHeuresTravaille;
 	}
@@ -42,6 +42,6 @@ public class CollaborateurRecapDto implements Serializable {
 	public void setTotalHeuresTravaille(int totalHeuresTravaille) {
 		this.totalHeuresTravaille = totalHeuresTravaille;
 	}
-
+	   
 
 }

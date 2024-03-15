@@ -8,7 +8,7 @@ public class ResponseMsg {
 
 	/**
 	 * Constructor using field
-	 *
+	 * 
 	 * @param code
 	 * @param description
 	 * @param message

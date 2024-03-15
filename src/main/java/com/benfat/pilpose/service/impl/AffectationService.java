@@ -50,7 +50,6 @@ public class AffectationService implements IAffectationService {
 	@Autowired
 	IAffectationRepository affectationRepository;
 
-
 	@Override
 	public List<AffectationEntity> getAllAffectation() {
 		Date dateDeb = new Date();

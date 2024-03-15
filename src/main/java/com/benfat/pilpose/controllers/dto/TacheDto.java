@@ -26,7 +26,7 @@ public class TacheDto implements Serializable {
 	private Long idTache;
 
 	private String libelle;
-
+	
 	private String typeTravaux;
 
 	private String dateDebut;
@@ -38,7 +38,7 @@ public class TacheDto implements Serializable {
 	private String heureFin;
 
 	private String commantaire;
-
+	
 	private String typeTache;
 
 	private ChantierDto idChantier;
@@ -57,159 +57,8 @@ public class TacheDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdTache() {
-		return idTache;
-	}
-
-
-	public void setIdTache(Long idTache) {
-		this.idTache = idTache;
-	}
-
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
-
-	public String getTypeTravaux() {
-		return typeTravaux;
-	}
-
-
-	public void setTypeTravaux(String typeTravaux) {
-		this.typeTravaux = typeTravaux;
-	}
-
-
-	public String getDateDebut() {
-		return dateDebut;
-	}
-
-
-	public void setDateDebut(String dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-
-	public String getDateFin() {
-		return dateFin;
-	}
-
-
-	public void setDateFin(String dateFin) {
-		this.dateFin = dateFin;
-	}
-
-
-	public String getHeureDebut() {
-		return heureDebut;
-	}
-
-
-	public void setHeureDebut(String heureDebut) {
-		this.heureDebut = heureDebut;
-	}
-
-
-	public String getHeureFin() {
-		return heureFin;
-	}
-
-
-	public void setHeureFin(String heureFin) {
-		this.heureFin = heureFin;
-	}
-
-
-	public String getCommantaire() {
-		return commantaire;
-	}
-
-
-	public void setCommantaire(String commantaire) {
-		this.commantaire = commantaire;
-	}
-
-
-	public String getTypeTache() {
-		return typeTache;
-	}
-
-
-	public void setTypeTache(String typeTache) {
-		this.typeTache = typeTache;
-	}
-
-
-	public ChantierDto getIdChantier() {
-		return idChantier;
-	}
-
-
-	public void setIdChantier(ChantierDto idChantier) {
-		this.idChantier = idChantier;
-	}
-
-
-	public CollaborateurDto getResponsable() {
-		return responsable;
-	}
-
-
-	public void setResponsable(CollaborateurDto responsable) {
-		this.responsable = responsable;
-	}
-
-
-	public String getNomCompletResponsable() {
-		return nomCompletResponsable;
-	}
-
-
-	public void setNomCompletResponsable(String nomCompletResponsable) {
-		this.nomCompletResponsable = nomCompletResponsable;
-	}
-
-
-	public String getNomCompletChantier() {
-		return nomCompletChantier;
-	}
-
-
-	public void setNomCompletChantier(String nomCompletChantier) {
-		this.nomCompletChantier = nomCompletChantier;
-	}
-
-
-	public String getNomCompletClient() {
-		return nomCompletClient;
-	}
-
-
-	public void setNomCompletClient(String nomCompletClient) {
-		this.nomCompletClient = nomCompletClient;
-	}
-
-
-	public String getVille() {
-		return ville;
-	}
-
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-
 	/**
-	 *
+	 * 
 	 * @return TacheEntity
 	 * @throws ParseException
 	 */
@@ -252,7 +101,7 @@ public class TacheDto implements Serializable {
 
 	/**
 	 * Convert TacheDto -> TacheEntity
-	 *
+	 * 
 	 * @param TacheDto
 	 */
 	public static TacheEntity dtoToEntity(TacheDto dto) throws ParseException {
@@ -278,7 +127,7 @@ public class TacheDto implements Serializable {
 
 	/**
 	 * Convert list TacheDto -> list TacheEntity
-	 *
+	 * 
 	 * @param List<TacheDto>
 	 * @throws ParseException
 	 */
@@ -294,7 +143,7 @@ public class TacheDto implements Serializable {
 
 	/**
 	 * Convert list TacheEntity -> list TacheDto
-	 *
+	 * 
 	 * @param List<TacheEntity>
 	 * @throws ParseException
 	 */

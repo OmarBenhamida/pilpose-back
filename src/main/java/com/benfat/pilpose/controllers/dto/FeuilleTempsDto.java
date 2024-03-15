@@ -34,7 +34,7 @@ public class FeuilleTempsDto implements Serializable {
 	private int heureTravaille;
 
 	private String vehicule;
-
+	
 	private String vehiculeSuite;
 
 	private int km;
@@ -58,318 +58,28 @@ public class FeuilleTempsDto implements Serializable {
 	private String nomCompletClient;
 
 	private String ville;
-
+	
 	private String metier;
-
+	
 	private boolean indemnite;
-
-
+	
+	
 	private boolean validationChefEquipe;
 
 	private boolean validationResponsableTravaux;
 
 	private boolean validationGerant;
 
-	private boolean validationResponsableAdministratif;
 
-
+	
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-
-
-	public Long getIdFeuilleTemps() {
-		return idFeuilleTemps;
-	}
-
-
-
-	public void setIdFeuilleTemps(Long idFeuilleTemps) {
-		this.idFeuilleTemps = idFeuilleTemps;
-	}
-
-
-
-	public String getReference() {
-		return reference;
-	}
-
-
-
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-
-
-
-	public String getTypeTravaux() {
-		return typeTravaux;
-	}
-
-
-
-	public void setTypeTravaux(String typeTravaux) {
-		this.typeTravaux = typeTravaux;
-	}
-
-
-
-	public String getJourSemaine() {
-		return jourSemaine;
-	}
-
-
-
-	public void setJourSemaine(String jourSemaine) {
-		this.jourSemaine = jourSemaine;
-	}
-
-
-
-	public int getHeureTravaille() {
-		return heureTravaille;
-	}
-
-
-
-	public void setHeureTravaille(int heureTravaille) {
-		this.heureTravaille = heureTravaille;
-	}
-
-
-
-	public String getVehicule() {
-		return vehicule;
-	}
-
-
-
-	public void setVehicule(String vehicule) {
-		this.vehicule = vehicule;
-	}
-
-
-
-	public String getVehiculeSuite() {
-		return vehiculeSuite;
-	}
-
-
-
-	public void setVehiculeSuite(String vehiculeSuite) {
-		this.vehiculeSuite = vehiculeSuite;
-	}
-
-
-
-	public int getKm() {
-		return km;
-	}
-
-
-
-	public void setKm(int km) {
-		this.km = km;
-	}
-
-
-
-	public String getCommantaire() {
-		return commantaire;
-	}
-
-
-
-	public void setCommantaire(String commantaire) {
-		this.commantaire = commantaire;
-	}
-
-
-
-	public ChantierDto getIdChantier() {
-		return idChantier;
-	}
-
-
-
-	public void setIdChantier(ChantierDto idChantier) {
-		this.idChantier = idChantier;
-	}
-
-
-
-	public CollaborateurDto getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-
-
-	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-
-
-	public CollaborateurDto getResponsable() {
-		return responsable;
-	}
-
-
-
-	public void setResponsable(CollaborateurDto responsable) {
-		this.responsable = responsable;
-	}
-
-
-
-	public String getStatut() {
-		return statut;
-	}
-
-
-
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
-
-
-
-	public String getNomCompletResponsable() {
-		return nomCompletResponsable;
-	}
-
-
-
-	public void setNomCompletResponsable(String nomCompletResponsable) {
-		this.nomCompletResponsable = nomCompletResponsable;
-	}
-
-
-
-	public String getNomCompletSalarie() {
-		return nomCompletSalarie;
-	}
-
-
-
-	public void setNomCompletSalarie(String nomCompletSalarie) {
-		this.nomCompletSalarie = nomCompletSalarie;
-	}
-
-
-
-	public String getNomCompletChantier() {
-		return nomCompletChantier;
-	}
-
-
-
-	public void setNomCompletChantier(String nomCompletChantier) {
-		this.nomCompletChantier = nomCompletChantier;
-	}
-
-
-
-	public String getNomCompletClient() {
-		return nomCompletClient;
-	}
-
-
-
-	public void setNomCompletClient(String nomCompletClient) {
-		this.nomCompletClient = nomCompletClient;
-	}
-
-
-
-	public String getVille() {
-		return ville;
-	}
-
-
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-
-
-	public String getMetier() {
-		return metier;
-	}
-
-
-
-	public void setMetier(String metier) {
-		this.metier = metier;
-	}
-
-
-
-	public boolean isIndemnite() {
-		return indemnite;
-	}
-
-
-
-	public void setIndemnite(boolean indemnite) {
-		this.indemnite = indemnite;
-	}
-
-
-
-	public boolean isValidationChefEquipe() {
-		return validationChefEquipe;
-	}
-
-
-
-	public void setValidationChefEquipe(boolean validationChefEquipe) {
-		this.validationChefEquipe = validationChefEquipe;
-	}
-
-
-
-	public boolean isValidationResponsableTravaux() {
-		return validationResponsableTravaux;
-	}
-
-
-
-	public void setValidationResponsableTravaux(boolean validationResponsableTravaux) {
-		this.validationResponsableTravaux = validationResponsableTravaux;
-	}
-
-
-
-	public boolean isValidationGerant() {
-		return validationGerant;
-	}
-
-
-
-	public void setValidationGerant(boolean validationGerant) {
-		this.validationGerant = validationGerant;
-	}
-
-
-
-	public boolean isValidationResponsableAdministratif() {
-		return validationResponsableAdministratif;
-	}
-
-
-
-	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
-		this.validationResponsableAdministratif = validationResponsableAdministratif;
-	}
-
-
-
 	/**
-	 *
+	 * 
 	 * @return FeuilleTempsEntity
 	 * @throws ParseException
 	 */
@@ -407,19 +117,19 @@ public class FeuilleTempsDto implements Serializable {
 			if (entity.getIdChantier().getLocalisation() != null) {
 					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"+ entity.getIdChantier().getLocalisation().getCodePostale());
 				}
-
+			
 			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
 			dto.setValidationGerant(entity.isValidationGerant());
 			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
-			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
-
+			
+				
 		}
 		return dto;
 	}
 
 	/**
 	 * Convert FeuilleTempsDto -> FeuilleTempsEntity
-	 *
+	 * 
 	 * @param FeuilleTempsDto
 	 */
 	public static FeuilleTempsEntity dtoToEntity(FeuilleTempsDto dto) throws ParseException {
@@ -445,7 +155,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
 			entity.setValidationGerant(dto.isValidationGerant());
 			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
-			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
+	
 		}
 
 		return entity;
@@ -453,7 +163,7 @@ public class FeuilleTempsDto implements Serializable {
 
 	/**
 	 * Convert list FeuilleTempsDto -> list FeuilleTempsEntity
-	 *
+	 * 
 	 * @param List<FeuilleTempsDto>
 	 * @throws ParseException
 	 */
@@ -469,7 +179,7 @@ public class FeuilleTempsDto implements Serializable {
 
 	/**
 	 * Convert list FeuilleTempsEntity -> list FeuilleTempsDto
-	 *
+	 * 
 	 * @param List<FeuilleTempsEntity>
 	 * @throws ParseException
 	 */

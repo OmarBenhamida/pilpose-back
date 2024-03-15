@@ -48,90 +48,9 @@ public class NoteFraisDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdNoteFrais() {
-		return idNoteFrais;
-	}
-
-
-	public void setIdNoteFrais(Long idNoteFrais) {
-		this.idNoteFrais = idNoteFrais;
-	}
-
-
-	public String getReference() {
-		return reference;
-	}
-
-
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-
-
-	public String getTypeNote() {
-		return typeNote;
-	}
-
-
-	public void setTypeNote(String typeNote) {
-		this.typeNote = typeNote;
-	}
-
-
-	public String getDateNote() {
-		return dateNote;
-	}
-
-
-	public void setDateNote(String dateNote) {
-		this.dateNote = dateNote;
-	}
-
-
-	public String getNomCompletEmploye() {
-		return nomCompletEmploye;
-	}
-
-
-	public void setNomCompletEmploye(String nomCompletEmploye) {
-		this.nomCompletEmploye = nomCompletEmploye;
-	}
-
-
-	public String getStatut() {
-		return statut;
-	}
-
-
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
-
-
-	public MultipartFile getRecu() {
-		return recu;
-	}
-
-
-	public void setRecu(MultipartFile recu) {
-		this.recu = recu;
-	}
-
-
-	public CollaborateurDto getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-
-	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-
 	/**
 	 * Convert NoteFraisEntity -> NoteFraisDto
-	 *
+	 * 
 	 * @return NoteFraisEntity
 	 * @throws ParseException
 	 * @throws IOException
@@ -158,7 +77,7 @@ public class NoteFraisDto implements Serializable {
 
 	/**
 	 * Convert NoteFraisDto -> NoteFraisEntity
-	 *
+	 * 
 	 * @param NoteFraisDto
 	 * @throws IOException
 	 */
@@ -182,7 +101,7 @@ public class NoteFraisDto implements Serializable {
 
 	/**
 	 * Convert list NoteFraisDto -> list NoteFraisEntity
-	 *
+	 * 
 	 * @param List<NoteFraisDto>
 	 * @throws ParseException
 	 * @throws IOException
@@ -199,7 +118,7 @@ public class NoteFraisDto implements Serializable {
 
 	/**
 	 * Convert list NoteFraisEntity -> list NoteFraisDto
-	 *
+	 * 
 	 * @param List<NoteFraisEntity>
 	 * @throws ParseException
 	 * @throws IOException

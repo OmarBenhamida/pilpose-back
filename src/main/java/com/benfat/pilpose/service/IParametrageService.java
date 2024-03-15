@@ -17,7 +17,7 @@ public interface IParametrageService {
 	List<ParametrageEntity> modifierParametrage(List<ParametrageDto> parametrageDtos) throws ParseException;
 
 	/**
-	 *
+	 * 
 	 * @param id
 	 * @return
 	 * @throws ParseException
@@ -26,7 +26,7 @@ public interface IParametrageService {
 
 	/**
 	 * get All Parametrage
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */
@@ -34,7 +34,7 @@ public interface IParametrageService {
 
 	/**
 	 * Recuperer la durée d'expiration mot de passe
-	 *
+	 * 
 	 * @param code
 	 * @return
 	 */

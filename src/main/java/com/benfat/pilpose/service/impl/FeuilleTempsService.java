@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.benfat.pilpose.ConstantsApplication;
 import com.benfat.pilpose.controllers.dto.ChantierDto;
 import com.benfat.pilpose.controllers.dto.ChantierRecapDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
@@ -89,45 +90,56 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 	public FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
 		Date dateDeb = new Date();
 
-		CollaborateurEntity demandeur = collaborateurRepository
-				.getUserById(feuilleTemps.getIdCollaborateur().getIdCollaborateur());
-		List<FeuilleTempsEntity> list = feuilleTempsRepository.findAll();
-		FeuilleTempsEntity entity = new FeuilleTempsEntity();
 		try {
-			entity = FeuilleTempsDto.dtoToEntity(feuilleTemps);
+			FeuilleTempsEntity entity = FeuilleTempsDto.dtoToEntity(feuilleTemps);
+			CollaborateurEntity demandeur = collaborateurRepository
+					.getUserById(feuilleTemps.getIdCollaborateur().getIdCollaborateur());
+
+			/** Création d'une nouvelle feuille de temps */
 			if (entity.getIdFeuilleTemps() == null) {
 				entity.setStatut("En cours de validation");
-				entity.setReference("ref".concat(list.size() + 1 + ""));
-
+				List<FeuilleTempsEntity> list = feuilleTempsRepository.findAll();
+				entity.setReference("ref" + (list.size() + 1));
 			}
-			if (feuilleTemps.getIdFeuilleTemps() != null) {
 
-				if (feuilleTemps.isValidationChefEquipe() && feuilleTemps.isValidationResponsableAdministratif()
-						&& feuilleTemps.isValidationGerant() && feuilleTemps.isValidationResponsableTravaux()) {
-					entity.setStatut("Validé");
-					emailService.sendEmail(demandeur.getEmail(), "Pilpose - Feuille de temps validée ",
-							"Bonjour /n Votre feuille de temps est validée");
+			/** Modification d'une feuille de temps */
+			if (feuilleTemps.getIdFeuilleTemps() != null) {
+				String fonctionCollaborateur = demandeur.getFonction();
+				boolean validationGerant = feuilleTemps.isValidationGerant();
+
+				if (fonctionCollaborateur.equals(ConstantsApplication.CHEF_EQUIPE)
+						|| fonctionCollaborateur.equals(ConstantsApplication.SALARIE)
+						|| fonctionCollaborateur.equals(ConstantsApplication.R_T)
+						|| fonctionCollaborateur.equals(ConstantsApplication.R_A)) {
+
+					if (validationGerant) {
+						entity.setStatut("Validé");
+						entity.setValidationChefEquipe(true);
+						entity.setValidationResponsableTravaux(true);
+						emailService.sendEmail(demandeur.getEmail(), "Pilpose - Feuille de temps validée ",
+								"Bonjour,\nVotre feuille de temps est validée");
+					}
 				}
 			}
 
 			entity = feuilleTempsRepository.save(entity);
 
+			/** Envoi d'un email si une nouvelle feuille de temps a été créée */
 			if (feuilleTemps.getIdFeuilleTemps() == null) {
-				emailService.sendEmail(demandeur.getEmail(), "Pilpose - Feuille de temps crée ",
-						"Bonjour /n Votre Feuille de temps est crée");
+				emailService.sendEmail(demandeur.getEmail(), "Pilpose - Feuille de temps créée ",
+						"Bonjour,\nVotre feuille de temps est créée");
 			}
 
+			return entity;
 		} catch (Exception e) {
 			throw new PilposeBusinessException("FeuilleTempsService::addOrUpdateFeuilleTemps on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
+		} finally {
+			if (logger.isInfoEnabled()) {
+				logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "add or update FeuilleTemps",
+						dateDeb, new Date(), null));
+			}
 		}
-
-		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getServLog(OrigineEnum.PILPOSE_AUTH.getValue(), "add or update FeuilleTemps",
-					dateDeb, new Date(), null));
-		}
-
-		return entity;
 	}
 
 	@Override

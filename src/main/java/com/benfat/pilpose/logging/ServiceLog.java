@@ -8,7 +8,7 @@ public class ServiceLog extends LogClass {
 
 	/**
 	 * Service log
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description
@@ -28,7 +28,7 @@ public class ServiceLog extends LogClass {
 
 	/**
 	 * Service Log
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description
@@ -54,7 +54,7 @@ public class ServiceLog extends LogClass {
 
 	/**
 	 * @param dateEnd
-	 *
+	 * 
 	 */
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;

@@ -15,7 +15,7 @@ public class CommonRepositoryImp<E, I extends Serializable> extends SimpleJpaRep
 
 	/**
 	 * Implementation repository
-	 *
+	 * 
 	 * @param domainClass
 	 * @param entityManager
 	 */

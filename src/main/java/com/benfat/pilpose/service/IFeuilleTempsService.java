@@ -9,22 +9,20 @@ import com.benfat.pilpose.controllers.dto.CollaborateurRecapDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.FeuilleTempsEntity;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 public interface IFeuilleTempsService {
 
 	/**
 	 * Get all FeuilleTemps
-	 *
-	 *
+	 * 
+	 * 
 	 * @return List<FeuilleTempsEntity>
 	 */
 	List<FeuilleTempsEntity> getAllFeuilleTemps();
 
 	/**
 	 * add or update FeuilleTemps
-	 *
+	 * 
 	 * @param FeuilleTempsEntity
 	 * @return
 	 */
@@ -32,40 +30,40 @@ public interface IFeuilleTempsService {
 
 	/**
 	 * delete FeuilleTemps
-	 *
+	 * 
 	 * @param entity
 	 */
 	boolean deleteFeuilleTemps(Long idFeuilleTemps);
 
 	/**
 	 * get refresh FeuilleTemps
-	 *
+	 * 
 	 * @return
 	 */
 	List<FeuilleTempsEntity> getRefreshedFeuilleTemps();
-
-
-
+	
+	
+	
 	/**
 	 * get refresh FeuilleTemps
-	 *
+	 * 
 	 * @return
-	 * @throws ParseException
+	 * @throws ParseException 
 	 */
 	List<ChantierRecapDto> getChantierRecaps() throws ParseException;
-
-
+	
+	
 	/**
 	 * get refresh FeuilleTemps
-	 *
+	 * 
 	 * @return
-	 * @throws ParseException
+	 * @throws ParseException 
 	 */
 	List<CollaborateurRecapDto> getCollaborateurRecaps() throws ParseException;
-
+	
 	/**
 	 * genererLoader FeuilleTemps
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -74,7 +72,7 @@ public interface IFeuilleTempsService {
 
 	/**
 	 * Générer fichier excel FeuilleTemps
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -83,7 +81,7 @@ public interface IFeuilleTempsService {
 
 	/**
 	 * Générer fichier csv FeuilleTemps
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -91,7 +89,7 @@ public interface IFeuilleTempsService {
 	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
-
+	
 
 
 

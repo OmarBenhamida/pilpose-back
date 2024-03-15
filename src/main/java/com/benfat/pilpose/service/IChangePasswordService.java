@@ -6,14 +6,14 @@ import com.benfat.pilpose.controllers.dto.ForgotPwdDto;
 public interface IChangePasswordService {
 
 	/**
-	 *
+	 * 
 	 * @param changeLdapPasswordDto
 	 * @return
 	 */
 	boolean changePasswordLdap(ChangePasswordDto changePasswordDto);
 
 	/**
-	 *
+	 * 
 	 * @param changeLdapPasswordDto
 	 * @return
 	 */

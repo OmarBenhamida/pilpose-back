@@ -26,7 +26,7 @@ public class ChantierRecapDto implements Serializable {
 	}
 
 
-
+	
 	public ChantierDto getIdChantier() {
 		return idChantier;
 	}
@@ -34,7 +34,7 @@ public class ChantierRecapDto implements Serializable {
 	public void setIdChantier(ChantierDto idChantier) {
 		this.idChantier = idChantier;
 	}
-
+	   
 	public int getTotalHeuresTravaille() {
 		return totalHeuresTravaille;
 	}
@@ -42,6 +42,6 @@ public class ChantierRecapDto implements Serializable {
 	public void setTotalHeuresTravaille(int totalHeuresTravaille) {
 		this.totalHeuresTravaille = totalHeuresTravaille;
 	}
-
+	   
 
 }

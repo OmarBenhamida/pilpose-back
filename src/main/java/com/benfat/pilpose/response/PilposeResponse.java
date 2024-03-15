@@ -8,7 +8,7 @@ public class PilposeResponse extends org.springframework.http.ResponseEntity<Obj
 	/**
 	 * Create a new {@code ExampleResponse} with the given status code, and no body
 	 * nor headers.
-	 *
+	 * 
 	 * @param status the status code
 	 */
 	public PilposeResponse(HttpStatus status) {
@@ -18,7 +18,7 @@ public class PilposeResponse extends org.springframework.http.ResponseEntity<Obj
 	/**
 	 * Create a new {@code ExampleResponse} with the given body and status code, and
 	 * no headers.
-	 *
+	 * 
 	 * @param body   the entity body
 	 * @param status the status code
 	 */
@@ -29,7 +29,7 @@ public class PilposeResponse extends org.springframework.http.ResponseEntity<Obj
 	/**
 	 * Create a new {@code HttpEntity} with the given headers and status code, and
 	 * no body.
-	 *
+	 * 
 	 * @param headers the entity headers
 	 * @param status  the status code
 	 */
@@ -40,7 +40,7 @@ public class PilposeResponse extends org.springframework.http.ResponseEntity<Obj
 	/**
 	 * Create a new {@code HttpEntity} with the given body, headers, and status
 	 * code.
-	 *
+	 * 
 	 * @param body    the entity body
 	 * @param headers the entity headers
 	 * @param status  the status code

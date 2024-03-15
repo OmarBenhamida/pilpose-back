@@ -35,60 +35,9 @@ public class ClientDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdClient() {
-		return idClient;
-	}
-
-
-	public void setIdClient(Long idClient) {
-		this.idClient = idClient;
-	}
-
-
-	public String getNom() {
-		return nom;
-	}
-
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-
 	/**
 	 * Convert ClientEntity -> ClientDto
-	 *
+	 * 
 	 * @return ClientEntity
 	 * @throws ParseException
 	 */
@@ -109,7 +58,7 @@ public class ClientDto implements Serializable {
 
 	/**
 	 * Convert ClientDto -> ClientEntity
-	 *
+	 * 
 	 * @param ClientDto
 	 */
 	public static ClientEntity dtoToEntity(ClientDto dto) throws ParseException {
@@ -129,7 +78,7 @@ public class ClientDto implements Serializable {
 
 	/**
 	 * Convert list ClientDto -> list ClientEntity
-	 *
+	 * 
 	 * @param List<ClientDto>
 	 * @throws ParseException
 	 */
@@ -145,7 +94,7 @@ public class ClientDto implements Serializable {
 
 	/**
 	 * Convert list ClientEntity -> list ClientDto
-	 *
+	 * 
 	 * @param List<ClientEntity>
 	 * @throws ParseException
 	 */

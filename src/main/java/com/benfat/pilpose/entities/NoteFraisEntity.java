@@ -42,7 +42,7 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	@Lob
 	@Column(name = "recu", nullable = true)
 	private String pathRecu;
-
+	
 	@Column(name = "statut")
 	private String statut;
 
@@ -116,6 +116,6 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	public void setStatut(String statut) {
 		this.statut = statut;
 	}
-
+	
 
 }

@@ -9,7 +9,7 @@ public class RuleLog extends LogClass {
 
 	/**
 	 * Rules log
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description
@@ -21,7 +21,7 @@ public class RuleLog extends LogClass {
 
 	/**
 	 * Rules log width dateStart and dateEnd
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description

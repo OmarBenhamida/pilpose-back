@@ -33,7 +33,7 @@ public class MessageProperties {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param fileName
 	 * @return MessageProperties
 	 */
@@ -42,7 +42,7 @@ public class MessageProperties {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param key
 	 * @param params
 	 * @return

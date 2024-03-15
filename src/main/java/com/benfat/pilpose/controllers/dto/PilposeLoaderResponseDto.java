@@ -17,18 +17,5 @@ public class PilposeLoaderResponseDto {
 
 	private byte[] pilposeXsl;
 	private byte[] pilposeCsv;
-	public byte[] getPilposeXsl() {
-		return pilposeXsl;
-	}
-	public void setPilposeXsl(byte[] pilposeXsl) {
-		this.pilposeXsl = pilposeXsl;
-	}
-	public byte[] getPilposeCsv() {
-		return pilposeCsv;
-	}
-	public void setPilposeCsv(byte[] pilposeCsv) {
-		this.pilposeCsv = pilposeCsv;
-	}
-
 
 }

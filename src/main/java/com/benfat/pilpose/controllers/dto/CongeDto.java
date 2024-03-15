@@ -45,13 +45,13 @@ public class CongeDto implements Serializable {
 
 	private String commantaire;
 
-	private boolean validationChefEquipe;
+	
 
 	private boolean validationResponsableTravaux;
 
 	private boolean validationGerant;
 
-	private boolean validationResponsableAdministratif;
+	
 
 	private CollaborateurDto idCollaborateur;
 
@@ -59,170 +59,9 @@ public class CongeDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdConge() {
-		return idConge;
-	}
-
-
-	public void setIdConge(Long idConge) {
-		this.idConge = idConge;
-	}
-
-
-	public String getReference() {
-		return reference;
-	}
-
-
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-
-
-	public String getStatut() {
-		return statut;
-	}
-
-
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
-
-
-	public String getDateDebut() {
-		return dateDebut;
-	}
-
-
-	public void setDateDebut(String dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-
-	public String getDateFin() {
-		return dateFin;
-	}
-
-
-	public void setDateFin(String dateFin) {
-		this.dateFin = dateFin;
-	}
-
-
-	public String getDateDepot() {
-		return dateDepot;
-	}
-
-
-	public void setDateDepot(String dateDepot) {
-		this.dateDepot = dateDepot;
-	}
-
-
-	public String getNomCompletEmploye() {
-		return nomCompletEmploye;
-	}
-
-
-	public void setNomCompletEmploye(String nomCompletEmploye) {
-		this.nomCompletEmploye = nomCompletEmploye;
-	}
-
-
-	public String getHeureDebut() {
-		return heureDebut;
-	}
-
-
-	public void setHeureDebut(String heureDebut) {
-		this.heureDebut = heureDebut;
-	}
-
-
-	public String getHeureFin() {
-		return heureFin;
-	}
-
-
-	public void setHeureFin(String heureFin) {
-		this.heureFin = heureFin;
-	}
-
-
-	public String getTypeConge() {
-		return typeConge;
-	}
-
-
-	public void setTypeConge(String typeConge) {
-		this.typeConge = typeConge;
-	}
-
-
-	public String getCommantaire() {
-		return commantaire;
-	}
-
-
-	public void setCommantaire(String commantaire) {
-		this.commantaire = commantaire;
-	}
-
-
-	public boolean isValidationChefEquipe() {
-		return validationChefEquipe;
-	}
-
-
-	public void setValidationChefEquipe(boolean validationChefEquipe) {
-		this.validationChefEquipe = validationChefEquipe;
-	}
-
-
-	public boolean isValidationResponsableTravaux() {
-		return validationResponsableTravaux;
-	}
-
-
-	public void setValidationResponsableTravaux(boolean validationResponsableTravaux) {
-		this.validationResponsableTravaux = validationResponsableTravaux;
-	}
-
-
-	public boolean isValidationGerant() {
-		return validationGerant;
-	}
-
-
-	public void setValidationGerant(boolean validationGerant) {
-		this.validationGerant = validationGerant;
-	}
-
-
-	public boolean isValidationResponsableAdministratif() {
-		return validationResponsableAdministratif;
-	}
-
-
-	public void setValidationResponsableAdministratif(boolean validationResponsableAdministratif) {
-		this.validationResponsableAdministratif = validationResponsableAdministratif;
-	}
-
-
-	public CollaborateurDto getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-
-	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-
 	/**
 	 * Convert CongeEntity -> CongeDto
-	 *
+	 * 
 	 * @return CongeEntity
 	 * @throws ParseException
 	 */
@@ -246,12 +85,12 @@ public class CongeDto implements Serializable {
 				dto.setNomCompletEmploye(
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
-
-			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
+			
+		
 			dto.setValidationGerant(entity.isValidationGerant());
 			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
-			dto.setValidationResponsableAdministratif(entity.isValidationResponsableAdministratif());
-
+			
+			
 
 		}
 		return dto;
@@ -259,7 +98,7 @@ public class CongeDto implements Serializable {
 
 	/**
 	 * Convert CongeDto -> CongeEntity
-	 *
+	 * 
 	 * @param CongeDto
 	 */
 	public static CongeEntity dtoToEntity(CongeDto dto) throws ParseException {
@@ -278,10 +117,10 @@ public class CongeDto implements Serializable {
 			entity.setTypeConge(dto.getTypeConge());
 			entity.setCommantaire(dto.getCommantaire());
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
-			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
+		
 			entity.setValidationGerant(dto.isValidationGerant());
 			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
-			entity.setValidationResponsableAdministratif(dto.isValidationResponsableAdministratif());
+			
 		}
 
 		return entity;
@@ -289,7 +128,7 @@ public class CongeDto implements Serializable {
 
 	/**
 	 * Convert list CongeDto -> list CongeEntity
-	 *
+	 * 
 	 * @param List<CongeDto>
 	 * @throws ParseException
 	 */
@@ -305,7 +144,7 @@ public class CongeDto implements Serializable {
 
 	/**
 	 * Convert list CongeEntity -> list CongeDto
-	 *
+	 * 
 	 * @param List<CongeEntity>
 	 * @throws ParseException
 	 */

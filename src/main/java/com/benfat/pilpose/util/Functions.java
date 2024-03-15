@@ -64,7 +64,7 @@ public class Functions {
 
 	/**
 	 * validate size of String
-	 *
+	 * 
 	 * @param pStr
 	 * @param pSize
 	 * @return
@@ -79,7 +79,7 @@ public class Functions {
 
 	/**
 	 * validate the size of contract num
-	 *
+	 * 
 	 * @param pStr
 	 * @param pSize
 	 * @return boolean
@@ -94,7 +94,7 @@ public class Functions {
 
 	/**
 	 * Convert String to Date [dd/MM/yyyy]
-	 *
+	 * 
 	 * @param pDateStr
 	 * @return
 	 */
@@ -116,7 +116,7 @@ public class Functions {
 
 	/**
 	 * get Date from string format
-	 *
+	 * 
 	 * @param pDateStr
 	 * @param dateFormat
 	 * @return
@@ -140,7 +140,7 @@ public class Functions {
 
 	/**
 	 * get String from Date
-	 *
+	 * 
 	 * @param date
 	 * @param dateFormat
 	 * @return
@@ -157,7 +157,7 @@ public class Functions {
 
 	/**
 	 * This method will generate the name of a getter method for a given field
-	 *
+	 * 
 	 * @return the name of the getter method
 	 */
 	public static String getGetterName(String pFieldName) {
@@ -169,7 +169,7 @@ public class Functions {
 
 	/**
 	 * Increments the given date by one day.
-	 *
+	 * 
 	 * @param pDate
 	 * @return Date
 	 */
@@ -182,8 +182,8 @@ public class Functions {
 
 	/**
 	 * Compare Dates ignoring time.
-	 *
-	 *
+	 * 
+	 * 
 	 * @param pDateFront
 	 * @param vDateOfDay
 	 * @return boolean
@@ -195,7 +195,7 @@ public class Functions {
 
 	/**
 	 * Set time to midi night
-	 *
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -211,7 +211,7 @@ public class Functions {
 
 	/**
 	 * Convert from date to XMLGregorianCalendar
-	 *
+	 * 
 	 * @param date
 	 * @return dateXMLGregC
 	 * @throws DatatypeConfigurationException
@@ -234,7 +234,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param fileName
 	 * @param key
 	 * @return {String}
@@ -272,8 +272,8 @@ public class Functions {
 
 	/**
 	 * Convert list collection to map collection.
-	 *
-	 *
+	 * 
+	 * 
 	 * @param list
 	 * @param mapper
 	 * @return Map
@@ -286,7 +286,7 @@ public class Functions {
 	 * Null-safe check if the specified collection is empty.
 	 * <p>
 	 * Null returns true.
-	 *
+	 * 
 	 * @param coll the collection to check, may be null
 	 * @return true if empty or null
 	 */
@@ -298,7 +298,7 @@ public class Functions {
 	 * Null-safe check if the specified collection is not empty.
 	 * <p>
 	 * Null returns false.
-	 *
+	 * 
 	 * @param coll the collection to check, may be null
 	 * @return true if not empty and null
 	 */
@@ -308,7 +308,7 @@ public class Functions {
 
 	/**
 	 * Convert data to csv format
-	 *
+	 * 
 	 * @param pData
 	 * @param pHeader
 	 * @param pDelimiter
@@ -333,7 +333,7 @@ public class Functions {
 
 	/**
 	 * get start of date
-	 *
+	 * 
 	 * @param pDay
 	 * @param pCal
 	 * @return
@@ -349,7 +349,7 @@ public class Functions {
 
 	/**
 	 * get start of date
-	 *
+	 * 
 	 * @param pDay
 	 * @param pCal
 	 * @return
@@ -365,7 +365,7 @@ public class Functions {
 
 	/**
 	 * Convert String builder to string
-	 *
+	 * 
 	 * @param pchaine
 	 * @return {String}
 	 */
@@ -375,7 +375,7 @@ public class Functions {
 
 	/**
 	 * Convert LocalDateTime to Date
-	 *
+	 * 
 	 * @param pLocalDateTime
 	 * @return
 	 */
@@ -389,7 +389,7 @@ public class Functions {
 
 	/**
 	 * Difference Between two dates -> to String
-	 *
+	 * 
 	 * @param pDate1
 	 * @param pDate2
 	 * @return
@@ -418,7 +418,7 @@ public class Functions {
 
 	/**
 	 * Difference Between two dates -> to MILLISECONDS
-	 *
+	 * 
 	 * @param pDate1
 	 * @param pDate2
 	 * @return
@@ -430,7 +430,7 @@ public class Functions {
 
 	/**
 	 * convert date to Log date format -> to String
-	 *
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -464,7 +464,7 @@ public class Functions {
 
 	/**
 	 * get number length
-	 *
+	 * 
 	 * @param number
 	 * @return {Integer}
 	 */
@@ -487,7 +487,7 @@ public class Functions {
 
 	/**
 	 * returns true if string is null or empty
-	 *
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -497,7 +497,7 @@ public class Functions {
 
 	/**
 	 * Get differences between two objects of same type
-	 *
+	 * 
 	 * @param newItem
 	 * @param oldItem
 	 * @return
@@ -516,7 +516,7 @@ public class Functions {
 
 	/**
 	 * convert miliSeconds to <b>mm:ss</b> format
-	 *
+	 * 
 	 * @param miliSeconds
 	 * @author Zakarya EL BAZY
 	 * @return
@@ -630,7 +630,7 @@ public class Functions {
 
 	/**
 	 * method return index of month from 0 (January) to 11 (December)
-	 *
+	 * 
 	 * @param Date
 	 * @return return month int
 	 */
@@ -642,7 +642,7 @@ public class Functions {
 
 	/**
 	 * method return index of month from 0 (January) to 11 (December)
-	 *
+	 * 
 	 * @param Date
 	 * @return return month int
 	 */
@@ -654,7 +654,7 @@ public class Functions {
 
 	/**
 	 * convert objet to double
-	 *
+	 * 
 	 * @param object
 	 * @return double
 	 */
@@ -667,7 +667,7 @@ public class Functions {
 
 	/**
 	 * convert objet to integer
-	 *
+	 * 
 	 * @param object
 	 * @return double
 	 */
@@ -680,7 +680,7 @@ public class Functions {
 
 	/**
 	 * convert object to Long
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -693,7 +693,7 @@ public class Functions {
 
 	/**
 	 * convert object to Float
-	 *
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -706,7 +706,7 @@ public class Functions {
 
 	/**
 	 * Afficher un double avec 2 chiffres apres la virgule
-	 *
+	 * 
 	 * @param nbrDouble
 	 * @return
 	 */
@@ -727,7 +727,7 @@ public class Functions {
 
 	/**
 	 * capitalize string
-	 *
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -737,7 +737,7 @@ public class Functions {
 
 	/**
 	 * calcul 12 mois glissant
-	 *
+	 * 
 	 * @return debut du 12 mois glissant
 	 * @param Date
 	 */
@@ -751,7 +751,7 @@ public class Functions {
 
 	/**
 	 * get previous month
-	 *
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -764,7 +764,7 @@ public class Functions {
 
 	/**
 	 * methode perme de return int month example : 2019-12-01 return 12
-	 *
+	 * 
 	 * @param Date
 	 * @return return month int
 	 * @author okourmou
@@ -777,7 +777,7 @@ public class Functions {
 
 	/**
 	 * Get string day/month from full String Date Jour ferie
-	 *
+	 * 
 	 * @param dateJourFerie
 	 * @return String
 	 * @author melbarhoumi
@@ -789,7 +789,7 @@ public class Functions {
 
 	/**
 	 * Get string day/month from Date Jour ferie
-	 *
+	 * 
 	 * @param dateJourFerie
 	 * @return String
 	 * @author melbarhoumi
@@ -801,7 +801,7 @@ public class Functions {
 
 	/**
 	 * Get string day/month from Date Jour ferie
-	 *
+	 * 
 	 * @param dayMonthJourFerie
 	 * @return String
 	 * @author melbarhoumi
@@ -818,7 +818,7 @@ public class Functions {
 
 	/**
 	 * convert object (that contains a String value) to string
-	 *
+	 * 
 	 * @param o
 	 * @return
 	 */
@@ -832,7 +832,7 @@ public class Functions {
 
 	/**
 	 * methode convert byte to image
-	 *
+	 * 
 	 * @param pImageData
 	 * @param pWidth
 	 * @param pHeight
@@ -853,7 +853,7 @@ public class Functions {
 
 	/**
 	 * methode to resize photos
-	 *
+	 * 
 	 * @param originalImage
 	 * @param targetWidth
 	 * @param targetHeight
@@ -871,7 +871,7 @@ public class Functions {
 
 	/**
 	 * get exceptions line number
-	 *
+	 * 
 	 * @param e
 	 * @return
 	 */
@@ -885,7 +885,7 @@ public class Functions {
 
 	/**
 	 * convert {@link Date} to {@link LocalDate}
-	 *
+	 * 
 	 * @param dateToConvert
 	 * @return
 	 */
@@ -895,7 +895,7 @@ public class Functions {
 
 	/**
 	 * convert {@link LocalDate} to {@link Date}
-	 *
+	 * 
 	 * @param dateToConvert
 	 * @return
 	 */
@@ -905,7 +905,7 @@ public class Functions {
 
 	/**
 	 * convert {@link Date} to {@link LocalDateTime}
-	 *
+	 * 
 	 * @param dateToConvert
 	 * @return
 	 */
@@ -917,7 +917,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param <T>
 	 * @param clazz
 	 * @param rawCollection
@@ -936,7 +936,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param date
 	 * @return
 	 */
@@ -945,7 +945,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param date1
 	 * @param date2
 	 * @return
@@ -965,7 +965,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param localDateTimeStr
 	 * @param formatPattern
 	 * @return
@@ -1003,7 +1003,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param nom
 	 * @return
 	 */
@@ -1015,7 +1015,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param file
 	 * @param data
 	 */
@@ -1030,7 +1030,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param file
 	 * @param data
 	 */
@@ -1043,7 +1043,7 @@ public class Functions {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param newPath
 	 * @param data
 	 */
@@ -1054,7 +1054,7 @@ public class Functions {
 
 	/**
 	 * convert string to Long
-	 *
+	 * 
 	 * @param string
 	 * @return
 	 */
