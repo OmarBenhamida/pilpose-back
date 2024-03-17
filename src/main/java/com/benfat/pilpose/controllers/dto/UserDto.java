@@ -57,115 +57,77 @@ public class UserDto implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private String dateCreation;
 
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
 	public Long getIdUser() {
 		return idUser;
 	}
-
 
 	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
-
 	public String getUsername() {
 		return username;
 	}
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-	public String getFonction() {
-		return fonction;
-	}
-
-
-	public void setFonction(String fonction) {
-		this.fonction = fonction;
-	}
-
-
-	public String getNom() {
-		return nom;
-	}
-
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-
-	public boolean isAdmin() {
-		return admin;
-	}
-
-
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-	public String getToken() {
-		return token;
-	}
-
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-
 	public String getDateCreation() {
 		return dateCreation;
 	}
-
 
 	public void setDateCreation(String dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public String getFonction() {
+		return fonction;
+	}
+
+	public void setFonction(String fonction) {
+		this.fonction = fonction;
+	}
+
+	public boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 
 	/**
 	 * Convert UserEntity -> UserDto
-	 *
+	 * 
 	 * @return DeviseDto
 	 * @throws ParseException
 	 */
@@ -184,7 +146,7 @@ public class UserDto implements Serializable {
 
 	/**
 	 * Convert UserEntity -> UserDto
-	 *
+	 * 
 	 * @return DeviseDto
 	 * @throws ParseException
 	 */
@@ -211,7 +173,7 @@ public class UserDto implements Serializable {
 
 	/**
 	 * Convert SiteDto -> SiteEntity
-	 *
+	 * 
 	 * @param UserDto
 	 */
 	public static UserEntity dtoToEntity(UserDto dto) throws ParseException {
@@ -233,7 +195,7 @@ public class UserDto implements Serializable {
 
 	/**
 	 * Convert list SiteDto -> list SiteEntity
-	 *
+	 * 
 	 * @param List<DeviseDto>
 	 * @throws ParseException
 	 */
@@ -249,7 +211,7 @@ public class UserDto implements Serializable {
 
 	/**
 	 * Convert list SiteEntity -> list SiteDto
-	 *
+	 * 
 	 * @param List<SiteEntity>
 	 * @throws ParseException
 	 */

@@ -37,40 +37,9 @@ public class LocalisationDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdLocalisation() {
-		return idLocalisation;
-	}
-
-
-	public void setIdLocalisation(Long idLocalisation) {
-		this.idLocalisation = idLocalisation;
-	}
-
-
-	public String getVille() {
-		return ville;
-	}
-
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-
-	public String getCodePostale() {
-		return codePostale;
-	}
-
-
-	public void setCodePostale(String codePostale) {
-		this.codePostale = codePostale;
-	}
-
-
 	/**
 	 * Convert LocalisationEntity -> LocalisationDto
-	 *
+	 * 
 	 * @return LocalisationEntity
 	 * @throws ParseException
 	 */
@@ -88,7 +57,7 @@ public class LocalisationDto implements Serializable {
 
 	/**
 	 * Convert LocalisationDto -> LocalisationEntity
-	 *
+	 * 
 	 * @param LocalisationDto
 	 */
 	public static LocalisationEntity dtoToEntity(LocalisationDto dto) throws ParseException {
@@ -107,7 +76,7 @@ public class LocalisationDto implements Serializable {
 
 	/**
 	 * Convert list LocalisationDto -> list LocalisationEntity
-	 *
+	 * 
 	 * @param List<LocalisationDto>
 	 * @throws ParseException
 	 */
@@ -123,7 +92,7 @@ public class LocalisationDto implements Serializable {
 
 	/**
 	 * Convert list LocalisationEntity -> list LocalisationDto
-	 *
+	 * 
 	 * @param List<LocalisationEntity>
 	 * @throws ParseException
 	 */

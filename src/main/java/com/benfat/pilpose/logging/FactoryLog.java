@@ -16,7 +16,7 @@ public final class FactoryLog {
 
 	/**
 	 * Rest logging
-	 *
+	 * 
 	 * @param origine
 	 * @param description
 	 * @param username
@@ -34,7 +34,7 @@ public final class FactoryLog {
 
 	/**
 	 * Rest logging with port
-	 *
+	 * 
 	 * @param origine
 	 * @param description
 	 * @param username
@@ -53,7 +53,7 @@ public final class FactoryLog {
 
 	/**
 	 * Service logging
-	 *
+	 * 
 	 * @param origine
 	 * @param description
 	 * @param dateStart
@@ -71,7 +71,7 @@ public final class FactoryLog {
 
 	/**
 	 * Rule logging
-	 *
+	 * 
 	 * @param origine
 	 * @param description
 	 * @param params
@@ -86,7 +86,7 @@ public final class FactoryLog {
 
 	/**
 	 * Error loging
-	 *
+	 * 
 	 * @param context
 	 * @param origine
 	 * @param dateErreur

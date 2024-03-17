@@ -22,11 +22,11 @@ public interface IFeuilleTempsRepository extends ICommonRepository<FeuilleTempsE
 
 	@Query(value = "SELECT SUM(heure_travaille) FROM feuille_temps where id_chantier = :idChantier", nativeQuery = true)
 	int getChantierCout(@Param("idChantier") Long idChantier);
-
-
+	
+	
 	@Query("SELECT DISTINCT dce.idCollaborateur FROM FeuilleTempsEntity dce")
 	List<CollaborateurEntity> getIdsCollaborateur();
-
+	
 	@Query(value = "SELECT SUM(heure_travaille) FROM feuille_temps where id_collaborateur = :idCollaborateur", nativeQuery = true)
 	int getCollabCout(@Param("idCollaborateur") Long idCollaborateur);
 

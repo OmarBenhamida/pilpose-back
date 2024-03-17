@@ -52,7 +52,7 @@ public class ChantierService implements IChantierService {
 
 	@Autowired
 	IChantierRepository chantierRepository;
-
+	
 	@Autowired
 	ICollaborateurRepository collaborateurRepository;
 

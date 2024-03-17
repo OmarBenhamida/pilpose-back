@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package com.benfat.pilpose.util;
 
@@ -23,7 +23,7 @@ public class CsvBuilder<T> {
 
 	/**
 	 * transform CSV file to bean
-	 *
+	 * 
 	 * @param reader
 	 * @param clazz
 	 * @param mapping

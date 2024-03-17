@@ -7,22 +7,20 @@ import java.util.List;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
 import com.benfat.pilpose.entities.TacheEntity;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 public interface ITacheService {
 
 	/**
 	 * Get all Tache
-	 *
-	 *
+	 * 
+	 * 
 	 * @return List<TacheEntity>
 	 */
 	List<TacheEntity> getAllTache();
 
 	/**
 	 * add or update Tache
-	 *
+	 * 
 	 * @param TacheEntity
 	 * @return
 	 */
@@ -30,21 +28,21 @@ public interface ITacheService {
 
 	/**
 	 * delete Tache
-	 *
+	 * 
 	 * @param entity
 	 */
 	boolean deleteTache(Long idTache);
 
 	/**
 	 * get refresh Tache
-	 *
+	 * 
 	 * @return
 	 */
 	List<TacheEntity> getRefreshedTache();
 
 	/**
 	 * genererLoader Tache
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -53,7 +51,7 @@ public interface ITacheService {
 
 	/**
 	 * Générer fichier excel
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -62,7 +60,7 @@ public interface ITacheService {
 
 	/**
 	 * Générer fichier csv
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 * @throws IOException
@@ -72,15 +70,15 @@ public interface ITacheService {
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 
 	/**
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */
 	TacheDto getTacheByAttribute() throws ParseException;
-
+	
 
 	/**
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */

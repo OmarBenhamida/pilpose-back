@@ -14,15 +14,15 @@ public class StatutErr {
 
 		HttpStatus vStatutErr = null;
 
-		if (pCodeErr >= 20 && pCodeErr <= 28) {
+		if (pCodeErr >= 20 && pCodeErr <= 28)
 			vStatutErr = HttpStatus.BAD_REQUEST;
-		} else if (pCodeErr >= 40 && pCodeErr <= 42) {
+		else if (pCodeErr >= 40 && pCodeErr <= 42)
 			vStatutErr = HttpStatus.UNAUTHORIZED;
-		} else if (pCodeErr >= 50 && pCodeErr <= 53) {
+		else if (pCodeErr >= 50 && pCodeErr <= 53)
 			vStatutErr = HttpStatus.FORBIDDEN;
-		} else if (pCodeErr >= 5 && pCodeErr <= 56) {
+		else if (pCodeErr >= 5 && pCodeErr <= 56)
 			vStatutErr = HttpStatus.SERVICE_UNAVAILABLE;
-		} else if (pCodeErr == 60) {
+		else if (pCodeErr == 60) {
 			vStatutErr = HttpStatus.NOT_FOUND;
 		} else if (pCodeErr == 61) {
 			vStatutErr = HttpStatus.METHOD_NOT_ALLOWED;

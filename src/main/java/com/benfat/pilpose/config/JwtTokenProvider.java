@@ -1,25 +1,19 @@
 package com.benfat.pilpose.config;
 
 
-import java.util.Date;
+import io.jsonwebtoken.*;
 
 import org.springframework.stereotype.Component;
 
 import com.benfat.pilpose.controllers.dto.UserDto;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import java.util.Date;
 
 
 @Component
 public class JwtTokenProvider {
 
-
+    
     private String jwtSecret = "ddUKlQ32jg8zRKG4AwFHAHAHAHAGFIGUIGIL";
 
 

@@ -23,26 +23,4 @@ public class PlanningDto implements Serializable {
 
 	private TacheDto idTache;
 
-	public CollaborateurDto getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-	public TacheDto getIdTache() {
-		return idTache;
-	}
-
-	public void setIdTache(TacheDto idTache) {
-		this.idTache = idTache;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-
 }

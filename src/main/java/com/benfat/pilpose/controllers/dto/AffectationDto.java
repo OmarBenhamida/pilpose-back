@@ -33,40 +33,9 @@ public class AffectationDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-	public Long getIdAffectation() {
-		return idAffectation;
-	}
-
-
-	public void setIdAffectation(Long idAffectation) {
-		this.idAffectation = idAffectation;
-	}
-
-
-	public CollaborateurDto getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-
-	public void setIdCollaborateur(CollaborateurDto idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-
-	public TacheDto getIdTache() {
-		return idTache;
-	}
-
-
-	public void setIdTache(TacheDto idTache) {
-		this.idTache = idTache;
-	}
-
-
 	/**
 	 * Convert AffectationEntity -> AffectationDto
-	 *
+	 * 
 	 * @return AffectationEntity
 	 * @throws ParseException
 	 */
@@ -84,7 +53,7 @@ public class AffectationDto implements Serializable {
 
 	/**
 	 * Convert AffectationDto -> AffectationEntity
-	 *
+	 * 
 	 * @param AffectationDto
 	 */
 	public static AffectationEntity dtoToEntity(AffectationDto dto) throws ParseException {
@@ -102,7 +71,7 @@ public class AffectationDto implements Serializable {
 
 	/**
 	 * Convert list AffectationDto -> list AffectationEntity
-	 *
+	 * 
 	 * @param List<AffectationDto>
 	 * @throws ParseException
 	 */
@@ -118,7 +87,7 @@ public class AffectationDto implements Serializable {
 
 	/**
 	 * Convert list AffectationEntity -> list AffectationDto
-	 *
+	 * 
 	 * @param List<AffectationEntity>
 	 * @throws ParseException
 	 */

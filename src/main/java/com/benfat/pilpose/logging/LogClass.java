@@ -8,7 +8,7 @@ public class LogClass {
 
 	/**
 	 * Constructor with fields
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description

@@ -25,7 +25,7 @@ public class PilposeBusinessException extends RuntimeException {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param e
 	 */
 	public PilposeBusinessException(Exception e) {
@@ -34,7 +34,7 @@ public class PilposeBusinessException extends RuntimeException {
 
 	/**
 	 * Constructor using <libelle>
-	 *
+	 * 
 	 * @param libelle
 	 */
 	public PilposeBusinessException(String libelle) {
@@ -44,7 +44,7 @@ public class PilposeBusinessException extends RuntimeException {
 
 	/**
 	 * Constructor using <code> && <libelle>
-	 *
+	 * 
 	 * @param code
 	 * @param libelle
 	 */
@@ -57,7 +57,7 @@ public class PilposeBusinessException extends RuntimeException {
 
 	/**
 	 * Constructor using <code> && <libelle> && <severity>
-	 *
+	 * 
 	 * @param code
 	 * @param libelle
 	 * @param severity

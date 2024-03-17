@@ -47,124 +47,9 @@ public class ChantierDto implements Serializable {
 		return serialVersionUID;
 	}
 
-
-
-
-	public Long getIdChantier() {
-		return idChantier;
-	}
-
-
-
-
-	public void setIdChantier(Long idChantier) {
-		this.idChantier = idChantier;
-	}
-
-
-
-
-	public String getReference() {
-		return reference;
-	}
-
-
-
-
-	public void setReference(String reference) {
-		this.reference = reference;
-	}
-
-
-
-
-	public String getNomChantier() {
-		return nomChantier;
-	}
-
-
-
-
-	public void setNomChantier(String nomChantier) {
-		this.nomChantier = nomChantier;
-	}
-
-
-
-
-	public String getNomCompletClient() {
-		return nomCompletClient;
-	}
-
-
-
-
-	public void setNomCompletClient(String nomCompletClient) {
-		this.nomCompletClient = nomCompletClient;
-	}
-
-
-
-
-	public String getEtat() {
-		return etat;
-	}
-
-
-
-
-	public void setEtat(String etat) {
-		this.etat = etat;
-	}
-
-
-
-
-	public String getVille() {
-		return ville;
-	}
-
-
-
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-
-
-
-
-	public LocalisationDto getLocalisationDto() {
-		return localisationDto;
-	}
-
-
-
-
-	public void setLocalisationDto(LocalisationDto localisationDto) {
-		this.localisationDto = localisationDto;
-	}
-
-
-
-
-	public CollaborateurDto getClientDto() {
-		return clientDto;
-	}
-
-
-
-
-	public void setClientDto(CollaborateurDto clientDto) {
-		this.clientDto = clientDto;
-	}
-
-
-
-
 	/**
 	 * Convert ChantierEntity -> ChantierDto
-	 *
+	 * 
 	 * @return ChantierEntity
 	 * @throws ParseException
 	 */
@@ -190,7 +75,7 @@ public class ChantierDto implements Serializable {
 
 	/**
 	 * Convert ChantierDto -> ChantierEntity
-	 *
+	 * 
 	 * @param ChantierDto
 	 */
 	public static ChantierEntity dtoToEntity(ChantierDto dto) throws ParseException {
@@ -211,7 +96,7 @@ public class ChantierDto implements Serializable {
 
 	/**
 	 * Convert list ChantierDto -> list ChantierEntity
-	 *
+	 * 
 	 * @param List<ChantierDto>
 	 * @throws ParseException
 	 */
@@ -227,7 +112,7 @@ public class ChantierDto implements Serializable {
 
 	/**
 	 * Convert list ChantierEntity -> list ChantierDto
-	 *
+	 * 
 	 * @param List<ChantierEntity>
 	 * @throws ParseException
 	 */

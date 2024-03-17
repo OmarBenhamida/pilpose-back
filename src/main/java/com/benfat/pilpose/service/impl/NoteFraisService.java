@@ -216,7 +216,7 @@ public class NoteFraisService implements INoteFraisService {
 					Cell dateFinCell = PilposeUtils.getXCell(row, 3);
 					dateFinCell.setCellValue(ca.getNomCompletEmploye());
 					dateFinCell.setCellStyle(style);
-
+					
 					Cell statutCell = PilposeUtils.getXCell(row, 4);
 					statutCell.setCellValue(ca.getStatut());
 					statutCell.setCellStyle(style);

@@ -11,21 +11,21 @@ import com.benfat.pilpose.entities.ParametrageEntity;
 public interface IParametrageRepository extends ICommonRepository<ParametrageEntity, Long> {
 
 	/**
-	 *
+	 * 
 	 * @param idParametrage
 	 * @return
 	 */
 	ParametrageEntity findByIdParametrage(Long idParametrage);
 
 	/**
-	 *
+	 * 
 	 * @param code
 	 * @return
 	 */
 	ParametrageEntity findByCode(String code);
 
 	/**
-	 *
+	 * 
 	 * @param code
 	 * @return
 	 */

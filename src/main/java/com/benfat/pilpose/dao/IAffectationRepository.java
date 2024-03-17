@@ -16,16 +16,16 @@ public interface IAffectationRepository extends ICommonRepository<AffectationEnt
 
 	@Query("SELECT dce FROM AffectationEntity dce")
 	AffectationEntity getAll();
-
+	
 	@Query("SELECT dce FROM AffectationEntity dce WHERE dce.idTache.typeTache ='tache'")
 	List<AffectationEntity> getAllTache();
 
 	@Query("SELECT dce FROM AffectationEntity dce WHERE dce.idCollaborateur.idCollaborateur = :idc")
 	List<AffectationEntity> getByIdCollab(Long idc);
-
+	
 	@Query("SELECT DISTINCT dce.idCollaborateur FROM AffectationEntity dce WHERE dce.idTache = :idTache")
 	List<CollaborateurEntity> getByIdTache(TacheEntity idTache);
-
+	
 
 	@Query(value = "DELETE FROM affectation WHERE id_tache = :idTache", nativeQuery = true)
 	void deleteAffectationByTache(@Param("idTache") Long idTache);

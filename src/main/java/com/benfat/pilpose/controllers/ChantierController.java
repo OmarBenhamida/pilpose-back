@@ -1,10 +1,11 @@
 /**
- *
+ * 
  */
 package com.benfat.pilpose.controllers;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -60,13 +61,24 @@ public class ChantierController {
 
 		PilposeResponse pilposeResponse = null;
 		List<ChantierDto> chantierDtos = ChantierDto.entitiesToDtos(chantierService.getAllChantier());
+		/** Parcourir la liste chantierDtos */
+		for (Iterator<ChantierDto> iterator = chantierDtos.iterator(); iterator.hasNext();) {
+			ChantierDto chantierDto = iterator.next();
+
+			/** Vérifier Si on trouve le chantier dedier pour congé */
+			if (chantierDto.getReference().equals("XXXXXX")) {
+				/** Si c'est le cas on supprimer l'objet de la liste */
+				iterator.remove();
+			}
+		}
+
 		pilposeResponse = new PilposeResponse(chantierDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}
 
 	/**
 	 * add chantier
-	 *
+	 * 
 	 * @param ChantierDto
 	 * @return
 	 * @throws ParseException
@@ -85,7 +97,7 @@ public class ChantierController {
 
 	/**
 	 * update chantier
-	 *
+	 * 
 	 * @param ChantierDto
 	 * @return
 	 * @throws ParseException
@@ -104,7 +116,7 @@ public class ChantierController {
 
 	/**
 	 * delete chantier
-	 *
+	 * 
 	 * @param chantierDto
 	 * @return
 	 * @throws ParseException
@@ -125,24 +137,21 @@ public class ChantierController {
 
 	/**
 	 * Generer loader chantier
-	 *
+	 * 
 	 * @param file
 	 * @return
 	 * @throws IOException
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderChantier()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderChantier() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader chantier", null, RsMethodEnum.POST.getValue(),
-					"/v0/traitementCTB_NF/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader chantier",
+					null, RsMethodEnum.POST.getValue(), "/v0/traitementCTB_NF/", null));
 		}
-
-
 
 		return new PilposeResponse(chantierService.genererLoader(), HttpStatus.OK);
 	}
 
 }
+

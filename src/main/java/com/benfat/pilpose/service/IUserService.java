@@ -9,7 +9,7 @@ public interface IUserService {
 
 	/**
 	 * sign in
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */
@@ -17,7 +17,7 @@ public interface IUserService {
 
 	/**
 	 * update password
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */
@@ -25,7 +25,7 @@ public interface IUserService {
 
 	/**
 	 * update password
-	 *
+	 * 
 	 * @return
 	 * @throws ParseException
 	 */

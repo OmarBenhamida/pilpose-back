@@ -27,72 +27,19 @@ public class ParametrageDto implements Serializable {
 
 	private Integer valeur;
 
-
+	
 	private String libelle;
-
-
+	
+	
 	private String code;
 
 	private String description;
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	public Long getIdParametrage() {
-		return idParametrage;
-	}
-
-
-	public void setIdParametrage(Long idParametrage) {
-		this.idParametrage = idParametrage;
-	}
-
-
-	public Integer getValeur() {
-		return valeur;
-	}
-
-
-	public void setValeur(Integer valeur) {
-		this.valeur = valeur;
-	}
-
-
-	public String getLibelle() {
-		return libelle;
-	}
-
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
-
-	public String getCode() {
-		return code;
-	}
-
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 
 	/**
 	 * Convert ParametrageEntity -> ParametrageDto
-	 *
+	 * 
 	 * @return DeviseDto
 	 * @throws ParseException
 	 */
@@ -111,7 +58,7 @@ public class ParametrageDto implements Serializable {
 
 	/**
 	 * Convert ParametrageDto -> ParametrageEntity
-	 *
+	 * 
 	 * @param ParametrageDto
 	 */
 	public static ParametrageEntity dtoToEntity(ParametrageDto dto) throws ParseException {
@@ -132,7 +79,7 @@ public class ParametrageDto implements Serializable {
 
 	/**
 	 * Convert list SiteDto -> list SiteEntity
-	 *
+	 * 
 	 * @param List<DeviseDto>
 	 * @throws ParseException
 	 */
@@ -148,7 +95,7 @@ public class ParametrageDto implements Serializable {
 
 	/**
 	 * Convert list SiteEntity -> list SiteDto
-	 *
+	 * 
 	 * @param List<SiteEntity>
 	 * @throws ParseException
 	 */

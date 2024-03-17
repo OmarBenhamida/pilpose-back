@@ -8,7 +8,7 @@ public class RsLog extends LogClass {
 
 	/**
 	 * Rest log
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param description
@@ -28,7 +28,7 @@ public class RsLog extends LogClass {
 
 	/**
 	 * Rest log with port
-	 *
+	 * 
 	 * @param ctx
 	 * @param origine
 	 * @param port
