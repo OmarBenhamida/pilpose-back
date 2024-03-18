@@ -23,7 +23,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/planning")
-@CrossOrigin(origins = { "http://localhost:4200", "https://pilpose.chd-pro.fr", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "https://pilpose.chd-pro.fr", "http://localhost:8100" })
 public class PlanningController {
 	@Autowired
 	private ServerProperties serverProperties;
