@@ -173,6 +173,29 @@ public class CollaborateurController {
 	}
 
 	/**
+	 * get collaborateur by Id
+	 * 
+	 * @param collaborateurDto
+	 * @return
+	 * @throws ParseException
+	 * @throws PilposeTechnicalException
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/getUserById/{idCollaborateur}", headers = Constants.HEADERS)
+	public PilposeResponse getCollaborateurById(@PathVariable Long idCollaborateur)
+			throws ParseException, PilposeTechnicalException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"get collaborateur by fonction Responsable travaux controller", null, RsMethodEnum.GET.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
+		}
+		/** get collaborateur */
+		CollaborateurDto retour = CollaborateurDto
+				.entityToDto(collaborateurService.getCollaborateurById(idCollaborateur));
+
+		return new PilposeResponse(retour, HttpStatus.OK);
+	}
+
+	/**
 	 * Generer loader collaborateur
 	 * 
 	 * @param file
