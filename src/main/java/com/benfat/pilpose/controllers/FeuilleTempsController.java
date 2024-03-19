@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +32,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/feuille")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "https://pilpose.chd-pro.fr", "http://localhost:8100" })
 public class FeuilleTempsController {
 
 	private static Logger logger = LoggerFactory.getLogger(FeuilleTempsController.class);
@@ -180,7 +179,6 @@ public class FeuilleTempsController {
 					"/v0/feuille/", null));
 		}
 
-		
 
 		return new PilposeResponse(feuilleTempsService.genererLoader(), HttpStatus.OK);
 	}

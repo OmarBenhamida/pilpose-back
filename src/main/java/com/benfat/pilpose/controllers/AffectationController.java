@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +34,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/affectation")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "https://pilpose.chd-pro.fr", "http://localhost:8100" })
 public class AffectationController {
 
 	private static Logger logger = LoggerFactory.getLogger(AffectationController.class);
@@ -169,7 +168,7 @@ public class AffectationController {
 
 		boolean res = affectationService.addOrUpdateListAffecation(tache, listId);
 
-		if (res == false) {
+		if (!res) {
 			return new PilposeResponse(res, HttpStatus.CONFLICT);
 
 		} else {
@@ -197,7 +196,7 @@ public class AffectationController {
 
 		boolean res = affectationService.updateListAffecation(tache, updateAffectationDto.getListIdsCollab());
 
-		if (res == false) {
+		if (!res) {
 			return new PilposeResponse(res, HttpStatus.CONFLICT);
 
 		} else {
