@@ -43,7 +43,7 @@ public class TacheDto implements Serializable {
 
 	private ChantierDto idChantier;
 
-	private CollaborateurDto responsable;
+	private CollaborateurPlannigDto responsable;
 
 	private String nomCompletResponsable;
 
@@ -76,7 +76,7 @@ public class TacheDto implements Serializable {
 			dto.setCommantaire(entity.getCommantaire());
 			dto.setTypeTache(entity.getTypeTache());
 			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
-			dto.setResponsable(CollaborateurDto.entityToDto(entity.getResponsable()));
+			dto.setResponsable(CollaborateurPlannigDto.entityToDto(entity.getResponsable()));
 			if (entity.getResponsable() != null) {
 				dto.setNomCompletResponsable(
 						entity.getResponsable().getNom() + "  " + entity.getResponsable().getPrenom());
@@ -119,7 +119,7 @@ public class TacheDto implements Serializable {
 			entity.setCommantaire(dto.getCommantaire());
 			entity.setTypeTache(dto.getTypeTache());
 			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));
-			entity.setResponsable(CollaborateurDto.dtoToEntity(dto.getResponsable()));
+			entity.setResponsable(CollaborateurPlannigDto.dtoToEntity(dto.getResponsable()));
 		}
 
 		return entity;

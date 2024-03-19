@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurPlannigDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.controllers.dto.PlanningDto;
 import com.benfat.pilpose.controllers.dto.TacheDto;
@@ -165,7 +166,8 @@ public class CollaborateurService implements ICollaborateurService {
 		for (AffectationEntity num : affectationEntities) {
 
 			PlanningDto dto = new PlanningDto();
-			dto.setIdCollaborateur(CollaborateurDto.entityToDto(num.getIdCollaborateur()));
+			dto.setIdCollaborateur(CollaborateurPlannigDto.entityToDto(num.getIdCollaborateur()));
+			
 			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
 
 			list.add(dto);
@@ -181,7 +183,7 @@ public class CollaborateurService implements ICollaborateurService {
 		for (AffectationEntity num : affectationEntities) {
 
 			PlanningDto dto = new PlanningDto();
-			dto.setIdCollaborateur(CollaborateurDto.entityToDto(num.getIdCollaborateur()));
+			dto.setIdCollaborateur(CollaborateurPlannigDto.entityToDto(num.getIdCollaborateur()));
 			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
 
 			list.add(dto);

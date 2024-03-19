@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.ChantierDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
+import com.benfat.pilpose.controllers.dto.CollaborateurPlannigDto;
 import com.benfat.pilpose.controllers.dto.LocalisationDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.IChantierRepository;
@@ -99,7 +100,7 @@ public class ChantierService implements IChantierService {
 
 		CollaborateurEntity client = collaborateurRepository.getUserById(chantier.getClientDto().getIdCollaborateur());
 
-		chantier.setClientDto(CollaborateurDto.entityToDto(client));
+		chantier.setClientDto(CollaborateurPlannigDto.entityToDto(client));
 		ChantierEntity entity = new ChantierEntity();
 		try {
 

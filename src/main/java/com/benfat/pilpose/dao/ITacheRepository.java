@@ -16,9 +16,6 @@ public interface ITacheRepository extends ICommonRepository<TacheEntity, Long> {
 	@Query("SELECT dce FROM TacheEntity dce WHERE dce.typeTache = 'tache'")
 	List<TacheEntity> getAll();
 
-	// @Query("SELECT dce FROM TacheEntity dce WHERE dce.idTache = (SELECT
-	// MAX(dce.idTache) FROM TacheEntity)")
-
 	@Query(value = "SELECT * FROM tache dce WHERE dce.`id_tache` = ( SELECT MAX(dce2.`id_tache`) FROM tache dce2 )", nativeQuery = true)
 	TacheEntity getByAttribute();
 
