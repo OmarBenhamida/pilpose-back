@@ -19,7 +19,7 @@ public class PlanningDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private CollaborateurDto idCollaborateur;
+	private CollaborateurPlannigDto idCollaborateur;
 
 	private TacheDto idTache;
 

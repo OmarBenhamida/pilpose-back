@@ -41,7 +41,7 @@ public class ChantierDto implements Serializable {
 
 	private LocalisationDto localisationDto;
 
-	private CollaborateurDto clientDto;
+	private CollaborateurPlannigDto clientDto;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -59,7 +59,7 @@ public class ChantierDto implements Serializable {
 			dto = new ChantierDto();
 			dto.setIdChantier(entity.getIdChantier());
 			dto.setReference(entity.getReference());
-			dto.setClientDto(CollaborateurDto.entityToDto(entity.getClient()));
+			dto.setClientDto(CollaborateurPlannigDto.entityToDto(entity.getClient()));
 			dto.setEtat(entity.getEtat());
 			dto.setLocalisationDto(LocalisationDto.entityToDto(entity.getLocalisation()));
 			if (entity.getLocalisation() != null) {
@@ -85,7 +85,7 @@ public class ChantierDto implements Serializable {
 
 			entity.setIdChantier(dto.getIdChantier());
 			entity.setReference(dto.getReference());
-			entity.setClient(CollaborateurDto.dtoToEntity(dto.getClientDto()));
+			entity.setClient(CollaborateurPlannigDto.dtoToEntity(dto.getClientDto()));
 			entity.setEtat(dto.getEtat());
 			entity.setNomChantier(dto.getNomChantier());
 			entity.setLocalisation(LocalisationDto.dtoToEntity(dto.getLocalisationDto()));
