@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.benfat.pilpose.controllers.dto.ChantierDto;
-import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurPlannigDto;
 import com.benfat.pilpose.controllers.dto.LocalisationDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;

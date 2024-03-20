@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -169,6 +168,29 @@ public class CollaborateurController {
 		/** get collaborateur */
 		List<CollaborateurDto> retour = CollaborateurDto
 				.entitiesToDtos(collaborateurService.getCollaborateurByfonction("Responsable travaux"));
+
+		return new PilposeResponse(retour, HttpStatus.OK);
+	}
+
+	/**
+	 * get collaborateur by Id
+	 * 
+	 * @param collaborateurDto
+	 * @return
+	 * @throws ParseException
+	 * @throws PilposeTechnicalException
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V0 + "/getUserById/{idCollaborateur}", headers = Constants.HEADERS)
+	public PilposeResponse getCollaborateurById(@PathVariable Long idCollaborateur)
+			throws ParseException, PilposeTechnicalException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"get collaborateur by fonction Responsable travaux controller", null, RsMethodEnum.GET.getValue(),
+					"/collaborateur" + ConstantsApplication.REST_PATH_V0, null));
+		}
+		/** get collaborateur */
+		CollaborateurDto retour = CollaborateurDto
+				.entityToDto(collaborateurService.getCollaborateurById(idCollaborateur));
 
 		return new PilposeResponse(retour, HttpStatus.OK);
 	}
