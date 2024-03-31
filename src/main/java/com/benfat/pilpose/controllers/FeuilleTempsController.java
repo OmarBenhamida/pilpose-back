@@ -81,10 +81,15 @@ public class FeuilleTempsController {
 					"add feuilleTemps controller", null, RsMethodEnum.POST.getValue(),
 					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
+		
+		boolean res = feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto);
 
-		return new PilposeResponse(
-				FeuilleTempsDto.entityToDto(feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto)),
-				HttpStatus.OK);
+		if (!res) {
+			return new PilposeResponse(res, HttpStatus.CONFLICT);
+
+		} else {
+			return new PilposeResponse(res, HttpStatus.OK);
+		}
 	}
 
 	/**
@@ -102,9 +107,14 @@ public class FeuilleTempsController {
 					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
 
-		return new PilposeResponse(
-				FeuilleTempsDto.entityToDto(feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto)),
-				HttpStatus.OK);
+		boolean res = feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto);
+
+		if (!res) {
+			return new PilposeResponse(res, HttpStatus.CONFLICT);
+
+		} else {
+			return new PilposeResponse(res, HttpStatus.OK);
+		}
 	}
 
 	/**

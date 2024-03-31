@@ -34,7 +34,7 @@ public class FeuilleTempsDto implements Serializable {
 	private int heureTravaille;
 
 	private String vehicule;
-	
+
 	private String vehiculeSuite;
 
 	private int km;
@@ -58,21 +58,16 @@ public class FeuilleTempsDto implements Serializable {
 	private String nomCompletClient;
 
 	private String ville;
-	
-	private String metier;
-	
+
+	private double montantRevise;
+
 	private boolean indemnite;
-	
-	
+
 	private boolean validationChefEquipe;
 
 	private boolean validationResponsableTravaux;
 
 	private boolean validationGerant;
-
-
-	
-	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -91,7 +86,7 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setReference(entity.getReference());
 			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setJourSemaine(entity.getJourSemaine());
-            dto.setMetier(entity.getMetier());
+
 			dto.setVehicule(entity.getVehicule());
 			dto.setVehiculeSuite(entity.getVehiculeSuite());
 			dto.setKm(entity.getKm());
@@ -102,27 +97,32 @@ public class FeuilleTempsDto implements Serializable {
 			dto.setIdCollaborateur(CollaborateurDto.entityToDto(entity.getIdCollaborateur()));
 			dto.setResponsable(CollaborateurDto.entityToDto(entity.getResponsable()));
 			dto.setStatut(entity.getStatut());
+			dto.setMontantRevise(entity.getMontantRevise());
 			if (entity.getResponsable() != null) {
-				dto.setNomCompletResponsable(entity.getResponsable().getNom() + "  " + entity.getResponsable().getPrenom());
+				dto.setNomCompletResponsable(
+						entity.getResponsable().getNom() + "  " + entity.getResponsable().getPrenom());
 			}
 			if (entity.getIdCollaborateur() != null) {
-				dto.setNomCompletSalarie(entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
+				dto.setNomCompletSalarie(
+						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
 			}
 			if (entity.getIdChantier() != null) {
-				dto.setNomCompletChantier(entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference());
-				}
+				dto.setNomCompletChantier(
+						entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference());
+			}
 			if (entity.getIdChantier().getClient() != null) {
-					dto.setNomCompletClient(entity.getIdChantier().getClient().getPrenom() + "  "+ entity.getIdChantier().getClient().getNom());
-				}
+				dto.setNomCompletClient(entity.getIdChantier().getClient().getPrenom() + "  "
+						+ entity.getIdChantier().getClient().getNom());
+			}
 			if (entity.getIdChantier().getLocalisation() != null) {
-					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"+ entity.getIdChantier().getLocalisation().getCodePostale());
-				}
-			
+				dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"
+						+ entity.getIdChantier().getLocalisation().getCodePostale());
+			}
+
 			dto.setValidationChefEquipe(entity.isValidationChefEquipe());
 			dto.setValidationGerant(entity.isValidationGerant());
 			dto.setValidationResponsableTravaux(entity.isValidationResponsableTravaux());
-			
-				
+
 		}
 		return dto;
 	}
@@ -141,7 +141,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setReference(dto.getReference());
 			entity.setTypeTravaux(dto.getTypeTravaux());
 			entity.setJourSemaine(dto.getJourSemaine());
-            entity.setMetier(dto.getMetier());
+			entity.setMontantRevise(dto.getMontantRevise());
 			entity.setVehicule(dto.getVehicule());
 			entity.setVehiculeSuite(dto.getVehiculeSuite());
 			entity.setKm(dto.getKm());
@@ -155,7 +155,7 @@ public class FeuilleTempsDto implements Serializable {
 			entity.setValidationChefEquipe(dto.isValidationChefEquipe());
 			entity.setValidationGerant(dto.isValidationGerant());
 			entity.setValidationResponsableTravaux(dto.isValidationResponsableTravaux());
-	
+
 		}
 
 		return entity;

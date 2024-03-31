@@ -87,7 +87,7 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 	}
 
 	@Override
-	public FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
+	public boolean addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps) {
 		Date dateDeb = new Date();
 
 		try {
@@ -122,7 +122,15 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 				}
 			}
 
-			entity = feuilleTempsRepository.save(entity);
+			List <FeuilleTempsEntity> feuille = feuilleTempsRepository.verifyChavauchement(entity.getIdChantier().getIdChantier(),
+					entity.getJourSemaine());
+
+			if (feuille == null || feuille.isEmpty()) {
+				entity = feuilleTempsRepository.save(entity);
+
+			} else {
+				return false;
+			}
 
 			/** Envoi d'un email si une nouvelle feuille de temps a été créée */
 			if (feuilleTemps.getIdFeuilleTemps() == null) {
@@ -130,7 +138,7 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 						"Bonjour,\nVotre feuille de temps est créée");
 			}
 
-			return entity;
+			return true;
 		} catch (Exception e) {
 			throw new PilposeBusinessException("FeuilleTempsService::addOrUpdateFeuilleTemps on line "
 					+ Functions.getExceptionLineNumber(e) + " | " + e.getMessage());
@@ -312,13 +320,13 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 					indimniteCell.setCellValue(ca.isIndemnite());
 					indimniteCell.setCellStyle(style);
 
-					Cell metierCell = PilposeUtils.getXCell(row, 11);
-					metierCell.setCellValue(ca.getMetier());
-					metierCell.setCellStyle(style);
-
-					Cell etatCell = PilposeUtils.getXCell(row, 12);
+					Cell etatCell = PilposeUtils.getXCell(row, 11);
 					etatCell.setCellValue(ca.getStatut());
 					etatCell.setCellStyle(style);
+
+					Cell montantReviseCell = PilposeUtils.getXCell(row, 12);
+					montantReviseCell.setCellValue(ca.getMontantRevise());
+					montantReviseCell.setCellStyle(style);
 
 					indexLigneFeuilleTemps++;
 				}
@@ -368,10 +376,11 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 		headerLine.append(CSV_SEPARATOR);
 		headerLine.append("Indimnité");
 		headerLine.append(CSV_SEPARATOR);
-		headerLine.append("Métier");
-		headerLine.append(CSV_SEPARATOR);
 
 		headerLine.append("Etat");
+		headerLine.append(CSV_SEPARATOR);
+
+		headerLine.append("Montant révisé");
 		writer.write(headerLine.toString());
 		writer.newLine();
 
@@ -400,9 +409,10 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 			oneLine.append(CSV_SEPARATOR);
 			oneLine.append(l.isIndemnite());
 			oneLine.append(CSV_SEPARATOR);
-			oneLine.append(l.getMetier());
-			oneLine.append(CSV_SEPARATOR);
 			oneLine.append(l.getStatut());
+			oneLine.append(CSV_SEPARATOR);
+			oneLine.append(l.getMontantRevise());
+
 			writer.write(oneLine.toString());
 			writer.newLine();
 

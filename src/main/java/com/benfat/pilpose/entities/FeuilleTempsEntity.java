@@ -44,7 +44,7 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "vehicule")
 	private String vehicule;
-	
+
 	@Column(name = "vehicule_suite")
 	private String vehiculeSuite;
 
@@ -69,25 +69,21 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 
 	@Column(name = "statut")
 	private String statut;
-	
-	@Column(name = "metier")
-	private String metier;
-	
+
 	@Column(name = "indemnite")
 	private boolean indemnite;
-	
+
 	@Column(name = "validation_chef_equipe")
 	private boolean validationChefEquipe;
-	
+
 	@Column(name = "validation_resp_travaux")
 	private boolean validationResponsableTravaux;
-	
+
 	@Column(name = "validation_gerant")
 	private boolean validationGerant;
-	
 
-	
-	
+	@Column(name = "montant_revise")
+	private double montantRevise;
 
 	@Override
 	public Long getId() {
@@ -203,16 +199,6 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 		this.vehiculeSuite = vehiculeSuite;
 	}
 
-	public String getMetier() {
-		return metier;
-	}
-
-	public void setMetier(String metier) {
-		this.metier = metier;
-	}
-
-	
-
 	public boolean isValidationChefEquipe() {
 		return validationChefEquipe;
 	}
@@ -237,10 +223,6 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 		this.validationGerant = validationGerant;
 	}
 
-
-
-
-
 	public boolean isIndemnite() {
 		return indemnite;
 	}
@@ -248,8 +230,13 @@ public class FeuilleTempsEntity extends AbstractCommonEntity<Long> {
 	public void setIndemnite(boolean indemnite) {
 		this.indemnite = indemnite;
 	}
-	
-	
-	
+
+	public double getMontantRevise() {
+		return montantRevise;
+	}
+
+	public void setMontantRevise(double montantRevise) {
+		this.montantRevise = montantRevise;
+	}
 
 }
