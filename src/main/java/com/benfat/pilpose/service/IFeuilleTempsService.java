@@ -26,7 +26,7 @@ public interface IFeuilleTempsService {
 	 * @param FeuilleTempsEntity
 	 * @return
 	 */
-	FeuilleTempsEntity addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps);
+	boolean addOrUpdateFeuilleTemps(FeuilleTempsDto feuilleTemps);
 
 	/**
 	 * delete FeuilleTemps
