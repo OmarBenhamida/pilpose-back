@@ -62,7 +62,8 @@ public class FeuilleTempsController {
 		}
 
 		PilposeResponse pilposeResponse = null;
-		List<FeuilleTempsDto> feuilleTempsDtos = FeuilleTempsDto.entitiesToDtos(feuilleTempsService.getAllFeuilleTemps());
+		List<FeuilleTempsDto> feuilleTempsDtos = FeuilleTempsDto
+				.entitiesToDtos(feuilleTempsService.getAllFeuilleTemps());
 		pilposeResponse = new PilposeResponse(feuilleTempsDtos, HttpStatus.OK);
 		return pilposeResponse;
 	}
@@ -81,7 +82,7 @@ public class FeuilleTempsController {
 					"add feuilleTemps controller", null, RsMethodEnum.POST.getValue(),
 					"/feuilleTemps" + ConstantsApplication.REST_PATH_V0, null));
 		}
-		
+
 		boolean res = feuilleTempsService.addOrUpdateFeuilleTemps(feuilleTempsDto);
 
 		if (!res) {
@@ -171,7 +172,7 @@ public class FeuilleTempsController {
 		pilposeResponse = new PilposeResponse(feuilleTempsService.getCollaborateurRecaps(), HttpStatus.OK);
 		return pilposeResponse;
 	}
-	
+
 	/**
 	 * Generer loader chantier
 	 * 
@@ -181,16 +182,31 @@ public class FeuilleTempsController {
 	 * @throws ParseException
 	 */
 	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/export", headers = Constants.HEADERS)
-	public PilposeResponse genererLoaderChantier()
-			throws IOException, ParseException {
+	public PilposeResponse genererLoaderChantier() throws IOException, ParseException {
 		if (logger.isInfoEnabled()) {
-			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
-					"générer le loader feuille", null, RsMethodEnum.POST.getValue(),
-					"/v0/feuille/", null));
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "générer le loader feuille",
+					null, RsMethodEnum.POST.getValue(), "/v0/feuille/", null));
 		}
 
-
 		return new PilposeResponse(feuilleTempsService.genererLoader(), HttpStatus.OK);
+	}
+
+	/**
+	 * Count feuille en cours de validation
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/countFeuilleEnCours", headers = Constants.HEADERS)
+	public PilposeResponse getFeuileEnCoursDeValidationCout() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Count Feuille en cours", null,
+					RsMethodEnum.POST.getValue(), "/v0/countFeuilleEnCours/", null));
+		}
+
+		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCout(), HttpStatus.OK);
 	}
 
 }

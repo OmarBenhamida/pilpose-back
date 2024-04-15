@@ -19,6 +19,12 @@ public interface IFeuilleTempsService {
 	 * @return List<FeuilleTempsEntity>
 	 */
 	List<FeuilleTempsEntity> getAllFeuilleTemps();
+	
+	/**
+	 *   get Conge En Cours De Validation Cout
+	 * @return
+	 */
+	int getFeuilleEnCoursDeValidationCout();
 
 	/**
 	 * add or update FeuilleTemps
