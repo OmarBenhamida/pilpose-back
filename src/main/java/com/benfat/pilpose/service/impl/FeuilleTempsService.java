@@ -123,9 +123,9 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 			}
 
 			List <FeuilleTempsEntity> feuille = feuilleTempsRepository.verifyChavauchement(entity.getIdChantier().getIdChantier(),
-					entity.getJourSemaine());
+					entity.getJourSemaine(),entity.getIdCollaborateur().getIdCollaborateur());
 
-			if (feuille == null || feuille.isEmpty()) {
+			if (feuille == null || feuille.isEmpty() || feuilleTemps.getIdFeuilleTemps() != null) {
 				entity = feuilleTempsRepository.save(entity);
 
 			} else {
@@ -422,6 +422,22 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 
 		return baos.toByteArray();
 
+	}
+
+	@Override
+	public int getFeuilleEnCoursDeValidationCout() {
+		
+		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCout("En cours de validation");
+	}
+
+	@Override
+	public int getFeuilleEnCoursDeValidationCoutCE() {
+		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCoutCE("En cours de validation");
+	}
+
+	@Override
+	public int getFeuilleEnCoursDeValidationCoutRT() {
+		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCoutRT("En cours de validation");
 	}
 
 }

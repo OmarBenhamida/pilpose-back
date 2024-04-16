@@ -381,4 +381,15 @@ public class CongeService implements ICongeService {
 
 	}
 
+	@Override
+	public int getCongeEnCoursDeValidationCout() {
+		
+		return congeRepository.getCongeEnCoursDeValidationCout("En cours");
+	}
+
+	@Override
+	public int getCongeEnCoursDeValidationCoutRT() {
+		return congeRepository.getCongeEnCoursDeValidationCoutRT("En cours");
+	}
+
 }

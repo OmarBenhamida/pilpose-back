@@ -154,5 +154,41 @@ public class CongeController {
 
 		return new PilposeResponse(congeService.genererLoader(), HttpStatus.OK);
 	}
+	
+	/**
+	 * Count conge en cours de validation
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/countCongeEnCours", headers = Constants.HEADERS)
+	public PilposeResponse getCongeEnCoursDeValidationCout() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Count congé en cours", null,
+					RsMethodEnum.POST.getValue(), "/v0/countCongeEnCours/", null));
+		}
+
+		return new PilposeResponse(congeService.getCongeEnCoursDeValidationCout(), HttpStatus.OK);
+	}
+	
+	/**
+	 * Count conge en cours de validation RT
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/countCongeEnCoursRT", headers = Constants.HEADERS)
+	public PilposeResponse getCongeEnCoursDeValidationCoutRT() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Count congé en cours", null,
+					RsMethodEnum.POST.getValue(), "/v0/countCongeEnCoursRT/", null));
+		}
+
+		return new PilposeResponse(congeService.getCongeEnCoursDeValidationCoutRT(), HttpStatus.OK);
+	}
 
 }

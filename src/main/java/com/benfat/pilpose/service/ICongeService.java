@@ -40,6 +40,19 @@ public interface ICongeService {
 	 * @return
 	 */
 	List<CongeEntity> getRefreshedConge();
+	
+	/**
+	 *   get Conge En Cours De Validation Cout
+	 * @return
+	 */
+	int getCongeEnCoursDeValidationCout();
+	
+	
+	/**
+	 *   get Conge En Cours De Validation Cout RT
+	 * @return
+	 */
+	int getCongeEnCoursDeValidationCoutRT();
 
 	/**
 	 * 

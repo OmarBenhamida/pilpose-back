@@ -30,7 +30,18 @@ public interface IFeuilleTempsRepository extends ICommonRepository<FeuilleTempsE
 	@Query(value = "SELECT SUM(heure_travaille) FROM feuille_temps where id_collaborateur = :idCollaborateur", nativeQuery = true)
 	int getCollabCout(@Param("idCollaborateur") Long idCollaborateur);
 	
-	@Query(value = "SELECT * FROM feuille_temps where id_chantier =:idChantier AND jour_semaine =:jourSemaine", nativeQuery = true)
-	List <FeuilleTempsEntity> verifyChavauchement(@Param("idChantier") Long idChantier, @Param("jourSemaine") String jourSemaine);
+	@Query(value = "SELECT * FROM feuille_temps where id_chantier =:idChantier AND jour_semaine =:jourSemaine AND id_collaborateur = :idCollaborateur ", nativeQuery = true)
+	List <FeuilleTempsEntity> verifyChavauchement(@Param("idChantier") Long idChantier, @Param("jourSemaine") String jourSemaine,@Param("idCollaborateur") Long idCollaborateur);
+	
+	
+	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut", nativeQuery = true)
+	int getFeuilleEnCoursDeValidationCout(@Param("statut") String statut);
+	
+	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut AND validation_chef_equipe = 0", nativeQuery = true)
+	int getFeuilleEnCoursDeValidationCoutCE(@Param("statut") String statut);
+	
+	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut AND validation_resp_travaux = 0", nativeQuery = true)
+	int getFeuilleEnCoursDeValidationCoutRT(@Param("statut") String statut);
+	
 
 }
