@@ -125,7 +125,7 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 			List <FeuilleTempsEntity> feuille = feuilleTempsRepository.verifyChavauchement(entity.getIdChantier().getIdChantier(),
 					entity.getJourSemaine(),entity.getIdCollaborateur().getIdCollaborateur());
 
-			if (feuille == null || feuille.isEmpty()) {
+			if (feuille == null || feuille.isEmpty() || feuilleTemps.getIdFeuilleTemps() != null) {
 				entity = feuilleTempsRepository.save(entity);
 
 			} else {
