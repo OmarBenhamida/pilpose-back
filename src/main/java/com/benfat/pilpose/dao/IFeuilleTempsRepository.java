@@ -37,5 +37,11 @@ public interface IFeuilleTempsRepository extends ICommonRepository<FeuilleTempsE
 	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut", nativeQuery = true)
 	int getFeuilleEnCoursDeValidationCout(@Param("statut") String statut);
 	
+	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut AND validation_chef_equipe = 0", nativeQuery = true)
+	int getFeuilleEnCoursDeValidationCoutCE(@Param("statut") String statut);
+	
+	@Query(value = "SELECT count(id_feuille_temps) FROM feuille_temps where statut = :statut AND validation_resp_travaux = 0", nativeQuery = true)
+	int getFeuilleEnCoursDeValidationCoutRT(@Param("statut") String statut);
+	
 
 }

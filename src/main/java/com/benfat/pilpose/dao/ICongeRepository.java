@@ -16,5 +16,8 @@ public interface ICongeRepository extends ICommonRepository<CongeEntity, Long> {
 	@Query(value = "SELECT count(id_conge) FROM conge where statut = :statut", nativeQuery = true)
 	int getCongeEnCoursDeValidationCout(@Param("statut") String statut);
 	
+	@Query(value = "SELECT count(id_conge) FROM conge where statut = :statut AND validation_resp_travaux = 0", nativeQuery = true)
+	int getCongeEnCoursDeValidationCoutRT(@Param("statut") String statut);
+	
 
 }

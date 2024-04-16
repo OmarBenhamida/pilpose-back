@@ -208,5 +208,41 @@ public class FeuilleTempsController {
 
 		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCout(), HttpStatus.OK);
 	}
+	
+	/**
+	 * Count feuille en cours de validation CE
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/countFeuilleEnCoursCE", headers = Constants.HEADERS)
+	public PilposeResponse getFeuileEnCoursDeValidationCoutCE() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Count Feuille en cours", null,
+					RsMethodEnum.POST.getValue(), "/v0/countFeuilleEnCoursCE/", null));
+		}
+
+		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCoutCE(), HttpStatus.OK);
+	}
+	
+	/**
+	 * Count feuille en cours de validation RT
+	 * 
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/countFeuilleEnCoursRT", headers = Constants.HEADERS)
+	public PilposeResponse getFeuileEnCoursDeValidationCoutRT() throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "Count Feuille en cours", null,
+					RsMethodEnum.POST.getValue(), "/v0/countFeuilleEnCoursRT/", null));
+		}
+
+		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCoutRT(), HttpStatus.OK);
+	}
 
 }

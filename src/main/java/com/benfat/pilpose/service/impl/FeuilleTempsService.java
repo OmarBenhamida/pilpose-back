@@ -430,4 +430,14 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCout("En cours de validation");
 	}
 
+	@Override
+	public int getFeuilleEnCoursDeValidationCoutCE() {
+		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCoutCE("En cours de validation");
+	}
+
+	@Override
+	public int getFeuilleEnCoursDeValidationCoutRT() {
+		return feuilleTempsRepository.getFeuilleEnCoursDeValidationCoutRT("En cours de validation");
+	}
+
 }

@@ -46,6 +46,13 @@ public interface ICongeService {
 	 * @return
 	 */
 	int getCongeEnCoursDeValidationCout();
+	
+	
+	/**
+	 *   get Conge En Cours De Validation Cout RT
+	 * @return
+	 */
+	int getCongeEnCoursDeValidationCoutRT();
 
 	/**
 	 * 

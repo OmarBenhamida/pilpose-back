@@ -25,6 +25,19 @@ public interface IFeuilleTempsService {
 	 * @return
 	 */
 	int getFeuilleEnCoursDeValidationCout();
+	
+	/**
+	 *   get Conge En Cours De Validation Cout CE
+	 * @return
+	 */
+	int getFeuilleEnCoursDeValidationCoutCE();
+	
+	
+	/**
+	 *   get Conge En Cours De Validation Cout RT
+	 * @return
+	 */
+	int getFeuilleEnCoursDeValidationCoutRT();
 
 	/**
 	 * add or update FeuilleTemps
