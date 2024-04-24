@@ -2,7 +2,14 @@ package com.benfat.pilpose.controllers.dto;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.benfat.pilpose.entities.TacheEntity;
@@ -52,6 +59,9 @@ public class TacheDto implements Serializable {
 	private String nomCompletClient;
 
 	private String ville;
+	
+	private String startTime;
+	private String 	endTime;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -69,7 +79,39 @@ public class TacheDto implements Serializable {
 			dto.setIdTache(entity.getIdTache());
 			dto.setTypeTravaux(entity.getTypeTravaux());
 			dto.setLibelle(entity.getLibelle());
+			
+			  LocalDate currentDate = LocalDate.parse(entity.getDateDebut(), DateTimeFormatter.ISO_DATE);
+		      LocalTime hours = LocalTime.parse(entity.getHeureDebut()+":00");
+
+
+		   // Step 2: Combine LocalDate and LocalTime into a LocalDateTime
+		        LocalDateTime currentDateTime = LocalDateTime.of(currentDate, hours);
+
+		        // Convert LocalDateTime to Date object with system default time zone
+		        Date finalDate = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
+		        // Display the final date
+		        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		      
+			
+			dto.setStartTime(formatter.format(finalDate));
 			dto.setDateDebut(entity.getDateDebut());
+			
+			
+			  LocalDate currentDate2 = LocalDate.parse(entity.getDateFin(), DateTimeFormatter.ISO_DATE);
+		      LocalTime hours2 = LocalTime.parse(entity.getHeureFin()+":00");
+
+
+		   // Step 2: Combine LocalDate and LocalTime into a LocalDateTime
+		        LocalDateTime currentDateTime2 = LocalDateTime.of(currentDate2, hours2);
+
+		        // Convert LocalDateTime to Date object with system default time zone
+		        Date finalDate2 = Date.from(currentDateTime2.atZone(ZoneId.systemDefault()).toInstant());
+
+		        // Display the final date
+		        SimpleDateFormat formatte2r = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		        
+			dto.setEndTime(formatte2r.format(finalDate2));
 			dto.setDateFin(entity.getDateFin());
 			dto.setHeureDebut(entity.getHeureDebut());
 			dto.setHeureFin(entity.getHeureFin());
