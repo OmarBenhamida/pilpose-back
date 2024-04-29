@@ -72,6 +72,21 @@ public interface ICollaborateurService {
 	 * @throws ParseException
 	 */
 	List<PlanningDto> getPlanningAll() throws ParseException;
+	
+	/**
+	 * 
+	 * @param idC
+	 * @return
+	 * @throws ParseException
+	 */
+	List<PlanningDto> getPlanningByIdFiltred(Long idC) throws ParseException;
+
+	/**
+	 * 
+	 * @return
+	 * @throws ParseException
+	 */
+	List<PlanningDto> getPlanningAllFiltred() throws ParseException;
 
 	/**
 	 * genererLoader Salaries

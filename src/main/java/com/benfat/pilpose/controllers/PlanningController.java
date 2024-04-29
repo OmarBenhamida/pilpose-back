@@ -65,5 +65,40 @@ public class PlanningController {
 
 		return pilposeResponse;
 	}
+	
+	/**
+	 * Get affectation Controller
+	 *
+	 * @return {PilposeResponse}
+	 * @throws ParseException
+	 * @throws Exception
+	 *
+	 */
+	@GetMapping(value = ConstantsApplication.REST_PATH_V1 + "/{idC}", headers = Constants.HEADERS)
+	public PilposeResponse getPlanningByIdFiltred(@PathVariable Long idC) throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"get planning controller", null, RsMethodEnum.GET.getValue(),
+					"/planning" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		PilposeResponse pilposeResponse = new PilposeResponse(collaborateurService.getPlanningByIdFiltred(idC), HttpStatus.OK);
+
+		return pilposeResponse;
+	}
+
+	@GetMapping(value = ConstantsApplication.REST_PATH_V1, headers = Constants.HEADERS)
+	public PilposeResponse getPlanningAllFiltred() throws ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), serverProperties.getPort(),
+					"get planning controller", null, RsMethodEnum.GET.getValue(),
+					"/planning" + ConstantsApplication.REST_PATH_V0, null));
+		}
+
+		PilposeResponse pilposeResponse = new PilposeResponse(collaborateurService.getPlanningAllFiltred(), HttpStatus.OK);
+
+		return pilposeResponse;
+	}
+
 
 }
