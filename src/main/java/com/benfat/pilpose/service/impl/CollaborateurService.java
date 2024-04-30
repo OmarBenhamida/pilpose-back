@@ -379,4 +379,69 @@ public class CollaborateurService implements ICollaborateurService {
 
 	}
 
+	@Override
+	public List<PlanningDto> getPlanningByIdFiltred(Long idC) throws ParseException {
+		List<PlanningDto> list = new ArrayList<>();
+		List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollab(idC);
+		for (AffectationEntity num : affectationEntities) {
+
+			PlanningDto dto = new PlanningDto();
+			dto.setIdCollaborateur(CollaborateurPlannigDto.entityToDto(num.getIdCollaborateur()));
+			
+			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
+
+			list.add(dto);
+		}
+
+		Date today = new Date();
+		
+
+        List<PlanningDto> listFiltre = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        for (PlanningDto event : list) {
+            try {
+                Date eventDate = sdf.parse(event.getIdTache().getDateDebut());
+                if (eventDate.compareTo(today) >= 0) {
+                	listFiltre.add(event);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+		return listFiltre;
+	}
+
+	@Override
+	public List<PlanningDto> getPlanningAllFiltred() throws ParseException {
+		List<PlanningDto> list = new ArrayList<>();
+		List<AffectationEntity> affectationEntities = affectationRepository.findAll();
+		for (AffectationEntity num : affectationEntities) {
+
+			PlanningDto dto = new PlanningDto();
+			dto.setIdCollaborateur(CollaborateurPlannigDto.entityToDto(num.getIdCollaborateur()));
+			dto.setIdTache(TacheDto.entityToDto(num.getIdTache()));
+
+			list.add(dto);
+		}
+		
+		Date today = new Date();
+		
+
+        List<PlanningDto> listFiltre = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        for (PlanningDto event : list) {
+            try {
+                Date eventDate = sdf.parse(event.getIdTache().getDateDebut());
+                if (eventDate.compareTo(today) >= 0) {
+                	listFiltre.add(event);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+		return listFiltre;
+	}
+
 }
