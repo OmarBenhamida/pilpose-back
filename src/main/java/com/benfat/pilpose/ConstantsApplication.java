@@ -23,7 +23,7 @@ public class ConstantsApplication {
 	public static final String SALARIE =  "Salarié(e)";
 	
 	public static final String DEFAULT_PASSWORD= "password";
-	public static final String ASSETS= "D:/Worspace/assets/";
+	public static final String ASSETS= "var/pilposeassets/";
 	private ConstantsApplication() {
 	}
 }
