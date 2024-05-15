@@ -33,7 +33,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/feuille")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class FeuilleTempsController {
 
 	private static Logger logger = LoggerFactory.getLogger(FeuilleTempsController.class);
@@ -184,5 +184,26 @@ public class FeuilleTempsController {
 
 		return new PilposeResponse(feuilleTempsService.genererLoader(), HttpStatus.OK);
 	}
+	
+	
+	
+	@GetMapping(path = ConstantsApplication.REST_PATH_V0 + "/{idCollab}", headers = Constants.HEADERS)
+	public PilposeResponse checkAllFeuillesByCollab(@PathVariable Long idCollab)
+			throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null,
+					"verifier imputation des heures", null, RsMethodEnum.POST.getValue(),
+					"/v0/feuille/", null));
+		}
+
+		
+
+		return new PilposeResponse(feuilleTempsService.checkFeuilleCreated(idCollab), HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
 
 }

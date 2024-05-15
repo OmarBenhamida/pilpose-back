@@ -32,7 +32,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/chantierRecap")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class ChantierRecapController {
 
 	private static Logger logger = LoggerFactory.getLogger(ChantierRecapController.class);

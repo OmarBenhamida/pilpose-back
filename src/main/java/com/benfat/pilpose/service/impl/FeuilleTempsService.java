@@ -6,9 +6,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.text.ParseException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +37,7 @@ import com.benfat.pilpose.controllers.dto.ChantierDto;
 import com.benfat.pilpose.controllers.dto.ChantierRecapDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurRecapDto;
+import com.benfat.pilpose.controllers.dto.FeuilleTempsCheckDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.dao.ICollaborateurRepository;
@@ -413,5 +419,57 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 		return baos.toByteArray();
 
 	}
+
+	@Override
+	public FeuilleTempsCheckDto checkFeuilleCreated(Long idCollab) {
+		
+		FeuilleTempsCheckDto feuilleTempsCheckDto = new FeuilleTempsCheckDto();
+		
+		
+		List<FeuilleTempsEntity> feuilleTempsEntities= feuilleTempsRepository.findByIdCollab(idCollab);
+		
+		
+		// Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Get the start date of the current week (Monday)
+        LocalDate startOfWeek = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+
+        // Get the end date of the current week (Friday)
+        LocalDate endOfWeek = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+
+        // Create variables for each date from Monday to Friday
+        LocalDate monday = startOfWeek;
+        LocalDate tuesday = startOfWeek.plusDays(1);
+        LocalDate wednesday = startOfWeek.plusDays(2);
+        LocalDate thursday = startOfWeek.plusDays(3);
+        LocalDate friday = endOfWeek;
+        
+        for (FeuilleTempsEntity feuilleTempsEntity : feuilleTempsEntities) {
+            String jourSemaine = feuilleTempsEntity.getJourSemaine();
+
+            if (jourSemaine.equals(monday.toString())) {
+                feuilleTempsCheckDto.setLundi(true);
+            } else if (jourSemaine.equals(tuesday.toString())) {
+                feuilleTempsCheckDto.setMardi(true);
+            } else if (jourSemaine.equals(wednesday.toString())) {
+                feuilleTempsCheckDto.setMercredi(true);
+            } else if (jourSemaine.equals(thursday.toString())) {
+                feuilleTempsCheckDto.setJeudi(true);
+            } else if (jourSemaine.equals(friday.toString())) {
+                feuilleTempsCheckDto.setVendredi(true);
+            }
+        }
+
+        
+        
+		return feuilleTempsCheckDto;
+	}
+	
+	
+	
+
+	
+	
 
 }

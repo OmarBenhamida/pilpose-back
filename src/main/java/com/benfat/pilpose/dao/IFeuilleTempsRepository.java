@@ -29,5 +29,8 @@ public interface IFeuilleTempsRepository extends ICommonRepository<FeuilleTempsE
 	
 	@Query(value = "SELECT SUM(heure_travaille) FROM feuille_temps where id_collaborateur = :idCollaborateur", nativeQuery = true)
 	int getCollabCout(@Param("idCollaborateur") Long idCollaborateur);
+	
+	@Query("SELECT dce FROM FeuilleTempsEntity dce where id_collaborateur = :idCollaborateur")
+	List<FeuilleTempsEntity> findByIdCollab(@Param("idCollaborateur") Long idCollaborateur);
 
 }

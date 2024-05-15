@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.benfat.pilpose.controllers.dto.ChantierRecapDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurRecapDto;
+import com.benfat.pilpose.controllers.dto.FeuilleTempsCheckDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.FeuilleTempsEntity;
@@ -90,6 +91,8 @@ public interface IFeuilleTempsService {
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
 	
+	
+	FeuilleTempsCheckDto checkFeuilleCreated(Long idCollab);
 
 
 

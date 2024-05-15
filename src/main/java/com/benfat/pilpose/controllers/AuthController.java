@@ -27,7 +27,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class AuthController {
 
 	private static Logger logger = LoggerFactory.getLogger(AuthController.class);

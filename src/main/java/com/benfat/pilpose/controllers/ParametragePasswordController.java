@@ -30,7 +30,7 @@ import com.benfat.pilpose.util.Constants;
 
 @RestController
 @RequestMapping("/parametrage")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
+//@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8100" })
 public class ParametragePasswordController {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(ParametragePasswordController.class);
