@@ -102,8 +102,10 @@ public class NoteFraisService implements INoteFraisService {
 			}
 
 			entity = noteFraisRepository.save(entity);
-			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Note de service crée ",
-					"Bonjour /n Votre note de service est crée");
+
+			emailService.sendEmail(demandeur.getEmail(), "Pilpose - Note de frais créée ",
+					"Bonjour, \nVotre note de frais est créée avec succès : \nDate  : " + entity.getDateNote()
+							+ " \nMotif : " + entity.getTypeNote());
 
 		} catch (Exception e) {
 			throw new PilposeBusinessException("NoteFraisService::addOrUpdateNoteFrais on line "
@@ -216,7 +218,7 @@ public class NoteFraisService implements INoteFraisService {
 					Cell dateFinCell = PilposeUtils.getXCell(row, 3);
 					dateFinCell.setCellValue(ca.getNomCompletEmploye());
 					dateFinCell.setCellStyle(style);
-					
+
 					Cell statutCell = PilposeUtils.getXCell(row, 4);
 					statutCell.setCellValue(ca.getStatut());
 					statutCell.setCellStyle(style);
