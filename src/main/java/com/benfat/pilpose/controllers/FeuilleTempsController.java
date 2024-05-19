@@ -208,7 +208,7 @@ public class FeuilleTempsController {
 
 		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCout(), HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Count feuille en cours de validation CE
 	 * 
@@ -226,7 +226,7 @@ public class FeuilleTempsController {
 
 		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCoutCE(), HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Count feuille en cours de validation RT
 	 * 
@@ -243,6 +243,24 @@ public class FeuilleTempsController {
 		}
 
 		return new PilposeResponse(feuilleTempsService.getFeuilleEnCoursDeValidationCoutRT(), HttpStatus.OK);
+	}
+
+	/**
+	 * checkAllFeuillesByCollab
+	 * 
+	 * @param idCollab
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	@GetMapping(path = ConstantsApplication.REST_PATH_V1 + "/{idCollab}", headers = Constants.HEADERS)
+	public PilposeResponse checkAllFeuillesByCollab(@PathVariable Long idCollab) throws IOException, ParseException {
+		if (logger.isInfoEnabled()) {
+			logger.info(FactoryLog.getRsLog(OrigineEnum.PILPOSE_AUTH.getValue(), null, "verifier imputation des heures",
+					null, RsMethodEnum.POST.getValue(), "/v0/feuille/", null));
+		}
+
+		return new PilposeResponse(feuilleTempsService.checkFeuilleCreated(idCollab), HttpStatus.OK);
 	}
 
 }

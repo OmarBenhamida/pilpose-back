@@ -97,25 +97,25 @@ public class CongeService implements ICongeService {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			String formattedDate = dateFormat.format(dateDeb);
 
-			
-			/**Récuperation du demandeur*/
-			CollaborateurEntity demandeur = collaborateurRepository.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
+			/** Récuperation du demandeur */
+			CollaborateurEntity demandeur = collaborateurRepository
+					.getUserById(conge.getIdCollaborateur().getIdCollaborateur());
 
-			/**modification d'un congé*/
+			/** modification d'un congé */
 			if (conge.getIdConge() != null && validateConge(conge)) {
 				conge.setValidationResponsableTravaux(true);
 				conge.setStatut(ConstantsApplication.VALIDE);
-				sendValidationEmail(demandeur.getEmail());
+				sendValidationEmail(demandeur.getEmail(), conge);
 				affectationPlanning(conge, demandeur);
 			}
 
 			CongeEntity entity = CongeDto.dtoToEntity(conge);
 
-			/**creation d'un nouveau conge*/
+			/** creation d'un nouveau conge */
 			if (conge.getIdConge() == null) {
 				entity.setReference(createReference(entity, demandeur));
 				entity.setDateDepot(formattedDate);
-				sendCreationEmail(demandeur.getEmail());
+				sendCreationEmail(demandeur.getEmail(), entity);
 			}
 
 			entity = congeRepository.save(entity);
@@ -136,19 +136,21 @@ public class CongeService implements ICongeService {
 		return entity.getDateDebut() + "-" + entity.getDateFin() + "-" + demandeur.getUsername();
 	}
 
-	private void sendValidationEmail(String email) {
+	private void sendValidationEmail(String email, CongeDto entity) {
 		emailService.sendEmail(email, "Pilpose - Demande de congé validée ",
-				"Bonjour,\nVotre demande de congé est validée");
+				"Bonjour, \nVotre demande de congé est validé : \nDate début : " + entity.getDateDebut()
+						+ " \nDate fin : " + entity.getDateFin() + " \nHeure début : " + entity.getHeureDebut()
+						+ " \nHeure Fin : " + entity.getHeureFin() + " \nMotif : " + entity.getTypeConge());
 	}
 
-	private void sendCreationEmail(String email) {
+	private void sendCreationEmail(String email, CongeEntity entity) {
 		emailService.sendEmail(email, "Pilpose - Demande de congé créée ",
-				"Bonjour, \nVotre demande de congé est créée avec succès");
+				"Bonjour, \nVotre demande de congé est créée avec succès : \nDate début : " + entity.getDateDebut()
+						+ " \nDate fin : " + entity.getDateFin() + " \nHeure début : " + entity.getHeureDebut()
+						+ " \nHeure Fin : " + entity.getHeureFin() + " \nMotif : " + entity.getTypeConge());
 	}
 
 	void affectationPlanning(CongeDto conge, CollaborateurEntity demandeur) {
-		
-	
 
 		TacheEntity tache = new TacheEntity();
 		tache.setDateDebut(conge.getDateDebut());
@@ -383,7 +385,7 @@ public class CongeService implements ICongeService {
 
 	@Override
 	public int getCongeEnCoursDeValidationCout() {
-		
+
 		return congeRepository.getCongeEnCoursDeValidationCout("En cours");
 	}
 

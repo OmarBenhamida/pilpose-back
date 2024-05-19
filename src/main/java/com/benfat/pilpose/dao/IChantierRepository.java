@@ -17,6 +17,9 @@ public interface IChantierRepository extends ICommonRepository<ChantierEntity, L
 
 	@Query("SELECT dce FROM ChantierEntity dce WHERE dce.reference = :code")
 	ChantierEntity getByCode(String code);
+	
+	@Query("SELECT dce FROM ChantierEntity dce WHERE dce.reference = :code")
+	ChantierEntity getByIdChantier(String code);
 
 	@Query("SELECT dce FROM ChantierEntity dce WHERE dce.client = :client")
 	ChantierEntity getUserByClient(String client);

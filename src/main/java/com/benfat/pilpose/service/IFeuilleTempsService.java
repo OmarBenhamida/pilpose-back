@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.benfat.pilpose.controllers.dto.ChantierRecapDto;
 import com.benfat.pilpose.controllers.dto.CollaborateurRecapDto;
+import com.benfat.pilpose.controllers.dto.FeuilleTempsCheckDto;
 import com.benfat.pilpose.controllers.dto.FeuilleTempsDto;
 import com.benfat.pilpose.controllers.dto.PilposeLoaderResponseDto;
 import com.benfat.pilpose.entities.FeuilleTempsEntity;
@@ -19,22 +20,24 @@ public interface IFeuilleTempsService {
 	 * @return List<FeuilleTempsEntity>
 	 */
 	List<FeuilleTempsEntity> getAllFeuilleTemps();
-	
+
 	/**
-	 *   get Conge En Cours De Validation Cout
+	 * get Conge En Cours De Validation Cout
+	 * 
 	 * @return
 	 */
 	int getFeuilleEnCoursDeValidationCout();
-	
+
 	/**
-	 *   get Conge En Cours De Validation Cout CE
+	 * get Conge En Cours De Validation Cout CE
+	 * 
 	 * @return
 	 */
 	int getFeuilleEnCoursDeValidationCoutCE();
-	
-	
+
 	/**
-	 *   get Conge En Cours De Validation Cout RT
+	 * get Conge En Cours De Validation Cout RT
+	 * 
 	 * @return
 	 */
 	int getFeuilleEnCoursDeValidationCoutRT();
@@ -60,26 +63,23 @@ public interface IFeuilleTempsService {
 	 * @return
 	 */
 	List<FeuilleTempsEntity> getRefreshedFeuilleTemps();
-	
-	
-	
+
 	/**
 	 * get refresh FeuilleTemps
 	 * 
 	 * @return
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	List<ChantierRecapDto> getChantierRecaps() throws ParseException;
-	
-	
+
 	/**
 	 * get refresh FeuilleTemps
 	 * 
 	 * @return
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 	List<CollaborateurRecapDto> getCollaborateurRecaps() throws ParseException;
-	
+
 	/**
 	 * genererLoader FeuilleTemps
 	 * 
@@ -108,8 +108,12 @@ public interface IFeuilleTempsService {
 	 * @throws CsvDataTypeMismatchException
 	 */
 	byte[] genererLoaderCsv() throws ParseException, IOException;
-	
 
-
+	/**
+	 * checkFeuilleCreated
+	 * @param idCollab
+	 * @return
+	 */
+	FeuilleTempsCheckDto checkFeuilleCreated(Long idCollab);
 
 }
