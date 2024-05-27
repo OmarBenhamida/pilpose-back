@@ -483,14 +483,14 @@ public class FeuilleTempsService implements IFeuilleTempsService {
 		LocalDate startOfWeek = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
 		// Get the end date of the current week (Friday)
-		LocalDate endOfWeek = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+		
 
 		// Create variables for each date from Monday to Friday
 		LocalDate monday = startOfWeek;
 		LocalDate tuesday = startOfWeek.plusDays(1);
 		LocalDate wednesday = startOfWeek.plusDays(2);
 		LocalDate thursday = startOfWeek.plusDays(3);
-		LocalDate friday = endOfWeek;
+		LocalDate friday = startOfWeek.plusDays(4);
 
 		if (!feuilleTempsEntities.isEmpty() && feuilleTempsEntities != null) {
 			for (FeuilleTempsEntity feuilleTempsEntity : feuilleTempsEntities) {

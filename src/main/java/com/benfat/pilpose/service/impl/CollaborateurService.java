@@ -382,7 +382,7 @@ public class CollaborateurService implements ICollaborateurService {
 	@Override
 	public List<PlanningDto> getPlanningByIdFiltred(Long idC) throws ParseException {
 		List<PlanningDto> list = new ArrayList<>();
-		List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollab(idC);
+		List<AffectationEntity> affectationEntities = affectationRepository.getByIdCollabTache(idC);
 		for (AffectationEntity num : affectationEntities) {
 
 			PlanningDto dto = new PlanningDto();
@@ -415,7 +415,7 @@ public class CollaborateurService implements ICollaborateurService {
 	@Override
 	public List<PlanningDto> getPlanningAllFiltred() throws ParseException {
 		List<PlanningDto> list = new ArrayList<>();
-		List<AffectationEntity> affectationEntities = affectationRepository.findAll();
+		List<AffectationEntity> affectationEntities = affectationRepository.getAllTache();
 		for (AffectationEntity num : affectationEntities) {
 
 			PlanningDto dto = new PlanningDto();
