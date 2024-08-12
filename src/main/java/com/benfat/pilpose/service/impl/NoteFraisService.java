@@ -222,6 +222,11 @@ public class NoteFraisService implements INoteFraisService {
 					Cell statutCell = PilposeUtils.getXCell(row, 4);
 					statutCell.setCellValue(ca.getStatut());
 					statutCell.setCellStyle(style);
+					
+					Cell chantierCell = PilposeUtils.getXCell(row, 5);
+					chantierCell.setCellValue(ca.getNomCompletChantier());
+					chantierCell.setCellStyle(style);
+
 
 					indexLigne++;
 				}
@@ -258,6 +263,8 @@ public class NoteFraisService implements INoteFraisService {
 		headerLine.append("Employé");
 		headerLine.append(Constants.CSV_SEPARATOR);
 		headerLine.append("Staut");
+		headerLine.append(Constants.CSV_SEPARATOR);
+		headerLine.append("Chantier");
 
 		writer.write(headerLine.toString());
 		writer.newLine();
@@ -274,6 +281,8 @@ public class NoteFraisService implements INoteFraisService {
 			oneLine.append(l.getNomCompletEmploye());
 			oneLine.append(Constants.CSV_SEPARATOR);
 			oneLine.append(l.getStatut());
+			oneLine.append(Constants.CSV_SEPARATOR);
+			oneLine.append(l.getNomCompletChantier());
 
 			writer.write(oneLine.toString());
 			writer.newLine();

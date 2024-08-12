@@ -36,7 +36,10 @@ public class NoteFraisDto implements Serializable {
 	private String dateNote;
 
 	private String nomCompletEmploye;
-
+	private String nomCompletChantier;
+	private String nomCompletClient;
+	private ChantierDto idChantier;
+	private String ville;
 	private String statut;
 
 	@Nullable
@@ -62,6 +65,7 @@ public class NoteFraisDto implements Serializable {
 			dto.setIdNoteFrais(entity.getIdNoteFrais());
 			dto.setReference(entity.getReference());
 			dto.setTypeNote(entity.getTypeNote());
+			dto.setIdChantier(ChantierDto.entityToDto(entity.getIdChantier()));
 			dto.setDateNote(entity.getDateNote());
 			dto.setStatut(entity.getStatut());
 			// dto.setRecu(entity.getRecu());
@@ -69,6 +73,19 @@ public class NoteFraisDto implements Serializable {
 			if (entity.getIdCollaborateur() != null) {
 				dto.setNomCompletEmploye(
 						entity.getIdCollaborateur().getNom() + "  " + entity.getIdCollaborateur().getPrenom());
+			}
+			if (entity.getIdChantier() != null) {
+				dto.setNomCompletChantier(
+						entity.getIdChantier().getNomChantier() + "  " + entity.getIdChantier().getReference());
+				if (entity.getIdChantier().getClient() != null) {
+					dto.setNomCompletClient(entity.getIdChantier().getClient().getPrenom() + "  "
+							+ entity.getIdChantier().getClient().getNom());
+				}
+				if (entity.getIdChantier().getLocalisation() != null) {
+
+					dto.setVille(entity.getIdChantier().getLocalisation().getVille() + "-"
+							+ entity.getIdChantier().getLocalisation().getCodePostale());
+				}
 			}
 
 		}
@@ -91,6 +108,7 @@ public class NoteFraisDto implements Serializable {
 			entity.setTypeNote(dto.getTypeNote());
 			entity.setDateNote(dto.getDateNote());
 			entity.setStatut(dto.getStatut());
+			entity.setIdChantier(ChantierDto.dtoToEntity(dto.getIdChantier()));
 			// entity.setRecu(dto.getRecu().getBytes());
 
 			entity.setIdCollaborateur(CollaborateurDto.dtoToEntity(dto.getIdCollaborateur()));
