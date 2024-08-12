@@ -45,6 +45,10 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 	
 	@Column(name = "statut")
 	private String statut;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_chantier")
+	private ChantierEntity idChantier;
 
 	@ManyToOne
 	@JoinColumn(name = "id_collaborateur")
@@ -92,6 +96,13 @@ public class NoteFraisEntity extends AbstractCommonEntity<Long> {
 		this.dateNote = dateNote;
 	}
 
+	public ChantierEntity getIdChantier() {
+		return idChantier;
+	}
+
+	public void setIdChantier(ChantierEntity idChantier) {
+		this.idChantier = idChantier;
+	}
 
 	public CollaborateurEntity getIdCollaborateur() {
 		return idCollaborateur;
